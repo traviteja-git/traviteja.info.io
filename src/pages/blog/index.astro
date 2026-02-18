@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const allTags = [...new Set(posts.flatMap(p => p.data.tags ?? []))].sort();
+---
+
+<BaseLayout title="Blog — Raviteja T." description="Articles on data engineering, cloud architecture, and software development.">
+  <header class="mb-10">
+    <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 0.75rem;">Blog</h1>
+    <p style="color:var(--fg-muted); font-size:1rem; margin:0;">
+      Thoughts on data engineering, cloud architecture, and building things.
+    </p>
+  </header>
+
+  {allTags.length > 0 && (
+    <div class="flex flex-wrap gap-2 mb-8">
+      {allTags.map(tag => <span class="tag">{tag}</span>)}
+    </div>
+  )}
+
+  {posts.length === 0 ? (
+    <p style="color:var(--fg-muted);">No articles yet. Check back soon.</p>
+  ) : (
+    <div class="flex flex-col gap-4">
+      {posts.map(post => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          slug={post.slug}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+  )}
+</BaseLayout>

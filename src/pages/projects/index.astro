@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<BaseLayout title="Projects — Raviteja T." description="Data engineering and cloud architecture projects by Tholupunoori Raviteja.">
+  <header class="mb-10">
+    <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 0.75rem;">Projects</h1>
+    <p style="color:var(--fg-muted); font-size:1rem; margin:0;">
+      A selection of things I've built, contributed to, or experimented with.
+    </p>
+  </header>
+
+  {projects.length === 0 ? (
+    <p style="color:var(--fg-muted);">No projects listed yet. Coming soon.</p>
+  ) : (
+    <div class="grid sm:grid-cols-2 gap-4">
+      {projects.map(project => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          tech={project.data.tech}
+          github={project.data.github}
+          liveUrl={project.data.liveUrl}
+          slug={project.slug}
+        />
+      ))}
+    </div>
+  )}
+</BaseLayout>

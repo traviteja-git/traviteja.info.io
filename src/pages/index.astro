@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+
+const featuredProjects = (await getCollection('projects'))
+  .filter(p => p.data.featured)
+  .slice(0, 3);
+---
+
+<BaseLayout title="Raviteja T. — Data Engineer & Cloud Architect">
+  <!-- Hero -->
+  <section class="mb-20">
+    <p style="color:var(--fg-muted); font-size:0.875rem; margin-bottom:0.75rem;">
+      Hey, I'm Raviteja 👋
+    </p>
+    <h1 style="color:var(--fg); font-size:2.25rem; font-weight:700; line-height:1.2; margin:0 0 1.25rem;">
+      Data Engineer &amp; Cloud Architect
+    </h1>
+    <p style="color:var(--fg-muted); font-size:1.05rem; max-width:42rem; margin:0 0 1.75rem; line-height:1.7;">
+      8+ years building scalable data pipelines, cloud-native architectures, and ETL solutions.
+      Currently at <strong style="color:var(--fg);">Deloitte</strong>, specialising in GCP, Apache Spark, Airflow, and Databricks.
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <a href="/about"
+         style="background:var(--fg); color:var(--bg); border-radius:8px; padding:0.55rem 1.25rem; font-size:0.9rem; font-weight:500;"
+         class="hover:opacity-80 transition-opacity">
+        About me
+      </a>
+      <a href="/blog"
+         style="border:1px solid var(--border); color:var(--fg); border-radius:8px; padding:0.55rem 1.25rem; font-size:0.9rem; font-weight:500; background:transparent;"
+         class="hover:border-[var(--accent)] transition-colors">
+        Read the blog
+      </a>
+    </div>
+  </section>
+
+  <!-- Recent posts -->
+  {allPosts.length > 0 && (
+    <section class="mb-20">
+      <div class="flex items-center justify-between mb-6">
+        <h2 style="color:var(--fg); font-size:1.1rem; font-weight:600; margin:0;">Recent articles</h2>
+        <a href="/blog" style="color:var(--fg-muted); font-size:0.85rem;" class="hover:opacity-70 transition-opacity">
+          View all →
+        </a>
+      </div>
+      <div class="flex flex-col gap-4">
+        {allPosts.map(post => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            slug={post.slug}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Featured projects -->
+  {featuredProjects.length > 0 && (
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 style="color:var(--fg); font-size:1.1rem; font-weight:600; margin:0;">Featured projects</h2>
+        <a href="/projects" style="color:var(--fg-muted); font-size:0.85rem;" class="hover:opacity-70 transition-opacity">
+          View all →
+        </a>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {featuredProjects.map(project => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            tech={project.data.tech}
+            github={project.data.github}
+            liveUrl={project.data.liveUrl}
+            slug={project.slug}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

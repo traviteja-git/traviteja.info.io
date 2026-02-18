@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skills = {
+  'Languages': ['Python', 'C#', 'SQL', 'JavaScript', 'HTML/CSS', 'YAML', 'XML', 'JSON'],
+  'Data Engineering': ['Apache Spark', 'Apache Airflow', 'Databricks', 'Talend', 'ETL/ELT'],
+  'Cloud Platforms': ['Google Cloud Platform (GCP)', 'Microsoft Azure', 'Amazon Web Services (AWS)'],
+  'GCP Services': ['BigQuery', 'Cloud Composer', 'GKE', 'App Engine', 'Cloud Functions', 'Dataflow'],
+  'Databases': ['SQL Server', 'MongoDB', 'PostgreSQL'],
+  'Tools & Frameworks': ['Git', 'Docker', 'Kubernetes', 'Angular', 'Node.js'],
+};
+
+const certifications = [
+  { name: 'Professional Cloud Architect',    issuer: 'Google Cloud' },
+  { name: 'Professional Developer',          issuer: 'Google Cloud' },
+  { name: 'Associate Cloud Engineer',        issuer: 'Google Cloud' },
+  { name: 'Cloud Digital Leader',            issuer: 'Google Cloud' },
+  { name: 'Airflow Fundamentals',            issuer: 'Astronomer'   },
+  { name: 'SI Associate',                    issuer: 'MongoDB'       },
+  { name: 'SI Architect',                    issuer: 'MongoDB'       },
+];
+
+const experience = [
+  {
+    role: 'Sr. Product Engineer 1',
+    company: 'Deloitte Consulting India Pvt. Ltd.',
+    period: 'Jul 2021 — Present',
+    tech: ['Apache Spark', 'Apache Airflow', 'Python', 'GCP', 'Databricks'],
+    highlights: [
+      'Migrated Identity Resolution to support AWS and Azure infrastructure within 3 months.',
+      'Modernised data processing pipeline by migrating from legacy .NET code to Apache Spark.',
+      'Designed and orchestrated cloud-native data workflows on GCP using Cloud Composer (Airflow).',
+      'Built and maintained BigQuery data models powering business-critical analytics.',
+    ],
+  },
+  {
+    role: 'Full Stack Developer',
+    company: 'Strategic Technology Resources International PVT. LTD.',
+    period: 'Apr 2020 — Jun 2021',
+    tech: ['Angular', 'Node.js', 'JavaScript', 'Bitbucket'],
+    highlights: [
+      'Built user interfaces for web applications using AngularJS and Node.js.',
+      'Collaborated with cross-functional teams using Agile methodologies and Asana.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="About — Raviteja T."
+  description="Data Engineer and Cloud Architect with 8+ years of experience building scalable data pipelines and cloud-native solutions."
+>
+  <!-- Header -->
+  <header class="mb-12">
+    <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 1rem;">
+      About me
+    </h1>
+    <p style="color:var(--fg-muted); font-size:1.05rem; max-width:42rem; line-height:1.75; margin:0;">
+      I'm <strong style="color:var(--fg);">Tholupunoori Raviteja</strong>, a Data Engineer and Cloud Architect with
+      8+ years of experience designing scalable data solutions — from ETL pipelines to real-time streaming
+      architectures — across GCP, Azure, and AWS. Currently building at Deloitte.
+    </p>
+  </header>
+
+  <!-- Contact + Resume -->
+  <section style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle); margin-bottom:3rem;">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div class="flex flex-col gap-1 text-sm" style="color:var(--fg-muted);">
+        <span>📧 <a href="mailto:raviteja0096@gmail.com" style="color:var(--accent);">raviteja0096@gmail.com</a></span>
+        <span>💼 <a href="https://linkedin.com/in/raviteja0096" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">linkedin.com/in/raviteja0096</a></span>
+        <span>🐙 <a href="https://github.com/traviteja-git" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">github.com/traviteja-git</a></span>
+      </div>
+      <a
+        href="/resume.pdf"
+        download
+        style="background:var(--fg); color:var(--bg); border-radius:8px; padding:0.55rem 1.25rem; font-size:0.875rem; font-weight:500; text-decoration:none; white-space:nowrap; text-align:center;"
+        class="hover:opacity-80 transition-opacity"
+      >
+        Download Resume ↓
+      </a>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="mb-12">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Experience
+    </h2>
+    <div class="flex flex-col gap-8">
+      {experience.map(job => (
+        <div>
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+            <div>
+              <h3 style="color:var(--fg); font-size:1rem; font-weight:600; margin:0;">{job.role}</h3>
+              <p style="color:var(--fg-muted); font-size:0.9rem; margin:0.2rem 0 0;">{job.company}</p>
+            </div>
+            <span style="color:var(--fg-muted); font-size:0.8rem; white-space:nowrap; margin-top:0.15rem;">{job.period}</span>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            {job.tech.map(t => <span class="tag">{t}</span>)}
+          </div>
+          <ul style="padding-left:1.25rem; margin:0;" class="flex flex-col gap-1">
+            {job.highlights.map(h => (
+              <li style="color:var(--fg-muted); font-size:0.9rem;">{h}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="mb-12">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Skills
+    </h2>
+    <div class="flex flex-col gap-5">
+      {Object.entries(skills).map(([category, items]) => (
+        <div>
+          <h3 style="color:var(--fg-muted); font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.6rem;">
+            {category}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {items.map(item => <span class="tag">{item}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="mb-12">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Certifications
+    </h2>
+    <div class="grid sm:grid-cols-2 gap-3">
+      {certifications.map(cert => (
+        <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);">
+          <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0 0 0.25rem;">{cert.name}</p>
+          <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{cert.issuer}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Education
+    </h2>
+    <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);">
+      <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0 0 0.25rem;">B.Tech — Electronics & Communication Engineering</p>
+      <p style="color:var(--fg-muted); font-size:0.85rem; margin:0 0 0.2rem;">CVR College of Engineering, JNTUH</p>
+      <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">2016 · 81%</p>
+    </div>
+  </section>
+</BaseLayout>

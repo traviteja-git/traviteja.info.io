@@ -1,0 +1,47 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  tags?: string[];
+}
+
+const { title, description, date, tags = [] } = Astro.props;
+const formatted = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<BaseLayout title={`${title} — Raviteja T.`} description={description}>
+  <!-- Back link -->
+  <a href="/blog" style="color:var(--fg-muted); font-size:0.875rem;" class="inline-flex items-center gap-1 hover:opacity-70 transition-opacity mb-8">
+    ← All articles
+  </a>
+
+  <!-- Article header -->
+  <header class="mb-10">
+    <div class="flex flex-wrap gap-2 mb-4">
+      {tags.map(tag => <span class="tag">{tag}</span>)}
+    </div>
+    <h1 style="color:var(--fg); font-size:2rem; font-weight:700; line-height:1.25; margin:0 0 0.75rem;">
+      {title}
+    </h1>
+    <p style="color:var(--fg-muted); font-size:0.9rem; margin:0;">
+      {formatted}
+    </p>
+  </header>
+
+  <!-- Article body -->
+  <article class="prose">
+    <slot />
+  </article>
+
+  <!-- Footer nav -->
+  <div style="border-top:1px solid var(--border); margin-top:3rem; padding-top:1.5rem;">
+    <a href="/blog" style="color:var(--fg-muted); font-size:0.875rem;" class="hover:opacity-70 transition-opacity">
+      ← Back to all articles
+    </a>
+  </div>
+</BaseLayout>
