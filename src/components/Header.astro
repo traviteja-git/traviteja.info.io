@@ -13,17 +13,16 @@ const currentPath = Astro.url.pathname;
 <header style="background:var(--bg); border-bottom:1px solid var(--border);" class="sticky top-0 z-50">
   <nav class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" style="color:var(--fg);" class="font-semibold text-base tracking-tight hover:opacity-70 transition-opacity">
-      Raviteja Tholupunoori
+    <a href="/" style="color:var(--fg);" class="font-semibold text-base tracking-tight hover:opacity-70 transition-opacity shrink-0">
+      <span class="hidden sm:inline">Raviteja Tholupunoori</span>
+      <span class="sm:hidden">Raviteja</span>
     </a>
 
-    <!-- Links + Toggle -->
-    <div class="flex items-center gap-6">
-      <ul class="flex items-center gap-5 list-none m-0 p-0">
+    <div class="flex items-center gap-3">
+      <!-- Desktop nav -->
+      <ul class="hidden sm:flex items-center gap-5 list-none m-0 p-0">
         {navLinks.map(({ href, label }) => {
-          const isActive = href === '/'
-            ? currentPath === '/'
-            : currentPath.startsWith(href);
+          const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
           return (
             <li>
               <a
@@ -47,8 +46,38 @@ const currentPath = Astro.url.pathname;
       >
         <span id="theme-icon">☀️</span>
       </button>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-toggle"
+        aria-label="Toggle menu"
+        style="color:var(--fg-muted); background:none; border:none;"
+        class="sm:hidden cursor-pointer p-1 rounded-md hover:opacity-70 transition-opacity text-xl leading-none"
+      >
+        <span id="menu-icon">☰</span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile dropdown -->
+  <div id="mobile-menu" style="display:none; border-top:1px solid var(--border); background:var(--bg);">
+    <ul class="list-none m-0 px-6 py-4 flex flex-col gap-4">
+      {navLinks.map(({ href, label }) => {
+        const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+        return (
+          <li>
+            <a
+              href={href}
+              style={isActive ? 'color:var(--accent); font-weight:600;' : 'color:var(--fg-muted);'}
+              class="text-base hover:opacity-80 transition-opacity"
+            >
+              {label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
 </header>
 
 <script is:inline>
@@ -70,6 +99,15 @@ const currentPath = Astro.url.pathname;
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       updateIcon();
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    menuToggle?.addEventListener('click', () => {
+      const isOpen = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = isOpen ? 'none' : 'block';
+      menuIcon.textContent = isOpen ? '☰' : '✕';
     });
   })();
 </script>

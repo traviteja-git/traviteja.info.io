@@ -28,9 +28,9 @@ const formatted = new Date(date).toLocaleDateString('en-US', { year: 'numeric', 
       </div>
     </div>
 
-    <!-- Thumbnail -->
+    <!-- Thumbnail (hidden on mobile) -->
     {image && (
-      <div style="flex-shrink:0; width:120px; height:80px; border-radius:4px; overflow:hidden; border:1px solid var(--border);">
+      <div class="hidden sm:block" style="flex-shrink:0; width:120px; height:80px; border-radius:4px; overflow:hidden; border:1px solid var(--border);">
         <img
           src={image}
           alt={title}
