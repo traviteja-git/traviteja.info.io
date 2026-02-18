@@ -187,12 +187,6 @@ const recommendations = [
   },
 ];
 
-const volunteering = [
-  { role: 'Head of Operations', org: 'Zealots Dance Club, Deloitte', period: 'Feb 2019 — Present' },
-  { role: 'President', org: 'CVR Technolites', period: 'Aug 2015 — May 2016' },
-  { role: 'Vice President', org: 'Street Cause CVR', period: 'Jun 2014 — Jun 2015' },
-];
-
 const education = [
   {
     school: 'CVR College of Engineering (JNTUH)',
@@ -378,24 +372,6 @@ const education = [
       <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">
         <a href="https://linkedin.com/in/traviteja" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View all recommendations on LinkedIn →</a>
       </p>
-    </div>
-  </section>
-
-  <!-- Volunteering -->
-  <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
-      Volunteering
-    </h2>
-    <div class="flex flex-col gap-3">
-      {volunteering.map(v => (
-        <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-          <div>
-            <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0;">{v.role}</p>
-            <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{v.org}</p>
-          </div>
-          <span style="color:var(--fg-muted); font-size:0.8rem; white-space:nowrap;">{v.period}</span>
-        </div>
-      ))}
     </div>
   </section>
 
