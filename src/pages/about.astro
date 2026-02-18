@@ -284,20 +284,11 @@ const education = [
 
   <!-- Skills -->
   <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.25rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Skills
     </h2>
-    <div class="flex flex-col gap-5">
-      {Object.entries(skills).map(([category, items]) => (
-        <div>
-          <h3 style="color:var(--fg-muted); font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.6rem;">
-            {category}
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            {items.map(item => <span class="tag">{item}</span>)}
-          </div>
-        </div>
-      ))}
+    <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+      {Object.values(skills).flat().map(item => <span class="tag">{item}</span>)}
     </div>
   </section>
 
