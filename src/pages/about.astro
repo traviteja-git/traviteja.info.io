@@ -349,31 +349,85 @@ const education = [
     </div>
   </section>
 
-  <!-- Recommendations -->
+  <!-- Recommendations carousel -->
   <section class="mb-12">
     <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Recommendations
     </h2>
-    <div class="flex flex-col gap-4">
-      {recommendations.map(rec => (
-        <div style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle);">
-          <p style="color:var(--fg); font-size:0.875rem; line-height:1.75; margin:0 0 1rem; font-style:italic;">
+
+    <!-- Cards (one visible at a time) -->
+    <div style="position:relative;">
+      {recommendations.map((rec, i) => (
+        <div
+          class="rec-slide"
+          data-index={String(i)}
+          style={`border:1px solid var(--border); border-radius:10px; padding:1.5rem; background:var(--bg-subtle); display:${i === 0 ? 'block' : 'none'};`}
+        >
+          <p style="color:var(--fg); font-size:0.9rem; line-height:1.8; margin:0 0 1.25rem; font-style:italic;">
             "{rec.quote}"
           </p>
-          <div class="flex items-center justify-between gap-2">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
             <div>
               <p style="color:var(--fg); font-size:0.875rem; font-weight:600; margin:0;">{rec.name}</p>
-              <p style="color:var(--fg-muted); font-size:0.78rem; margin:0;">{rec.role} · {rec.company}</p>
+              <p style="color:var(--fg-muted); font-size:0.78rem; margin:0.15rem 0 0;">{rec.role} · {rec.company}</p>
             </div>
             <span style="color:var(--fg-muted); font-size:0.75rem; white-space:nowrap;">{rec.date}</span>
           </div>
         </div>
       ))}
-      <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">
-        <a href="https://linkedin.com/in/traviteja" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View all recommendations on LinkedIn →</a>
-      </p>
     </div>
+
+    <!-- Controls -->
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-top:1rem;">
+      <button
+        id="rec-prev"
+        aria-label="Previous recommendation"
+        style="background:var(--bg-subtle); border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; width:2.25rem; height:2.25rem; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; flex-shrink:0;"
+      >←</button>
+
+      <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; justify-content:center;">
+        {recommendations.map((_, i) => (
+          <button
+            class="rec-dot"
+            data-index={String(i)}
+            aria-label={`Go to recommendation ${i + 1}`}
+            style={`width:0.45rem; height:0.45rem; border-radius:50%; border:none; cursor:pointer; padding:0; background:${i === 0 ? 'var(--fg)' : 'var(--border)'}; transition:background 0.2s;`}
+          ></button>
+        ))}
+      </div>
+
+      <button
+        id="rec-next"
+        aria-label="Next recommendation"
+        style="background:var(--bg-subtle); border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; width:2.25rem; height:2.25rem; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; flex-shrink:0;"
+      >→</button>
+    </div>
+
+    <p style="color:var(--fg-muted); font-size:0.8rem; margin:1rem 0 0;">
+      <a href="https://linkedin.com/in/traviteja" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View all on LinkedIn →</a>
+    </p>
   </section>
+
+  <script>
+    (function () {
+      const slides = document.querySelectorAll('.rec-slide');
+      const dots = document.querySelectorAll('.rec-dot');
+      const total = slides.length;
+      let current = 0;
+
+      function goTo(n: number) {
+        (slides[current] as HTMLElement).style.display = 'none';
+        (dots[current] as HTMLElement).style.background = 'var(--border)';
+        current = (n + total) % total;
+        (slides[current] as HTMLElement).style.display = 'block';
+        (dots[current] as HTMLElement).style.background = 'var(--fg)';
+      }
+
+      document.getElementById('rec-prev')?.addEventListener('click', () => goTo(current - 1));
+      document.getElementById('rec-next')?.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    })();
+  </script>
 
   <!-- Education -->
   <section>
