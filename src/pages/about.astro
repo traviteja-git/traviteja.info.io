@@ -10,22 +10,11 @@ const skills = {
   'Tools & Frameworks': ['Git', 'Docker', 'Kubernetes', 'Angular', 'Node.js'],
 };
 
-const certifications = [
-  { name: 'Professional Cloud Architect',    issuer: 'Google Cloud',  date: 'Feb 2022' },
-  { name: 'Professional Developer',          issuer: 'Google Cloud',  date: '' },
-  { name: 'Associate Cloud Engineer',        issuer: 'Google Cloud',  date: 'Sep 2023' },
-  { name: 'Cloud Digital Leader',            issuer: 'Google Cloud',  date: 'May 2024' },
-  { name: 'Airflow Fundamentals',            issuer: 'Astronomer',    date: 'May 2024' },
-  { name: 'SI Associate',                    issuer: 'MongoDB',       date: 'Jul 2023' },
-  { name: 'SI Architect',                    issuer: 'MongoDB',       date: '' },
-  { name: 'Python & Pandas',                 issuer: 'Kaggle',        date: 'Jan 2022' },
-  { name: 'Microsoft Certified Professional',issuer: 'Microsoft',     date: 'Jan 2017' },
-];
-
 const experience = [
   {
-    role: 'Sr. Product Engineer 1',
+    role: 'Sr. Product Engineer I',
     company: 'Deloitte Consulting India Pvt. Ltd.',
+    logo: '/images/logos/deloitte.png',
     period: 'Jul 2021 — Present',
     tech: ['Apache Spark', 'Apache Airflow', 'Python', 'GCP', 'Databricks', 'AKS', 'GKE'],
     highlights: [
@@ -38,37 +27,163 @@ const experience = [
   },
   {
     role: 'Full Stack Developer',
-    company: 'Strategic Technology Resources International PVT. LTD.',
+    company: 'Strategic Technology Resources International Pvt. Ltd.',
+    logo: '/images/logos/stri.png',
     period: 'Apr 2020 — Jun 2021',
     tech: ['Angular', 'Node.js', 'JavaScript', 'Azure', 'Bitbucket'],
     highlights: [
-      'Built user interfaces for web applications using AngularJS and Node.js.',
+      'Built user interfaces for web applications using Angular and Node.js.',
       'Led ERP system development and Azure cloud migration for SPS Commerce.',
-      'Collaborated with cross-functional teams using Agile methodologies and Asana.',
+      'Developed an Applicant Tracking System (ATS) with search automation for recruiters.',
+      'Collaborated with cross-functional teams using Agile methodologies.',
     ],
   },
   {
-    role: 'Data Engineer',
-    company: 'Previous Role — LGE CDP Implementation',
-    period: 'Aug 2019 — Mar 2020',
-    tech: ['Talend', 'SQL', 'ETL'],
+    role: 'Business Technology Analyst',
+    company: 'Deloitte Consulting India Pvt. Ltd.',
+    logo: '/images/logos/deloitte.png',
+    period: 'Apr 2018 — Mar 2020',
+    tech: ['Talend', 'SQL', 'ETL', 'GCP', 'Airflow'],
     highlights: [
-      'Designed data ingestion architecture using Talend for LG Electronics Customer Data Platform.',
-      'Reduced manual data processing from 18–20 days to 2–3 days through automation.',
+      'Designed data ingestion architecture using Talend for LG Electronics\' Customer Data Platform.',
+      'Automated 400GB+ daily file processing, reducing the cycle from 18–20 days to 2–3 days.',
+      'Improved data feed runtime from 13 hours to 1 hour through pipeline optimisation.',
     ],
+  },
+  {
+    role: 'Software Engineer',
+    company: 'Capgemini Technology Services India Ltd.',
+    logo: '/images/logos/capgemini.png',
+    period: 'Oct 2016 — Apr 2018',
+    tech: ['.NET', 'C#', 'MVC', 'SQL Server'],
+    highlights: [
+      'Delivered .NET and MVC solutions for financial and internal platforms.',
+      'Worked on configurable deployment pipelines and backend service integrations.',
+    ],
+  },
+];
+
+const certifications = [
+  {
+    name: 'Google Cloud Developer & Architect',
+    subtitle: 'Professional Developer, Architect, ACE & Cloud Digital Leader',
+    logo: '/images/logos/gcp_developer.png',
+  },
+  {
+    name: 'Apache Airflow Champion & Fundamentals',
+    subtitle: 'Astronomer Certified — Airflow Fundamentals & Astronomer Champion',
+    logo: '/images/logos/airflow_astro.png',
+  },
+  {
+    name: 'MongoDB SI Architect & Associate',
+    subtitle: 'MongoDB Solution Implementation certifications',
+    logo: '/images/logos/mongodb.png',
+  },
+  {
+    name: 'Microsoft C# Developer',
+    subtitle: 'Microsoft Certified Professional (Programming in C#)',
+    logo: '/images/logos/c_sharp.png',
+  },
+  {
+    name: 'GenAI Engineer',
+    subtitle: 'Deloitte Certified — GenAI Guild Program',
+    logo: '/images/logos/genai_deloittte.png',
+  },
+];
+
+const achievements = [
+  {
+    title: 'Apache Airflow Champion',
+    subtitle: 'Selected as Astronomer Champion — a global initiative for passionate Apache Airflow advocates.',
+    logo: '/images/logos/airflow_champion.png',
+  },
+  {
+    title: 'Google Skill Badges',
+    subtitle: 'Multiple Skill Badges, Arcade Points and Google SWAG via Cloud Skills Boost.',
+    logo: '/images/logos/gcp_skillboost.png',
+  },
+  {
+    title: 'Client & Internal Awards',
+    subtitle: 'Outstanding, Applause & Spot awards for delivery, migration & performance tuning.',
+    logo: '/images/logos/awards.png',
+  },
+  {
+    title: 'TechGig Code Gladiators 2023',
+    subtitle: 'Top 10 finalist — one of the world\'s biggest coding competitions with 300K+ developers.',
+    logo: '/images/logos/techgig_2023.png',
   },
 ];
 
 const recommendations = [
   {
-    name: 'Manuraj M R',
-    role: 'Colleague at Deloitte',
-    quote: 'Raviteja is an exceptional Senior Data Engineer who brings high level of ownership to everything he touches. His standout ability to design Apache Airflow workflows and deep technical expertise make him invaluable. Any organisation would be lucky to have a senior engineer with his technical depth and dedication.',
+    name: 'Andi Mitre',
+    role: 'Engineering Lead',
+    company: 'Deloitte',
+    date: 'Nov 2023',
+    quote: 'I absolutely loved having Raviteja on my team. Raviteja is a one of a kind, extremely talented developer. He built some of the most complex components of our identity resolution system while showing a deep understanding of data engineering and software development. He played an active role ranging from algorithm design, system architecture, core code development, mentoring junior engineers, and client support. He\'s a hard worker who is eager to continuously learn and thrives on complex problems. Raviteja single handedly re-wrote a micro-service and was able to improve performance by 5×, having an immensely positive impact with existing clients.',
+  },
+  {
+    name: 'Tarini Dash',
+    role: 'Head of Data Engineering & Analytics',
+    company: 'Deloitte',
+    date: 'April 2024',
+    quote: 'Over the span of three years, Ravi served under my supervision as a Senior Data Engineer at Deloitte. He consistently displayed a high level of energy and enthusiasm, establishing himself as a proactive and delivery driven individual. Witnessing his progression from an average developer to one capable of independently leading and executing tasks from inception to completion was truly remarkable. Ravi\'s approach is characterized by his relentless pursuit of cutting-edge technologies and a formidable array of cloud certifications.',
+  },
+  {
+    name: 'Manoj Balaji',
+    role: 'Data Scientist',
+    company: 'Juniper Networks',
+    date: 'May 2023',
+    quote: 'Raviteja is a very hard working and dedicated developer. He is very detail oriented and quite a creative programmer with a very broad knowledge of software including languages, APIs, databases and documentation. In addition to his technical expertise, Raviteja shows total dedication to his work, his colleagues, and his clients. He is a team player who is very customer-focused and always willing to help and share his knowledge with others.',
+  },
+  {
+    name: 'Abin Mathew',
+    role: 'Data Engineer',
+    company: 'Deloitte',
+    date: 'Nov 2023',
+    quote: 'Ravi has been a go-to person in the Identity Resolution (IDR) project. His deep understanding of IDR functionalities and his willingness to guide others make him an invaluable team member. With strong expertise in data engineering tools and technologies, he continuously learns and applies his knowledge to solve complex challenges efficiently. His collaborative approach and problem-solving mindset ensure that the solutions he builds are both effective and scalable.',
   },
   {
     name: 'Garima Jindal',
-    role: 'Colleague',
-    quote: 'Ravi is one of the most talented and dedicated engineers I have ever worked with. His depth of knowledge in Identity Resolution is truly unmatched. Ravi constantly goes above and beyond — it has been an honour to work with Ravi.',
+    role: 'Data Engineer',
+    company: 'Deloitte',
+    date: 'June 2025',
+    quote: 'Ravi is one of the most talented and dedicated engineers I have ever worked with. His depth of knowledge in the technical aspects of Identity Resolution is truly unmatched. Ravi constantly goes above and beyond in his role to ensure success of the project. He constantly seeks out new technologies and methodologies always striving to expand his skill set, raising the bar for everyone around him. It\'s been an honour to work with Ravi.',
+  },
+  {
+    name: 'Tanvi Moharir',
+    role: 'Consultant',
+    company: 'Deloitte',
+    date: 'Nov 2022',
+    quote: 'Raviteja was one of the senior engineers I worked alongside with in the core development team. He is passionate and well versed with the internal workings of CDP systems. While his expertise lies in backend development with C# and .Net framework, he was very quick on picking up other languages and frameworks as well. Any team looking for a bright and passionate engineer would be lucky to have him.',
+  },
+  {
+    name: 'Nikitha Kumari',
+    role: 'Technical Lead QA',
+    company: 'Deloitte',
+    date: 'Nov 2023',
+    quote: 'Ravi had been my coachee for almost a year. Ravi has very good technical skills and is always striving to excel in whatever he is doing. He is always ready to learn and always seeking feedback to be a better version of himself. Ravi adds value to the projects he is working on. It was great mentoring you Ravi!',
+  },
+  {
+    name: 'Samyuktha K',
+    role: 'Software Developer',
+    company: 'Equifax',
+    date: 'Nov 2022',
+    quote: 'Raviteja is a very hard working and dedicated developer. He is very detail oriented and quite a creative programmer. I found him to be very helpful, always willing and able to explain how things were supposed to work. He is a team player who is very customer-focused and always willing to help and share his knowledge with others. He has a great amount of patience when explaining how something works from both a technical and a functional standpoint.',
+  },
+  {
+    name: 'Snehitha Anumalla',
+    role: 'Sr. Consultant',
+    company: 'Deloitte',
+    date: 'May 2023',
+    quote: 'Raviteja is a great team player and has extensive knowledge on Cloud platform and APIs. He has been a go-to person for many colleagues in the team for various issues on ETL as well. Being a quick learner he was able to mould to any technology based on requirements.',
+  },
+  {
+    name: 'Maddie Paul',
+    role: 'Manager RPA',
+    company: 'Farm Bureau Mutual Re',
+    date: 'Dec 2022',
+    quote: 'While working with Raviteja, I found him to be a quick learner demonstrating flexibility to keep trying without the fear of failure. His enthusiasm and energy to pursue complex projects is commendable. Undoubtedly, he would be an asset to any firm/project he takes on.',
   },
 ];
 
@@ -76,6 +191,30 @@ const volunteering = [
   { role: 'Head of Operations', org: 'Zealots Dance Club, Deloitte', period: 'Feb 2019 — Present' },
   { role: 'President', org: 'CVR Technolites', period: 'Aug 2015 — May 2016' },
   { role: 'Vice President', org: 'Street Cause CVR', period: 'Jun 2014 — Jun 2015' },
+];
+
+const education = [
+  {
+    school: 'CVR College of Engineering (JNTUH)',
+    logo: '/images/logos/cvr.png',
+    degree: 'B.Tech — Electronics & Communication Engineering',
+    period: '2012 – 2016',
+    grade: '81%',
+  },
+  {
+    school: 'SR Junior College',
+    logo: '/images/logos/sr.png',
+    degree: 'MPC (Maths, Physics, Chemistry)',
+    period: '2010 – 2012',
+    grade: '94%',
+  },
+  {
+    school: 'JGR High College',
+    logo: '/images/logos/jgr.png',
+    degree: 'Secondary School Certificate',
+    period: '2005 – 2010',
+    grade: '90%',
+  },
 ];
 ---
 
@@ -87,7 +226,7 @@ const volunteering = [
   <header class="mb-12">
     <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 1rem;">About me</h1>
     <p style="color:var(--fg-muted); font-size:1.05rem; max-width:42rem; line-height:1.75; margin:0;">
-      I'm <strong style="color:var(--fg);">Tholupunoori Raviteja</strong>, a Data Engineer and Cloud Architect with
+      I'm <strong style="color:var(--fg);">Raviteja Tholupunoori</strong>, a Data Engineer and Cloud Architect with
       9+ years of experience designing scalable data solutions — from ETL pipelines to real-time streaming
       architectures — across GCP, Azure, and AWS. Currently building at Deloitte. Astronomer Champion for Apache Airflow.
     </p>
@@ -98,7 +237,7 @@ const volunteering = [
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div class="flex flex-col gap-1 text-sm" style="color:var(--fg-muted);">
         <span>📧 <a href="mailto:raviteja0096@gmail.com" style="color:var(--accent);">raviteja0096@gmail.com</a></span>
-        <span>💼 <a href="https://linkedin.com/in/raviteja0096" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">linkedin.com/in/raviteja0096</a></span>
+        <span>💼 <a href="https://linkedin.com/in/traviteja" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">linkedin.com/in/traviteja</a></span>
         <span>🐙 <a href="https://github.com/traviteja-git" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">github.com/traviteja-git</a></span>
       </div>
       <a
@@ -121,9 +260,18 @@ const volunteering = [
       {experience.map(job => (
         <div>
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
-            <div>
-              <h3 style="color:var(--fg); font-size:1rem; font-weight:600; margin:0;">{job.role}</h3>
-              <p style="color:var(--fg-muted); font-size:0.9rem; margin:0.2rem 0 0;">{job.company}</p>
+            <div class="flex items-start gap-3">
+              <img
+                src={job.logo}
+                alt={job.company}
+                width="36"
+                height="36"
+                style="border-radius:6px; object-fit:contain; border:1px solid var(--border); background:var(--bg-subtle); flex-shrink:0; margin-top:2px;"
+              />
+              <div>
+                <h3 style="color:var(--fg); font-size:1rem; font-weight:600; margin:0;">{job.role}</h3>
+                <p style="color:var(--fg-muted); font-size:0.9rem; margin:0.2rem 0 0;">{job.company}</p>
+              </div>
             </div>
             <span style="color:var(--fg-muted); font-size:0.8rem; white-space:nowrap; margin-top:0.15rem;">{job.period}</span>
           </div>
@@ -164,11 +312,44 @@ const volunteering = [
     <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Certifications
     </h2>
-    <div class="grid sm:grid-cols-2 gap-3">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {certifications.map(cert => (
-        <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);">
-          <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0 0 0.2rem;">{cert.name}</p>
-          <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{cert.issuer}{cert.date ? ` · ${cert.date}` : ''}</p>
+        <div style="border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:flex-start; gap:0.875rem;">
+          <img
+            src={cert.logo}
+            alt={cert.name}
+            width="44"
+            height="44"
+            style="border-radius:8px; object-fit:contain; flex-shrink:0;"
+          />
+          <div>
+            <p style="color:var(--fg); font-size:0.875rem; font-weight:600; margin:0 0 0.2rem;">{cert.name}</p>
+            <p style="color:var(--fg-muted); font-size:0.78rem; margin:0; line-height:1.4;">{cert.subtitle}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="mb-12">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Achievements
+    </h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {achievements.map(item => (
+        <div style="border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:flex-start; gap:0.875rem;">
+          <img
+            src={item.logo}
+            alt={item.title}
+            width="52"
+            height="52"
+            style="border-radius:8px; object-fit:contain; flex-shrink:0;"
+          />
+          <div>
+            <p style="color:var(--fg); font-size:0.875rem; font-weight:600; margin:0 0 0.25rem;">{item.title}</p>
+            <p style="color:var(--fg-muted); font-size:0.78rem; margin:0; line-height:1.4;">{item.subtitle}</p>
+          </div>
         </div>
       ))}
     </div>
@@ -182,18 +363,20 @@ const volunteering = [
     <div class="flex flex-col gap-4">
       {recommendations.map(rec => (
         <div style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle);">
-          <p style="color:var(--fg); font-size:0.9rem; line-height:1.7; margin:0 0 1rem; font-style:italic;">
+          <p style="color:var(--fg); font-size:0.875rem; line-height:1.75; margin:0 0 1rem; font-style:italic;">
             "{rec.quote}"
           </p>
-          <div>
-            <p style="color:var(--fg); font-size:0.875rem; font-weight:600; margin:0;">{rec.name}</p>
-            <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{rec.role}</p>
+          <div class="flex items-center justify-between gap-2">
+            <div>
+              <p style="color:var(--fg); font-size:0.875rem; font-weight:600; margin:0;">{rec.name}</p>
+              <p style="color:var(--fg-muted); font-size:0.78rem; margin:0;">{rec.role} · {rec.company}</p>
+            </div>
+            <span style="color:var(--fg-muted); font-size:0.75rem; white-space:nowrap;">{rec.date}</span>
           </div>
         </div>
       ))}
       <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">
-        11 recommendations in total —
-        <a href="https://linkedin.com/in/raviteja0096" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">view all on LinkedIn</a>
+        <a href="https://linkedin.com/in/traviteja" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View all recommendations on LinkedIn →</a>
       </p>
     </div>
   </section>
@@ -221,10 +404,23 @@ const volunteering = [
     <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Education
     </h2>
-    <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);">
-      <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0 0 0.25rem;">B.Tech — Electronics & Communication Engineering</p>
-      <p style="color:var(--fg-muted); font-size:0.85rem; margin:0 0 0.2rem;">CVR College of Engineering, JNTUH</p>
-      <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">2012 – 2016 · CGPA 80.1%</p>
+    <div class="flex flex-col gap-3">
+      {education.map(edu => (
+        <div style="border:1px solid var(--border); border-radius:10px; padding:0.875rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:center; gap:1rem;">
+          <img
+            src={edu.logo}
+            alt={edu.school}
+            width="48"
+            height="48"
+            style="border-radius:8px; object-fit:contain; flex-shrink:0;"
+          />
+          <div>
+            <p style="color:var(--fg); font-size:0.9rem; font-weight:600; margin:0 0 0.15rem;">{edu.school}</p>
+            <p style="color:var(--fg-muted); font-size:0.82rem; margin:0 0 0.1rem;">{edu.degree}</p>
+            <p style="color:var(--fg-muted); font-size:0.78rem; margin:0;">{edu.period} · {edu.grade}</p>
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 </BaseLayout>
