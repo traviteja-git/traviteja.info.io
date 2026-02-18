@@ -11,13 +11,15 @@ const skills = {
 };
 
 const certifications = [
-  { name: 'Professional Cloud Architect',    issuer: 'Google Cloud' },
-  { name: 'Professional Developer',          issuer: 'Google Cloud' },
-  { name: 'Associate Cloud Engineer',        issuer: 'Google Cloud' },
-  { name: 'Cloud Digital Leader',            issuer: 'Google Cloud' },
-  { name: 'Airflow Fundamentals',            issuer: 'Astronomer'   },
-  { name: 'SI Associate',                    issuer: 'MongoDB'       },
-  { name: 'SI Architect',                    issuer: 'MongoDB'       },
+  { name: 'Professional Cloud Architect',    issuer: 'Google Cloud',  date: 'Feb 2022' },
+  { name: 'Professional Developer',          issuer: 'Google Cloud',  date: '' },
+  { name: 'Associate Cloud Engineer',        issuer: 'Google Cloud',  date: 'Sep 2023' },
+  { name: 'Cloud Digital Leader',            issuer: 'Google Cloud',  date: 'May 2024' },
+  { name: 'Airflow Fundamentals',            issuer: 'Astronomer',    date: 'May 2024' },
+  { name: 'SI Associate',                    issuer: 'MongoDB',       date: 'Jul 2023' },
+  { name: 'SI Architect',                    issuer: 'MongoDB',       date: '' },
+  { name: 'Python & Pandas',                 issuer: 'Kaggle',        date: 'Jan 2022' },
+  { name: 'Microsoft Certified Professional',issuer: 'Microsoft',     date: 'Jan 2017' },
 ];
 
 const experience = [
@@ -25,40 +27,69 @@ const experience = [
     role: 'Sr. Product Engineer 1',
     company: 'Deloitte Consulting India Pvt. Ltd.',
     period: 'Jul 2021 — Present',
-    tech: ['Apache Spark', 'Apache Airflow', 'Python', 'GCP', 'Databricks'],
+    tech: ['Apache Spark', 'Apache Airflow', 'Python', 'GCP', 'Databricks', 'AKS', 'GKE'],
     highlights: [
-      'Migrated Identity Resolution to support AWS and Azure infrastructure within 3 months.',
-      'Modernised data processing pipeline by migrating from legacy .NET code to Apache Spark.',
-      'Designed and orchestrated cloud-native data workflows on GCP using Cloud Composer (Airflow).',
-      'Built and maintained BigQuery data models powering business-critical analytics.',
+      'Migrated Identity Resolution to support AWS and Azure infrastructure within 3 months, delivering 4× performance enhancement.',
+      'Modernised data processing pipeline by migrating from legacy .NET code to Apache Spark, achieving 10× throughput improvement.',
+      'Engineered batch ingestion pipeline for Hux CDP with Apache Airflow, reducing costs by 25% and increasing scalability by 20%.',
+      'Built cloud-agnostic Airflow solutions deployed on Azure Kubernetes Service (AKS) and Google Kubernetes Engine (GKE).',
+      'Built and maintained BigQuery data models powering business-critical analytics for enterprise clients.',
     ],
   },
   {
     role: 'Full Stack Developer',
     company: 'Strategic Technology Resources International PVT. LTD.',
     period: 'Apr 2020 — Jun 2021',
-    tech: ['Angular', 'Node.js', 'JavaScript', 'Bitbucket'],
+    tech: ['Angular', 'Node.js', 'JavaScript', 'Azure', 'Bitbucket'],
     highlights: [
       'Built user interfaces for web applications using AngularJS and Node.js.',
+      'Led ERP system development and Azure cloud migration for SPS Commerce.',
       'Collaborated with cross-functional teams using Agile methodologies and Asana.',
     ],
   },
+  {
+    role: 'Data Engineer',
+    company: 'Previous Role — LGE CDP Implementation',
+    period: 'Aug 2019 — Mar 2020',
+    tech: ['Talend', 'SQL', 'ETL'],
+    highlights: [
+      'Designed data ingestion architecture using Talend for LG Electronics Customer Data Platform.',
+      'Reduced manual data processing from 18–20 days to 2–3 days through automation.',
+    ],
+  },
+];
+
+const recommendations = [
+  {
+    name: 'Manuraj M R',
+    role: 'Colleague at Deloitte',
+    quote: 'Raviteja is an exceptional Senior Data Engineer who brings high level of ownership to everything he touches. His standout ability to design Apache Airflow workflows and deep technical expertise make him invaluable. Any organisation would be lucky to have a senior engineer with his technical depth and dedication.',
+  },
+  {
+    name: 'Garima Jindal',
+    role: 'Colleague',
+    quote: 'Ravi is one of the most talented and dedicated engineers I have ever worked with. His depth of knowledge in Identity Resolution is truly unmatched. Ravi constantly goes above and beyond — it has been an honour to work with Ravi.',
+  },
+];
+
+const volunteering = [
+  { role: 'Head of Operations', org: 'Zealots Dance Club, Deloitte', period: 'Feb 2019 — Present' },
+  { role: 'President', org: 'CVR Technolites', period: 'Aug 2015 — May 2016' },
+  { role: 'Vice President', org: 'Street Cause CVR', period: 'Jun 2014 — Jun 2015' },
 ];
 ---
 
 <BaseLayout
   title="About — Raviteja Tholupunoori"
-  description="Data Engineer and Cloud Architect with 8+ years of experience building scalable data pipelines and cloud-native solutions."
+  description="Data Engineer and Cloud Architect with 9+ years of experience building scalable data pipelines and cloud-native solutions."
 >
   <!-- Header -->
   <header class="mb-12">
-    <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 1rem;">
-      About me
-    </h1>
+    <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 1rem;">About me</h1>
     <p style="color:var(--fg-muted); font-size:1.05rem; max-width:42rem; line-height:1.75; margin:0;">
       I'm <strong style="color:var(--fg);">Tholupunoori Raviteja</strong>, a Data Engineer and Cloud Architect with
-      8+ years of experience designing scalable data solutions — from ETL pipelines to real-time streaming
-      architectures — across GCP, Azure, and AWS. Currently building at Deloitte.
+      9+ years of experience designing scalable data solutions — from ETL pipelines to real-time streaming
+      architectures — across GCP, Azure, and AWS. Currently building at Deloitte. Astronomer Champion for Apache Airflow.
     </p>
   </header>
 
@@ -136,8 +167,50 @@ const experience = [
     <div class="grid sm:grid-cols-2 gap-3">
       {certifications.map(cert => (
         <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);">
-          <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0 0 0.25rem;">{cert.name}</p>
-          <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{cert.issuer}</p>
+          <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0 0 0.2rem;">{cert.name}</p>
+          <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{cert.issuer}{cert.date ? ` · ${cert.date}` : ''}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Recommendations -->
+  <section class="mb-12">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Recommendations
+    </h2>
+    <div class="flex flex-col gap-4">
+      {recommendations.map(rec => (
+        <div style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle);">
+          <p style="color:var(--fg); font-size:0.9rem; line-height:1.7; margin:0 0 1rem; font-style:italic;">
+            "{rec.quote}"
+          </p>
+          <div>
+            <p style="color:var(--fg); font-size:0.875rem; font-weight:600; margin:0;">{rec.name}</p>
+            <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{rec.role}</p>
+          </div>
+        </div>
+      ))}
+      <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">
+        11 recommendations in total —
+        <a href="https://linkedin.com/in/raviteja0096" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">view all on LinkedIn</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Volunteering -->
+  <section class="mb-12">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Volunteering
+    </h2>
+    <div class="flex flex-col gap-3">
+      {volunteering.map(v => (
+        <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+          <div>
+            <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0;">{v.role}</p>
+            <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{v.org}</p>
+          </div>
+          <span style="color:var(--fg-muted); font-size:0.8rem; white-space:nowrap;">{v.period}</span>
         </div>
       ))}
     </div>
@@ -151,7 +224,7 @@ const experience = [
     <div style="border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; background:var(--bg-subtle);">
       <p style="color:var(--fg); font-size:0.9rem; font-weight:500; margin:0 0 0.25rem;">B.Tech — Electronics & Communication Engineering</p>
       <p style="color:var(--fg-muted); font-size:0.85rem; margin:0 0 0.2rem;">CVR College of Engineering, JNTUH</p>
-      <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">2016 · 81%</p>
+      <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">2012 – 2016 · CGPA 80.1%</p>
     </div>
   </section>
 </BaseLayout>
