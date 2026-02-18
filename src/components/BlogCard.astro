@@ -5,28 +5,37 @@ interface Props {
   date: string;
   slug: string;
   tags?: string[];
+  image?: string;
 }
 
-const { title, description, date, slug, tags = [] } = Astro.props;
+const { title, description, date, slug, tags = [], image } = Astro.props;
 const formatted = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 
 <a href={`/blog/${slug}`} class="block group" style="text-decoration:none;">
-  <article style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle);" class="transition-all group-hover:border-[var(--accent)]">
-    <div class="flex items-start justify-between gap-4">
-      <h2 style="color:var(--fg); font-size:1.05rem; font-weight:600; line-height:1.4;" class="group-hover:text-[var(--accent)] transition-colors m-0">
+  <article style="border-bottom:1px solid var(--border); padding:1.5rem 0; display:flex; align-items:flex-start; gap:1.5rem;" class="group-hover:opacity-90 transition-opacity">
+    <!-- Text -->
+    <div style="flex:1; min-width:0;">
+      <h2 style="color:var(--fg); font-size:1.1rem; font-weight:700; line-height:1.4; margin:0 0 0.5rem;" class="group-hover:text-[var(--accent)] transition-colors">
         {title}
       </h2>
-      <time style="color:var(--fg-muted); font-size:0.8rem; white-space:nowrap; margin-top:0.15rem;" datetime={date}>
-        {formatted}
-      </time>
+      <p style="color:var(--fg-muted); font-size:0.9rem; line-height:1.5; margin:0 0 0.75rem;" class="line-clamp-2">
+        {description}
+      </p>
+      <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <time style="color:var(--fg-muted); font-size:0.8rem;" datetime={date}>{formatted}</time>
+        {tags.length > 0 && tags.slice(0, 3).map(tag => <span class="tag">{tag}</span>)}
+      </div>
     </div>
-    <p style="color:var(--fg-muted); font-size:0.9rem; margin:0.5rem 0 0.75rem;" class="line-clamp-2">
-      {description}
-    </p>
-    {tags.length > 0 && (
-      <div class="flex flex-wrap gap-2">
-        {tags.map(tag => <span class="tag">{tag}</span>)}
+
+    <!-- Thumbnail -->
+    {image && (
+      <div style="flex-shrink:0; width:120px; height:80px; border-radius:4px; overflow:hidden; border:1px solid var(--border);">
+        <img
+          src={image}
+          alt={title}
+          style="width:100%; height:100%; object-fit:cover; display:block;"
+        />
       </div>
     )}
   </article>

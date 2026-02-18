@@ -3,6 +3,7 @@ title: "Airflow Installation Simplified — using Docker Compose / Podman Compos
 description: "A step-by-step guide to get Apache Airflow running locally in minutes using Docker Compose or Podman Compose."
 date: "2024-07-03"
 tags: ["airflow", "docker", "devops", "data-engineering"]
+image: "/images/blog/installation/header.png"
 draft: false
 ---
 

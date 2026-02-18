@@ -3,6 +3,7 @@ title: "Apache Airflow Architecture Simplified"
 description: "A clear breakdown of Apache Airflow's core components — Web Server, Scheduler, Executor, Workers, Metadata DB, and Message Broker — and how they collaborate to orchestrate data workflows."
 date: "2024-07-18"
 tags: ["airflow", "data-engineering", "architecture"]
+image: "/images/blog/architecture/overview.gif"
 draft: false
 ---
 

@@ -58,6 +58,7 @@ const featuredProjects = (await getCollection('projects'))
             date={post.data.date}
             slug={post.slug}
             tags={post.data.tags}
+            image={post.data.image}
           />
         ))}
       </div>

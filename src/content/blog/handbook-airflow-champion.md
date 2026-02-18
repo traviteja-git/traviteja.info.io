@@ -3,6 +3,7 @@ title: "Handbook for Becoming an Astronomer Champion for Apache Airflow"
 description: "My Apache Airflow journey — from building a CDP in 2019 to earning the Airflow Fundamentals certification and being selected as an Astronomer Champion."
 date: "2024-07-15"
 tags: ["airflow", "career", "certification", "community"]
+image: "/images/blog/champion/announcement.png"
 draft: false
 ---
 

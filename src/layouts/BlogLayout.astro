@@ -6,9 +6,10 @@ interface Props {
   description: string;
   date: string;
   tags?: string[];
+  image?: string;
 }
 
-const { title, description, date, tags = [] } = Astro.props;
+const { title, description, date, tags = [], image } = Astro.props;
 const formatted = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
