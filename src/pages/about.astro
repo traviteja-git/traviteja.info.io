@@ -14,8 +14,8 @@ const skillCategories = [
   {
     category: 'Data Engineering',
     skills: [
-      { name: 'Apache Airflow', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apacheairflow/apacheairflow-original.svg' },
-      { name: 'Apache Spark',   bg: '#E25A1C', letter: 'SP' },
+      { name: 'Apache Airflow', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apacheairflow/apacheairflow-original.svg', href: '/blog/airflow-architecture-simplified/' },
+      { name: 'Apache Spark',   bg: '#E25A1C', letter: 'SP', href: '/blog/solving-data-pipeline-challenges-with-airflow/' },
       { name: 'Databricks',     bg: '#FF3621', letter: 'DB' },
       { name: 'Talend',         bg: '#FF6D00', letter: 'TL' },
     ],
@@ -330,18 +330,30 @@ const education = [
             {category}
           </h3>
           <div class="flex flex-wrap gap-3">
-            {skills.map(skill => (
-              <div style="border:1px solid var(--border); border-radius:10px; padding:0.75rem 0.875rem; background:var(--bg-subtle); display:flex; align-items:center; gap:0.625rem;" class="hover:border-[var(--accent)] transition-colors">
-                {skill.src ? (
-                  <img src={skill.src} alt={skill.name} width="22" height="22" style="object-fit:contain; flex-shrink:0;" />
-                ) : (
-                  <div style={`width:22px; height:22px; border-radius:4px; background:${skill.bg}; color:#fff; display:flex; align-items:center; justify-content:center; font-size:0.5rem; font-weight:700; flex-shrink:0;`}>
-                    {skill.letter}
-                  </div>
-                )}
-                <span style="color:var(--fg); font-size:0.82rem; white-space:nowrap;">{skill.name}</span>
-              </div>
-            ))}
+            {skills.map(skill => {
+              const inner = (
+                <>
+                  {skill.src ? (
+                    <img src={skill.src} alt={skill.name} width="22" height="22" style="object-fit:contain; flex-shrink:0;" />
+                  ) : (
+                    <div style={`width:22px; height:22px; border-radius:4px; background:${skill.bg}; color:#fff; display:flex; align-items:center; justify-content:center; font-size:0.5rem; font-weight:700; flex-shrink:0;`}>
+                      {skill.letter}
+                    </div>
+                  )}
+                  <span style="color:var(--fg); font-size:0.82rem; white-space:nowrap;">{skill.name}</span>
+                </>
+              );
+              const sharedStyle = "border:1px solid var(--border); border-radius:10px; padding:0.75rem 0.875rem; background:var(--bg-subtle); display:flex; align-items:center; gap:0.625rem;";
+              return skill.href ? (
+                <a href={skill.href} style={sharedStyle} class="hover:border-[var(--accent)] transition-colors" title={`Read about ${skill.name}`}>
+                  {inner}
+                </a>
+              ) : (
+                <div style={sharedStyle} class="hover:border-[var(--accent)] transition-colors">
+                  {inner}
+                </div>
+              );
+            })}
           </div>
         </div>
       ))}

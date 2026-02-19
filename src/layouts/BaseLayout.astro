@@ -38,7 +38,7 @@ const personLD = JSON.stringify({
 
 const articleLD = type === 'article' ? JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'Article',
+  '@type': 'TechArticle',
   headline: title,
   description,
   ...(image ? { image } : {}),
