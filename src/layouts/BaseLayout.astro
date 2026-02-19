@@ -6,16 +6,55 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  /** Absolute URL for og:image / twitter:image */
   image?: string;
+  /** 'website' (default) or 'article' */
+  type?: string;
+  /** ISO 8601 date string for article:published_time */
+  publishedDate?: string;
 }
 
 const {
   title,
-  description = 'Personal website of Raviteja Tholupunoori — Data Engineer, Cloud Architect.',
-  image = '/og-default.png',
+  description = 'Personal website of Raviteja Tholupunoori — Data Engineer and Cloud Architect with 9+ years building scalable data pipelines on GCP, AWS, and Azure.',
+  image,
+  type = 'website',
+  publishedDate,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const personLD = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Raviteja Tholupunoori',
+  url: 'https://traviteja.com',
+  jobTitle: 'Data Engineer & Cloud Architect',
+  sameAs: [
+    'https://linkedin.com/in/raviteja0096',
+    'https://github.com/traviteja-git',
+  ],
+});
+
+const articleLD = type === 'article' ? JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  ...(image ? { image } : {}),
+  author: {
+    '@type': 'Person',
+    name: 'Raviteja Tholupunoori',
+    url: 'https://traviteja.com',
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Raviteja Tholupunoori',
+    url: 'https://traviteja.com',
+  },
+  ...(publishedDate ? { datePublished: publishedDate } : {}),
+  url: canonicalURL.toString(),
+}) : null;
 ---
 
 <!doctype html>
@@ -25,16 +64,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- SEO -->
+    <!-- Primary SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Raviteja Tholupunoori" />
 
-    <!-- OG -->
+    <!-- Open Graph -->
+    <meta property="og:site_name"   content="Raviteja Tholupunoori" />
+    <meta property="og:type"        content={type} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url"         content={canonicalURL} />
-    <meta property="og:image"       content={image} />
-    <meta property="og:type"        content="website" />
+    {image && <meta property="og:image" content={image} />}
+    {type === 'article' && publishedDate && (
+      <meta property="article:published_time" content={publishedDate} />
+    )}
+    {type === 'article' && (
+      <meta property="article:author" content="Raviteja Tholupunoori" />
+    )}
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card"        content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
+
+    <!-- JSON-LD: Person (all pages) -->
+    <script type="application/ld+json" set:html={personLD} />
+    <!-- JSON-LD: Article (blog posts only) -->
+    {articleLD && <script type="application/ld+json" set:html={articleLD} />}
+
+    <!-- Preconnect for external resources -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />

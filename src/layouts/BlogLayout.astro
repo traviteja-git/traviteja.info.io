@@ -10,12 +10,24 @@ interface Props {
 }
 
 const { title, description, date, tags = [], image } = Astro.props;
+
 const formatted = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
+
+// Make image URL absolute for OG / Twitter cards
+const imageURL = image ? new URL(image, Astro.site).toString() : undefined;
+// ISO date for article:published_time
+const publishedISO = new Date(date).toISOString();
 ---
 
-<BaseLayout title={`${title} — Raviteja`} description={description}>
+<BaseLayout
+  title={`${title} — Raviteja`}
+  description={description}
+  image={imageURL}
+  type="article"
+  publishedDate={publishedISO}
+>
   <!-- Back link -->
   <a href="/blog" style="color:var(--fg-muted); font-size:0.875rem;" class="inline-flex items-center gap-1 hover:opacity-70 transition-opacity mb-8">
     ← All articles
