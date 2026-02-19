@@ -1,14 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const skills = {
-  'Languages': ['Python', 'C#', 'SQL', 'JavaScript', 'HTML/CSS', 'YAML', 'XML', 'JSON'],
-  'Data Engineering': ['Apache Spark', 'Apache Airflow', 'Databricks', 'Talend', 'ETL/ELT'],
-  'Cloud Platforms': ['Google Cloud Platform (GCP)', 'Microsoft Azure', 'Amazon Web Services (AWS)'],
-  'GCP Services': ['BigQuery', 'Cloud Composer', 'GKE', 'App Engine', 'Cloud Functions', 'Dataflow'],
-  'Databases': ['SQL Server', 'MongoDB', 'PostgreSQL'],
-  'Tools & Frameworks': ['Git', 'Docker', 'Kubernetes', 'Angular', 'Node.js'],
-};
+const skillCategories = [
+  {
+    category: 'Languages',
+    skills: [
+      { name: 'Python',     src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+      { name: 'C#',         src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg' },
+      { name: 'SQL',        bg: '#336791', letter: 'SQL' },
+      { name: 'JavaScript', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
+    ],
+  },
+  {
+    category: 'Data Engineering',
+    skills: [
+      { name: 'Apache Airflow', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apacheairflow/apacheairflow-original.svg' },
+      { name: 'Apache Spark',   bg: '#E25A1C', letter: 'SP' },
+      { name: 'Databricks',     bg: '#FF3621', letter: 'DB' },
+      { name: 'Talend',         bg: '#FF6D00', letter: 'TL' },
+    ],
+  },
+  {
+    category: 'Cloud Platforms',
+    skills: [
+      { name: 'GCP',   src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg' },
+      { name: 'Azure', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
+      { name: 'AWS',   src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg' }
+    ],
+  },
+  {
+    category: 'Databases',
+    skills: [
+      { name: 'MongoDB',    src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
+      { name: 'PostgreSQL', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg' },
+      { name: 'SQL Server', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-plain.svg' },
+    ],
+  },
+  {
+    category: 'Tools & DevOps',
+    skills: [
+      { name: 'Docker',     src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+      { name: 'Kubernetes', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg' },
+      { name: 'Git',        src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
+    ],
+  },
+];
 
 const experience = [
   {
@@ -284,11 +320,31 @@ const education = [
 
   <!-- Skills -->
   <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.25rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Skills
     </h2>
-    <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-      {Object.values(skills).flat().map(item => <span class="tag">{item}</span>)}
+    <div class="flex flex-col gap-6">
+      {skillCategories.map(({ category, skills }) => (
+        <div>
+          <h3 style="color:var(--fg-muted); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.75rem;">
+            {category}
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            {skills.map(skill => (
+              <div style="border:1px solid var(--border); border-radius:10px; padding:0.75rem 0.875rem; background:var(--bg-subtle); display:flex; align-items:center; gap:0.625rem;" class="hover:border-[var(--accent)] transition-colors">
+                {skill.src ? (
+                  <img src={skill.src} alt={skill.name} width="22" height="22" style="object-fit:contain; flex-shrink:0;" />
+                ) : (
+                  <div style={`width:22px; height:22px; border-radius:4px; background:${skill.bg}; color:#fff; display:flex; align-items:center; justify-content:center; font-size:0.5rem; font-weight:700; flex-shrink:0;`}>
+                    {skill.letter}
+                  </div>
+                )}
+                <span style="color:var(--fg); font-size:0.82rem; white-space:nowrap;">{skill.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -297,9 +353,9 @@ const education = [
     <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Certifications
     </h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="flex flex-col gap-3">
       {certifications.map(cert => (
-        <div style="border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:flex-start; gap:0.875rem;">
+        <div style="border:1px solid var(--border); border-radius:10px; padding:0.875rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:center; gap:1rem;">
           <img
             src={cert.logo}
             alt={cert.name}
@@ -308,8 +364,8 @@ const education = [
             style="border-radius:8px; object-fit:contain; flex-shrink:0;"
           />
           <div>
-            <p style="color:var(--fg); font-size:0.875rem; font-weight:600; margin:0 0 0.2rem;">{cert.name}</p>
-            <p style="color:var(--fg-muted); font-size:0.78rem; margin:0; line-height:1.4;">{cert.subtitle}</p>
+            <p style="color:var(--fg); font-size:0.9rem; font-weight:600; margin:0 0 0.15rem;">{cert.name}</p>
+            <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{cert.subtitle}</p>
           </div>
         </div>
       ))}
