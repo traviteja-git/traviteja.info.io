@@ -9,58 +9,101 @@ draft: false
 
 ![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
-If you're a developer, think back to about a year ago. How often were you opening Stack Overflow?
+A year ago, a developer needed to understand their code, their framework, and their tools.
 
-Now think about how often you do it today.
+Today, that same developer needs to understand how to decompose a goal into tasks, assign those tasks to the right agents, design the tools those agents can use, handle failures across a distributed system of AI workers, and connect all of it to the external applications their team already runs on.
 
-For most of us, that number dropped significantly — not because the problems got easier, but because ChatGPT showed up and quietly changed where we go first. It wasn't a big announcement or a conscious switch. It just... happened. And that small habit change turned out to be the beginning of something much larger.
+That is a staggering expansion in scope. And it happened in roughly twelve months.
 
-## ChatGPT Replaced Stack Overflow
+---
 
-The reason ChatGPT stuck wasn't just the answers. It was the back-and-forth. Stack Overflow needed you to have the exact right question, phrased correctly, hoping someone else had the same problem. ChatGPT let you describe your situation in plain English, get something back, push further, and iterate. It felt like talking to someone rather than searching a database.
+## It Started Simple: Just Ask the Question
 
-Most developers who tried it became regulars pretty quickly. The old tab stopped getting pinned.
+When ChatGPT arrived, the shift for developers was minimal at first. You had a question, you typed it, you got an answer. The only new skill was knowing where to go — and that was just replacing one tab with another.
 
-## AI Moved Into the IDE
+Stack Overflow needed the exact right question. ChatGPT let you describe the problem conversationally and iterate. Faster, more flexible, lower friction. Most developers adopted it almost immediately, without thinking much about it.
 
-Once that became normal, the next logical step was getting it out of the browser and into the editor. Why open a new tab when you could have it sitting right next to the code?
+**Scope at this stage:** your code + knowing how to ask a clear question.
 
-GitHub Copilot, then Cursor, then a wave of others. The AI stopped being something you consulted and became something that was just there — watching the context, suggesting the next line, writing the boilerplate you were about to write anyway. The tedious parts of coding got faster. Not just a bit faster — genuinely faster in a way you notice on a normal working day.
+---
 
-## Discovering That Prompts Actually Matter
+## The IDE Integration: Context Started to Matter
 
-This is where it got interesting for most people.
+Then AI moved into the editor. GitHub Copilot, Cursor, and others put the model right next to the code. Now the AI wasn't just answering questions — it was watching what you were building and offering to help in real time.
 
-Once you're using it regularly, you start noticing something: the same question, asked slightly differently, gives completely different results. Same problem, different phrasing, different output. And once you see that, you can't unsee it.
+This introduced a new consideration most developers hadn't thought about before: *context*. What does the model see? What does it not see? How does the surrounding code affect what it suggests? Getting good results wasn't just about the question anymore — it was about what information the model had access to when it answered.
 
-Developers started paying attention to *how* they were asking. Adding context. Specifying format. Being deliberate about what they wanted rather than just describing the problem. The more precise the input, the better the output. What emerged from this was prompt engineering — though at the time it mostly just felt like figuring out how to communicate clearly with something that interpreted language very literally.
+**Scope at this stage:** your code + the context the model can see + how to shape that context.
 
-### Prompt Templates Became Team Infrastructure
+---
 
-Teams started saving the prompts that worked. Sharing them like useful scripts. A prompt for PR descriptions, one for summarising documentation, one for code review. Prompt templates became a small but real piece of team infrastructure. Instead of everyone figuring out the same thing independently, the good prompts got shared and improved collectively.
+## Prompt Engineering: Language Became a Technical Skill
 
-## Agents Changed the Game
+The next layer of understanding arrived when developers noticed something: the same question, phrased two different ways, could give wildly different results. Phrasing wasn't cosmetic — it was functional. How you described a problem directly determined the quality of the output.
 
-Then agents changed everything again.
+This turned language into a technical skill. Developers started thinking about prompts the way they'd think about function signatures — precision mattered, structure mattered, the assumptions you made explicit versus the ones you left implicit mattered.
 
-The difference between a prompt and an agent is straightforward: a prompt gets you text back, an agent can actually *do* things. Run code. Search the web. Read files. Call APIs. Take a sequence of steps to complete a task rather than just answer a question.
+Teams began building prompt libraries. Shared templates for recurring tasks — code review, PR descriptions, summarising documentation. The best prompts became team infrastructure, passed around and improved the same way useful scripts get shared.
 
-What this unlocked was the ability to delegate whole tasks, not just ask questions. And with multiple agents running in parallel — each handling a different part of a problem simultaneously — the ceiling on what a single developer could get done in a day shifted considerably. The jump wasn't incremental. It felt like a different category of working.
+**Scope at this stage:** your code + context + deliberate language + shared prompt systems.
 
-## Where We Are Now — MCP Servers
+---
 
-The current state of things for a lot of developers is MCP — Model Context Protocol — which is essentially a standard way to connect AI tools to the applications you already use. Git, Docker, Jira, Confluence, your database, your CI pipeline. All of it accessible through a common protocol, with the AI sitting in the middle able to understand what you need and which tool to reach for.
+## Agents: From Answering Questions to Taking Actions
 
-Instead of switching between five different tabs to piece together a full picture, everything comes to you. Ask a question that spans tools and systems. Hand off a task that would have required manual cross-referencing. Different agents for different types of work, all connected, all available without context switching.
+Then agents entered the picture, and the scope jumped significantly.
 
-## The Skill That Compounds
+An agent isn't just a model that responds — it's a model that can *act*. Run code. Call APIs. Search the web. Read and write files. The model stopped being an advisor and started being an executor. You weren't asking it questions anymore; you were giving it goals.
 
-Looking at the full arc — Stack Overflow → ChatGPT → IDE integration → prompt engineering → shared templates → agents → MCP — each step felt small in the moment. But zoom out and the shift in how developers actually work is significant.
+This required a fundamentally different way of thinking. Designing what tools an agent should have access to. Deciding how to break a large goal into smaller steps. Thinking about what happens when one step fails. Handling the fact that the same goal might produce a different sequence of actions on different runs.
 
-A year ago, AI was a useful tool you pulled up occasionally. Today it's embedded in the workflow at nearly every level.
+Suddenly, developers needed to think about agent behaviour the way they'd think about any distributed system — with real consideration for failure modes, state management, and observability.
 
-The developers who'll get the most out of where this is heading aren't necessarily the ones who know the most. They're the ones who get good at orchestration — figuring out what to delegate, how to describe it clearly, and how to validate the result. That's the skill that compounds.
+**Scope at this stage:** goals + task decomposition + tool design + failure handling + observability.
 
-And the good news is it's not hard to start. Pick one thing you do manually today. See what happens when you hand it off. Adjust. Go from there.
+---
 
-The rest follows naturally.
+## Multi-Agent Systems: Coordination Became the Job
+
+The evolution didn't stop at one agent. As the tooling matured, it became possible — and then practical — to run multiple agents in parallel, each specialised for a different kind of work, coordinating with each other to complete tasks that no single agent could handle alone.
+
+Think about what that requires a developer to understand: not just how one agent behaves, but how a *system* of agents behaves. Who talks to who. In what order. What happens when agents produce conflicting outputs. How to prevent one agent from undoing what another just finished. How to keep costs from spiralling when agents run in loops.
+
+This is system architecture. Not AI-specific system architecture — just system architecture, applied to a new domain.
+
+**Scope at this stage:** system design + agent coordination + inter-agent communication + cost control.
+
+---
+
+## MCP Servers: Everything Connected
+
+The current frontier for a lot of developers is MCP — Model Context Protocol. A standard that lets AI tools connect directly to the external systems a team already uses. Git. Docker. Jira. Confluence. Your database. Your CI pipeline.
+
+Instead of context-switching between applications to piece together a full picture of something, the AI sits in the middle with access to all of it. Ask a question that spans systems. Kick off a task that touches multiple tools. Route different types of work to different agents based on what each one is good at.
+
+What a developer manages at this stage looks less like "using an AI tool" and more like running a small, distributed team — one where the team members are agents, the communication protocol is structured, and you are the one deciding priorities, tooling, and what gets delegated.
+
+**Scope at this stage:** connected systems + protocol design + orchestration + delegation + validation.
+
+---
+
+## What This Actually Means
+
+Draw a line from where we started to where we are now:
+
+- **2023:** Ask ChatGPT instead of Stack Overflow.
+- **2024:** Write prompts carefully. Save the good ones. Share them.
+- **2025:** Design agents. Give them tools. Run them in parallel.
+- **2026:** Orchestrate systems of agents connected to everything your team uses.
+
+Each step expanded what a developer needed to understand — not just in terms of tooling, but in terms of *thinking*. The mental models required at each stage are genuinely different from the ones before.
+
+The developers who are navigating this well aren't necessarily the ones who were best at writing code. They're the ones who are good at systems thinking, clear communication, and knowing how to break a complex goal into well-defined pieces. Those skills have always mattered. AI just moved them to the top of the stack.
+
+The pace of this change is the part worth paying attention to. This entire arc — from "just ask the question" to "orchestrate a system of agents connected to your entire toolchain" — happened in about a year.
+
+Whatever comes next will probably happen faster.
+
+---
+
+*If you're curious about where to start with agents or MCP, the best move is to just pick one thing you do manually and try delegating it. The learning curve is shorter than it looks — and the compounding is real.*
