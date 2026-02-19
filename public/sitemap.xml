@@ -50,6 +50,12 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://traviteja.com/blog/prompt-engineering-to-agent-orchestration/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Projects -->
   <url>
     <loc>https://traviteja.com/projects/identity-resolution-pipeline/</loc>
