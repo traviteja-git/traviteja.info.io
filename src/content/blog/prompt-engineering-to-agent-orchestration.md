@@ -1,99 +1,106 @@
 ---
 title: "From Prompt Engineering to Orchestrating AI Agents"
-description: "How AI development has evolved from crafting single prompts to orchestrating multi-agent systems — what changed, why it matters, and what it means for engineers building data and cloud pipelines."
+description: "A developer's personal journey from replacing Stack Overflow with ChatGPT to orchestrating multi-agent systems with MCP servers — how AI changed the way we actually build software."
 date: "2026-02-19"
-tags: ["ai", "agents", "prompt-engineering", "llm", "data-engineering"]
+tags: ["ai", "agents", "prompt-engineering", "llm", "developer-tools"]
 image: "/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png"
 draft: false
 ---
 
-
-A couple of years ago, if you told me that "prompt engineering" would become a job title, I'd have laughed. Now it already feels dated.
-
-That's how fast things are moving.
-
-I've been building data pipelines for close to a decade — Airflow DAGs, Spark jobs, ETL systems that process hundreds of millions of records. For most of that time, AI was something I used as a tool to help me write faster. A smarter autocomplete. Then at some point, without me really noticing, it stopped being a tool I used and started being something I *orchestrate*. That shift is what I want to talk about.
-
----
 ![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
-## It Started With Getting Good at Prompts
+About a year ago, something quietly changed in how I worked.
 
-When GPT-3 and then ChatGPT came out, the first thing everyone figured out was that how you asked mattered enormously. Ask the same question two different ways, get wildly different answers. So people started treating prompt writing like a craft.
+I stopped opening Stack Overflow first.
 
-You'd learn tricks — "add 'think step by step' at the end", "give it three examples before the real question", "tell it to roleplay as a senior engineer." These worked. Genuinely. The output quality gap between a naive prompt and a well-crafted one was significant enough that it was worth investing time in.
-
-I used this constantly. Writing boilerplate Airflow operators, generating test data, explaining a gnarly SQL query to a teammate — the prompt was the lever. Get the prompt right, get the output you need.
-
-But there was always this ceiling. You'd do great work *within* a single exchange, then hit a wall the moment the task needed more than one step, or needed to check something, or needed to remember what you said three messages ago. The model was brilliant but fundamentally forgetful and passive. It waited for you. It couldn't *do* anything on its own.
+It wasn't a conscious decision. One day I just noticed I was typing my question into ChatGPT instead, and the tab I used to always have pinned was just... not there anymore. That small habit shift turned out to be the beginning of something much bigger.
 
 ---
 
-## The Pipeline Phase: Chaining Things Together
+## Stage 1: ChatGPT Replaced Stack Overflow
 
-The next thing that happened was developers started connecting LLM calls together. Instead of one prompt → one answer, you'd have a sequence: generate a plan, then execute each step of the plan, then summarize the results.
+When ChatGPT came out, the immediate reaction from most developers I knew was somewhere between impressed and skeptical. Sure, it could answer questions — but could you actually trust it?
 
-LangChain became popular around this time, and suddenly you could build things like: take a user question → find relevant documents → stuff them into a prompt → generate an answer grounded in actual data. RAG — retrieval-augmented generation — was the pattern that made LLMs genuinely useful for private, domain-specific data.
+Turns out, yes. Mostly. Enough.
 
-For me this clicked immediately. As a data engineer, this was just... a pipeline. Input, transform, output. The LLM was one node in a DAG, not the whole system.
+The difference from Stack Overflow wasn't just speed. It was the conversation. Instead of hunting through five different threads hoping someone had the exact same problem, you could just... describe your situation. Get an answer. Ask a follow-up. Get a better answer. It felt less like searching documentation and more like having a very fast, very patient colleague who happened to know everything.
 
-I remember building a small internal tool at this stage that would take a pipeline failure log, search through our internal runbooks, and generate a probable root cause. Saved a lot of time. But it was fragile. The sequence was fixed. If step two failed, the whole thing broke and there was no recovery. It was smarter than a single prompt, but still fundamentally dumb about *adapting*.
-
----
-
-## Agents Changed the Mental Model Entirely
-
-Here's where it gets interesting.
-
-The difference between a pipeline and an agent is that a pipeline follows a fixed path. An agent decides its own path. You give it a goal, it figures out what to do, tries something, looks at the result, and decides what to do next. It loops until it's done — or until it decides it's stuck and asks for help.
-
-What makes this possible is **tool use**. An agent isn't just generating text, it's taking actions: running code, searching the web, reading files, calling APIs. The LLM is the brain; the tools are the hands.
-
-The first time I actually experienced this — not read about it, but *used* it — it was genuinely weird. I described a task, the model wrote some code to solve part of it, ran the code, read the output, noticed an error, fixed the error, ran it again, confirmed it worked, then moved on to the next part. I hadn't told it to do any of that step by step. I just described the end goal.
-
-It felt less like using a tool and more like working with a junior engineer who could move fast but needed clear direction.
+Within a few months, my whole search behaviour had shifted. Stack Overflow became the backup, not the first stop.
 
 ---
 
-## Multi-Agent Systems: When One Isn't Enough
+## Stage 2: It Moved Into the IDE
 
-The next step — and where things get genuinely complex — is multiple agents working together. One agent plans. Another executes. A third reviews the output and pushes back if something looks wrong. Each has a specific role, a specific set of tools, and they communicate with each other.
+Once the novelty wore off, the next question was obvious: why am I switching context to a browser tab when I could just have this inside my editor?
 
-I find it useful to think about this like a data pipeline architecture. You have producers, consumers, transformation layers, validation checks. In a multi-agent system, each agent is a node, and the messages between them are the data flowing through the system. The orchestration logic — who talks to who, in what order, what happens on failure — is the DAG.
+GitHub Copilot, then Cursor, then a wave of others. Suddenly the AI wasn't something you consulted — it was something sitting right next to your code, watching what you were doing, offering to finish your sentences.
 
-That framing actually makes it less intimidating. If you can design a reliable ETL pipeline, you can design a reliable agent system. The failure modes are different, but the discipline of thinking about them upfront is the same.
+This felt different. More integrated. Less like asking for help and more like having a pair programmer who never got tired and never judged you for forgetting the exact syntax of something you've written a hundred times.
 
-The hard parts, in my experience:
-- Agents getting into loops where they keep retrying something that's never going to work
-- Cost spiraling because you didn't set a stopping condition
-- Debugging — when something goes wrong across three agents, finding *where* it went wrong is painful unless you've logged everything
-
-That last one especially. Log everything. Every tool call, every decision, every input and output from every agent. You cannot debug what you cannot see. This is the same lesson I learned the hard way building Airflow pipelines — observability is not optional, it's the whole game.
+The productivity jump was real. The annoying boilerplate that used to eat twenty minutes was done in two. Tests for functions I'd already written would just appear. I started spending more time on the parts of problems that actually needed thinking.
 
 ---
 
-## What's Actually Different for Data Engineers
+## Stage 3: Discovering That Prompts Actually Matter
 
-Here's my honest take: data engineers are better positioned for this shift than most people realise.
+Here's where it got interesting.
 
-The skills that matter in agentic AI systems — pipeline design, fault tolerance, state management, thinking about what happens when things fail — are skills data engineers already have. The tooling is different. The abstraction level is higher. But the thinking is familiar.
+I started noticing that the same question, asked differently, gave wildly different results. Not just in quality — in direction, structure, assumptions. Small changes in how I phrased something would completely change what came back.
 
-What's changing is *what* those pipelines are doing. More and more, the transformation logic inside a pipeline step is not hand-written code — it's an agent figuring out what code to write. The engineer's job shifts from writing every transformation to designing the system that decides what transformations are needed.
+So I started paying attention. Adding context. Specifying format. Telling it what role to take. "Explain this like I'm debugging it" versus "Write this as if it's going into production" — completely different outputs.
 
-That's not a smaller job. It's a different one.
+This is what people started calling prompt engineering, though at the time it felt less like a discipline and more like just learning how to communicate better with something that interpreted language very literally.
 
----
-
-## Where Most People Are Right Now
-
-Honestly? Most production AI usage is still in the early prompt-chaining phase. Pure prompt engineering has faded. RAG is mature and widely deployed. Single-agent systems with tool use are becoming standard for internal tooling.
-
-True multi-agent orchestration in production — reliable, observable, cost-controlled — is still hard and most teams are figuring it out as they go. The frameworks are good but they're evolving fast. What worked six months ago might not be the right approach today.
-
-My advice: don't wait for the tooling to stabilize before learning the concepts. The concepts are stable. Agents, tools, memory, orchestration — these ideas will outlast any specific framework. Learn how to think about them, build something small, break it, understand why it broke. That's the only real way through.
+The key insight: **the quality of your output is a direct function of the quality of your input.** Garbage in, garbage out, but in a much more nuanced way than that phrase usually implies.
 
 ---
 
-The gap between prompt engineering and agent orchestration isn't a technical one so much as a conceptual one. Once you stop thinking of the LLM as something you query and start thinking of it as something you *deploy* — as a component in a larger system with inputs, outputs, failure modes, and observability requirements — the rest follows naturally.
+## Stage 4: Prompt Templates Across Teams
 
-At least, that's been my experience. Still figuring out the rest.
+Once you figure out that prompts matter, the next realisation is that your best prompts are worth sharing.
+
+We started doing this on my team — saving prompts that consistently produced good results, sharing them the way you'd share a useful script or a good config file. A prompt for writing PR descriptions. A prompt for summarising a dense document. A prompt for reviewing code against our internal standards.
+
+Prompt templates. Reusable, shareable, improvable over time.
+
+This was the moment AI stopped being an individual productivity tool and started becoming something embedded in how a team worked. The good prompts became shared infrastructure. New team members could get productive faster because the tribal knowledge of "how to get good output" was written down and usable from day one.
+
+---
+
+## Stage 5: Multiple Agents, Working in Parallel
+
+Then agents showed up properly, and the game changed again.
+
+The difference between a prompt and an agent is that an agent can take actions. It doesn't just generate text — it can run code, search the web, read files, call APIs. And crucially, you can run multiple agents at once, each working on a different part of a problem simultaneously.
+
+For the first time, I wasn't the bottleneck. I could hand off a whole task — not just a question — and come back to a result. Or split a larger piece of work across agents and have different pieces done in parallel, then stitched together.
+
+The productivity shift here was qualitatively different from everything before it. It wasn't faster answers. It was a different category of work delegation entirely.
+
+---
+
+## Stage 6: Where I Am Now — MCP Servers and Everything Connected
+
+The current state of things, at least for me, is something I wouldn't have predicted a year ago.
+
+I'm using MCP (Model Context Protocol) servers to connect my AI tools directly to the applications I work with every day — Docker, Git, Jira, Confluence. Everything talking to everything else through a common protocol, with the AI sitting in the middle as the thing that actually understands what I'm asking for and which tool to use.
+
+Instead of context-switching between five different tabs to get a full picture of something, I can pull all of it into one place. Ask a question that spans tools. "What Jira tickets are blocked because of the open Docker issue?" — and get an answer that would have previously required me to manually cross-reference two systems.
+
+Different tasks get different agents. Different agents have different skills. I've started thinking about this less like using a tool and more like managing a small team where each member has a specific role and you're the one deciding what to prioritise and who to hand it to.
+
+---
+
+## What's Actually Changed
+
+Looking back at that progression — Stack Overflow → ChatGPT → IDE integration → prompt engineering → templates → agents → MCP — each step felt incremental at the time. But the cumulative shift is significant.
+
+A year ago, AI was something I used occasionally to answer questions. Now it's embedded in how I work at almost every level — writing, reviewing, searching, summarising, executing tasks across tools.
+
+The developers who are going to be most effective in the next few years aren't necessarily the ones who know the most. They're the ones who get good at orchestrating — deciding what to delegate, how to describe it, and how to verify the result.
+
+That's a learnable skill. And honestly, the learning curve is not that steep. You just have to actually use it, not just read about it.
+
+Start with one thing. Let it do one task you currently do manually. See what comes back. Adjust. Try something harder next time.
+
+That's all it is, really. The compounding effect takes care of the rest.
