@@ -7,7 +7,6 @@ image: "/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png"
 draft: false
 ---
 
-![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
 A couple of years ago, if you told me that "prompt engineering" would become a job title, I'd have laughed. Now it already feels dated.
 
@@ -16,6 +15,7 @@ That's how fast things are moving.
 I've been building data pipelines for close to a decade — Airflow DAGs, Spark jobs, ETL systems that process hundreds of millions of records. For most of that time, AI was something I used as a tool to help me write faster. A smarter autocomplete. Then at some point, without me really noticing, it stopped being a tool I used and started being something I *orchestrate*. That shift is what I want to talk about.
 
 ---
+![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
 ## It Started With Getting Good at Prompts
 
