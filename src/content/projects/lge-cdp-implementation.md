@@ -1,22 +1,37 @@
 ---
 title: "LGE Customer Data Platform"
-description: "Data ingestion architecture for LG Electronics using Talend, reducing manual data processing from 18–20 days to just 2–3 days."
-tech: ["Talend", "SQL", "ETL", "SQL Server"]
+description: "Data ingestion architecture for LG Electronics using Talend and Apache Airflow on GCP, reducing manual processing from 18–20 days to 2–3 days and a data feed from 13 hours to 1 hour."
+tech: ["Talend", "Apache Airflow", "GCP", "BigQuery", "PostgreSQL", "Python", "Docker", "ETL"]
 featured: false
 ---
 
 ## Overview
 
-Designed and implemented the data ingestion architecture for LG Electronics' Customer Data Platform, consolidating customer data from disparate regional systems into a central warehouse for global analytics.
+Designed and implemented the data ingestion and curation architecture for LG Electronics' Customer Data Platform at Deloitte. The platform consolidated customer data from heterogeneous regional systems into a centralised GCP data warehouse for global analytics.
 
-## Approach
+## Pipeline Architecture
 
-- Architected end-to-end ETL pipelines using Talend to ingest data from multiple source systems
-- Standardised data schemas across regional data sources with different formats and encodings
-- Built automated scheduling and monitoring for daily data loads
+- **Source**: Dovetail files (>400GB) downloaded from GCP buckets across multiple file formats
+- **Processing**: Talend Big Data jobs — decryption, decompression, CSV conversion, cleansing
+- **Orchestration**: Apache Airflow scheduling and managing Talend job execution based on business rules
+- **Destination**: PostgreSQL staging layer → Google BigQuery for analytics consumption
+
+## Key Contributions
+
+- Built configurable automation Talend jobs to process >400GB dovetail files end-to-end: GCP download → decryption → unzipping → CSV conversion → cleansing → reload to GCP
+- Reduced a manually-operated **18–20 day** process down to **2–3 days** through full automation
+- Used Apache Airflow to orchestrate Talend jobs, enforcing business rules and dependencies
+- Developed complex Talend jobs fetching data from GCP buckets across multiple file formats and loading into PostgreSQL and BigQuery
+- Proposed and implemented a performance fix reducing a critical data feed runtime from **>13 hours to 1 hour**
+- Configured automation jobs for Cleanse, Convert, CASS and Pinning on differential historical data
 
 ## Impact
 
-- Reduced manual data processing cycle from **18–20 days to 2–3 days**
-- Enabled near-real-time customer analytics that were previously not possible
-- Laid the foundation for the client's future data platform modernisation roadmap
+- **18–20 days → 2–3 days** for the full data processing cycle
+- **>13 hours → 1 hour** for the critical data feed runtime
+- Eliminated manual file processing, freeing the team for higher-value work
+- Established the foundation for LG Electronics' future GCP data platform
+
+## Awards
+
+Received Applause Award for taking ownership of multiple project elements across different tech stacks and delivering milestones within the given timeframe.

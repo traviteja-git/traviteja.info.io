@@ -21,7 +21,7 @@ const { Content } = await render(project);
   </a>
 
   <!-- Header -->
-  <header class="mb-10">
+  <header class="mb-8">
     <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 0.75rem;">
       {project.data.title}
     </h1>
@@ -49,8 +49,75 @@ const { Content } = await render(project);
     </div>
   </header>
 
-  <!-- Content -->
-  <article class="prose">
+  <!-- Accordion content -->
+  <div id="project-content" class="prose" style="display:none;">
     <Content />
-  </article>
+  </div>
+
+  <!-- Accordion will be built here by JS -->
+  <div id="accordion-root"></div>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const content = document.getElementById('project-content');
+    const root = document.getElementById('accordion-root');
+    if (!content || !root) return;
+
+    const headings = Array.from(content.querySelectorAll('h2'));
+    if (headings.length === 0) {
+      // No sections — just show content as-is
+      content.style.display = 'block';
+      return;
+    }
+
+    headings.forEach((h2, i) => {
+      // Collect all nodes between this h2 and the next h2
+      const nodes: Element[] = [];
+      let next = h2.nextElementSibling;
+      while (next && next.tagName !== 'H2') {
+        nodes.push(next);
+        next = next.nextElementSibling;
+      }
+
+      const isFirst = i === 0;
+
+      // Wrapper
+      const item = document.createElement('div');
+      item.style.cssText = 'border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:0.625rem;';
+
+      // Toggle button
+      const btn = document.createElement('button');
+      btn.style.cssText = `
+        width:100%; text-align:left; background:var(--bg-subtle); border:none;
+        padding:0.9rem 1.25rem; cursor:pointer; display:flex; justify-content:space-between;
+        align-items:center; color:var(--fg); font-size:0.95rem; font-weight:600; gap:1rem;
+      `;
+      btn.innerHTML = `<span>${h2.textContent}</span><span style="color:var(--fg-muted); font-size:0.75rem; flex-shrink:0;">${isFirst ? '▲' : '▼'}</span>`;
+
+      // Panel
+      const panel = document.createElement('div');
+      panel.style.cssText = `
+        padding: ${isFirst ? '1rem 1.25rem 1.25rem' : '0 1.25rem'};
+        max-height: ${isFirst ? '2000px' : '0'};
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        border-top: ${isFirst ? '1px solid var(--border)' : 'none'};
+      `;
+      nodes.forEach(n => panel.appendChild(n));
+
+      btn.addEventListener('click', () => {
+        const open = panel.style.maxHeight !== '0px' && panel.style.maxHeight !== '0';
+        panel.style.maxHeight = open ? '0' : '2000px';
+        panel.style.padding = open ? '0 1.25rem' : '1rem 1.25rem 1.25rem';
+        panel.style.borderTop = open ? 'none' : '1px solid var(--border)';
+        const icon = btn.querySelector('span:last-child') as HTMLElement;
+        if (icon) icon.textContent = open ? '▼' : '▲';
+      });
+
+      item.appendChild(btn);
+      item.appendChild(panel);
+      root.appendChild(item);
+    });
+  });
+</script>
