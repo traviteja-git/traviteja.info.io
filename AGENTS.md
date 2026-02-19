@@ -146,8 +146,41 @@ See `/prompts` folder for reusable prompts:
 
 ---
 
+## Git Workflow — Branching Strategy
+
+**Never push directly to `main`.** Every task gets its own branch and a Pull Request.
+
+Branch naming: `type/short-description`
+
+| Type | When |
+|---|---|
+| `feat/` | New feature or page |
+| `post/` | New blog article |
+| `fix/` | Bug fix |
+| `seo/` | SEO improvements |
+| `style/` | UI / design changes |
+| `chore/` | Config, deps, housekeeping |
+
+```bash
+# Always start here
+git checkout main && git pull origin main
+git checkout -b post/my-new-article
+
+# After changes
+npm run build          # must pass before committing
+git add [files]
+git commit -m "post: new article on [topic]"
+git push origin post/my-new-article
+gh pr create --title "post: new article on [topic]"
+```
+
+See `prompts/feature-branch.md` for the full workflow.
+
+---
+
 ## Do Not
 
+- Push directly to `main` — always use a feature branch + PR
 - Run `npm install [package]` without committing the updated `package-lock.json` — CI will fail
 - Use `@astrojs/sitemap` or any new Astro integration without testing CI first
 - Add `og:image` with a relative path — must be absolute URL (BaseLayout handles this automatically)
