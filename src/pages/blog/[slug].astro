@@ -11,6 +11,23 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const readingTime = Math.ceil(post.body.split(/\s+/).length / 200);
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => !p.data.draft && p.slug !== post.slug)
+  .filter(p => p.data.tags?.some((tag: string) => post.data.tags?.includes(tag)))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3)
+  .map(p => ({
+    slug: p.slug,
+    title: p.data.title,
+    description: p.data.description,
+    date: p.data.date,
+    tags: p.data.tags,
+    image: p.data.image,
+  }));
 ---
 
 <BlogLayout
@@ -19,6 +36,8 @@ const { Content } = await render(post);
   date={post.data.date}
   tags={post.data.tags}
   image={post.data.image}
+  readingTime={readingTime}
+  relatedPosts={relatedPosts}
 >
   <Content />
 </BlogLayout>
