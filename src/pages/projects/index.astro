@@ -1,9 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
-import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projects');
+const demo = {
+  title: "IDR – Core Platform Engineering",
+  company: "Deloitte",
+  period: "2023 – 2024",
+  tech: ["Apache Spark", "Apache Airflow", "Python", "GCP", "MongoDB", "PostgreSQL", "Docker", "Kubernetes"],
+  description: "Migrated legacy .NET identity resolution pipeline to Apache Spark, processing 800 million records with a 70% performance improvement.",
+  highlights: [
+    "Migrated legacy .NET identity resolution pipeline to Apache Spark — 70% performance improvement.",
+    "Designed a custom Spark pipeline processing 800 million records, reducing processing time by 50%.",
+    "Built a self-service portal reducing IDR deployment time from weeks to hours.",
+    "Coordinated deployments across multiple cloud environments, streamlining to a single-click process.",
+  ],
+};
 ---
 
 <BaseLayout title="Projects — Raviteja" description="Data engineering and cloud architecture projects by Raviteja Tholupunoori.">
@@ -14,20 +24,129 @@ const projects = await getCollection('projects');
     </p>
   </header>
 
-  {projects.length === 0 ? (
-    <p style="color:var(--fg-muted);">No projects listed yet. Coming soon.</p>
-  ) : (
-    <div class="grid sm:grid-cols-2 gap-4">
-      {projects.map(project => (
-        <ProjectCard
-          title={project.data.title}
-          description={project.data.description}
-          tech={project.data.tech}
-          github={project.data.github}
-          liveUrl={project.data.liveUrl}
-          slug={project.slug}
-        />
-      ))}
+  <!-- Demo card -->
+  <div class="grid sm:grid-cols-2 gap-4">
+    <button
+      class="project-card text-left"
+      data-title={demo.title}
+      data-company={demo.company}
+      data-period={demo.period}
+      data-tech={demo.tech.join(',')}
+      data-description={demo.description}
+      data-highlights={JSON.stringify(demo.highlights)}
+      style="border:1px solid var(--border); border-radius:10px; background:var(--bg-subtle); padding:1.25rem 1.5rem; cursor:pointer; display:flex; flex-direction:column; gap:0.75rem; transition:border-color 0.2s;"
+      onmouseover="this.style.borderColor='var(--accent)'"
+      onmouseout="this.style.borderColor='var(--border)'"
+    >
+      <div>
+        <p style="color:var(--fg-muted); font-size:0.75rem; margin:0 0 0.35rem;">{demo.company} · {demo.period}</p>
+        <h2 style="color:var(--fg); font-size:1.05rem; font-weight:600; margin:0 0 0.4rem; line-height:1.3;">{demo.title}</h2>
+        <p style="color:var(--fg-muted); font-size:0.875rem; margin:0; line-height:1.5;" class="line-clamp-2">{demo.description}</p>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+        {demo.tech.slice(0, 4).map(t => <span class="tag">{t}</span>)}
+        {demo.tech.length > 4 && <span class="tag">+{demo.tech.length - 4}</span>}
+      </div>
+      <span style="color:var(--accent); font-size:0.82rem; align-self:flex-start;">View details →</span>
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div
+    id="project-modal-backdrop"
+    style="display:none; position:fixed; inset:0; z-index:100; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:1rem;"
+  >
+    <div
+      id="project-modal"
+      style="background:var(--bg); border:1px solid var(--border); border-radius:16px; width:100%; max-width:560px; max-height:90vh; overflow-y:auto; box-shadow:0 24px 60px rgba(0,0,0,0.3); transform:scale(0.96); opacity:0; transition:transform 0.2s ease, opacity 0.2s ease;"
+    >
+      <!-- Modal header -->
+      <div style="padding:1.5rem 1.5rem 0; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;">
+        <div>
+          <p id="modal-meta" style="color:var(--fg-muted); font-size:0.78rem; margin:0 0 0.35rem;"></p>
+          <h2 id="modal-title" style="color:var(--fg); font-size:1.3rem; font-weight:700; margin:0; line-height:1.3;"></h2>
+        </div>
+        <button
+          id="modal-close"
+          aria-label="Close"
+          style="background:var(--bg-subtle); border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; flex-shrink:0; margin-top:2px;"
+        >×</button>
+      </div>
+
+      <!-- Tech tags -->
+      <div id="modal-tech" style="padding:1rem 1.5rem 0; display:flex; flex-wrap:wrap; gap:0.4rem;"></div>
+
+      <!-- Description -->
+      <p id="modal-description" style="color:var(--fg-muted); font-size:0.9rem; line-height:1.6; margin:0; padding:1rem 1.5rem 0;"></p>
+
+      <!-- Highlights -->
+      <div style="padding:1rem 1.5rem 1.5rem;">
+        <p style="color:var(--fg); font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; margin:0 0 0.75rem;">Key Highlights</p>
+        <ul id="modal-highlights" style="margin:0; padding-left:1.25rem; display:flex; flex-direction:column; gap:0.5rem;"></ul>
+      </div>
     </div>
-  )}
+  </div>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    const backdrop = document.getElementById('project-modal-backdrop');
+    const modal = document.getElementById('project-modal');
+
+    function openModal(card) {
+      document.getElementById('modal-title').textContent = card.dataset.title;
+      document.getElementById('modal-meta').textContent = card.dataset.company + ' · ' + card.dataset.period;
+      document.getElementById('modal-description').textContent = card.dataset.description;
+
+      const techEl = document.getElementById('modal-tech');
+      techEl.innerHTML = '';
+      card.dataset.tech.split(',').forEach(function(t) {
+        const span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = t.trim();
+        techEl.appendChild(span);
+      });
+
+      const hlEl = document.getElementById('modal-highlights');
+      hlEl.innerHTML = '';
+      JSON.parse(card.dataset.highlights).forEach(function(h) {
+        const li = document.createElement('li');
+        li.style.cssText = 'color:var(--fg-muted); font-size:0.875rem; line-height:1.6;';
+        li.textContent = h;
+        hlEl.appendChild(li);
+      });
+
+      backdrop.style.display = 'flex';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          modal.style.transform = 'scale(1)';
+          modal.style.opacity = '1';
+        });
+      });
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.style.transform = 'scale(0.96)';
+      modal.style.opacity = '0';
+      setTimeout(function() {
+        backdrop.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 200);
+    }
+
+    document.querySelectorAll('.project-card').forEach(function(card) {
+      card.addEventListener('click', function() { openModal(card); });
+    });
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+
+    backdrop.addEventListener('click', function(e) {
+      if (e.target === backdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  })();
+</script>
