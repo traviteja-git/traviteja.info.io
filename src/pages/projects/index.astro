@@ -15,259 +15,209 @@ function relativeTime(endYear: number | null): string {
   return years === 1 ? '1 year ago' : `${years} years ago`;
 }
 
-const companies = [
+const projects = [
   {
-    name: "Deloitte",
-    role: "Sr. Product Engineer — IDR & Segmentation",
-    period: "2023 – Present",
-    logo: "/images/logos/deloitte.png",
-    endYear: null,
-    projects: [
-      {
-        title: "IDR – Core Platform Engineering",
-        tech: ["Apache Spark", "Apache Airflow", "Python", "GCP", "MongoDB", "PostgreSQL", "Docker", "Kubernetes"],
-        description: "Migrated legacy .NET identity resolution pipeline to Apache Spark, processing 800 million records with a 70% performance improvement.",
-        highlights: [
-          "Migrated legacy .NET identity resolution pipeline to Apache Spark — 70% performance improvement.",
-          "Designed a custom Spark pipeline processing 800 million records, reducing processing time by 50%.",
-          "Built a self-service portal reducing IDR deployment time from weeks to hours.",
-          "Coordinated deployments across multiple cloud environments, streamlining to a single-click process.",
-        ],
-      },
-      {
-        title: "IDR – Multi-Cloud Expansion (AWS & Azure)",
-        tech: ["Apache Spark", "Python", "AWS", "S3", "Redshift", "Azure", "Databricks"],
-        description: "Ported the identity resolution platform to AWS and Azure (Databricks), enabling multi-cloud support within 3 months.",
-        highlights: [
-          "Ported identity resolution platform to AWS and Azure (Databricks) within 3 months.",
-          "Identified and resolved dynamic resource allocation issues in Autopilot clusters.",
-          "Upgraded core infrastructure (Orchestration, NoSQL DB, Relational DB) and performed E2E validation.",
-          "Built an embedded analytics dashboard within Databricks, eliminating a separate UI.",
-          "Authored runbooks, HLD documents, and deployment guides across AWS, Azure, and Databricks.",
-        ],
-      },
-      {
-        title: "Identity Resolution – Platform Reliability",
-        tech: ["Python", "MongoDB", "Docker", "GCP", "Apache Airflow"],
-        description: "Resolved critical production issues across enterprise deployments and delivered secure non-root containerisation solutions.",
-        highlights: [
-          "Resolved critical production issues including database crashes, service connectivity failures, and data processing blockers.",
-          "Delivered secure non-root containerisation solutions for hardened container management.",
-          "Remediated high-impact security vulnerabilities, improving audit compliance and security posture.",
-          "Supported PII-based and digital presence-based identity resolution across retail, healthcare, and financial services verticals.",
-        ],
-      },
-      {
-        title: "Customer Segmentation – 3P Data & MRD Pipeline",
-        tech: ["PySpark", "Databricks", "Feature Foundry", "Jupyter Notebooks", "GCP"],
-        description: "Designed a PySpark-based Data Prep Pipeline with advanced data quality checks to generate Final MRD for segmentation analysis.",
-        highlights: [
-          "Designed and implemented a PySpark-based Data Prep Pipeline for Final MRD generation.",
-          "Automated the third-party data pipeline and delivered it to UAT, reducing manual effort significantly.",
-          "Enabled analysts to transform raw data into MRD-ready format via self-serve Jupyter notebooks.",
-          "Achieved 90% code coverage and implemented static analysis feedback across segmentation modules.",
-        ],
-      },
+    title: "Banking & Sales Platform (RBC)",
+    company: "Capgemini Technology Services",
+    role: "Software Engineer",
+    period: "2017 – 2018",
+    logo: "/images/logos/capgemini.png",
+    endYear: 2018,
+    tech: ["C#", "VB.Net", ".NET", "MVC", "TFS"],
+    description: "Web-based sales platform for a major financial institution to sell products to customers, with configurable multi-environment deployment.",
+    highlights: [
+      "Developed and maintained an Application Launch Pad module for managing and refocusing application windows.",
+      "Created configurable environment-detection files to assign deployment parameters across dev, staging, and production.",
+      "Contributed to ongoing maintenance and feature development of the customer-facing sales platform.",
     ],
   },
   {
-    name: "Deloitte",
-    role: "Sr. Product Engineer — Hux / CDM",
-    period: "2021 – 2023",
+    title: "Tech Modernization – Microservices Re-engineering",
+    company: "Deloitte",
+    role: "Business Technology Analyst",
+    period: "2018 – 2019",
     logo: "/images/logos/deloitte.png",
-    endYear: 2023,
-    projects: [
-      {
-        title: "CDM Microservices – Identity & Data Quality",
-        tech: ["C#", "Python", "MongoDB", "Docker", "Kubernetes", "Azure", "GCP"],
-        description: "Developed and productized real-time microservices for data cleaning, address standardization, and PII-based identity unification.",
-        highlights: [
-          "Implemented multi-threading in the digital presence-based identity unification microservice — 4× performance boost.",
-          "Resolved multi-threading issues in PII-based identity microservice — 8× performance boost.",
-          "Refactored identity microservices to product standards with 10–12% incremental performance improvements.",
-          "Resolved all security scan vulnerabilities (WhiteSource, JFrog Xray) across identity microservices.",
-          "Enabled TLS across identity and unification microservices for secure communication.",
-        ],
-      },
-      {
-        title: "Apache Airflow – Batch Ingestion Pipeline",
-        tech: ["Apache Airflow", "Python", "GCP", "Azure Kubernetes Service", "ArgoCD", "Grafana"],
-        description: "Engineered a batch ingestion pipeline orchestrating data quality and identity microservices, reducing operational costs by 25%.",
-        highlights: [
-          "Architected and led implementation of an end-to-end functional test suite for the orchestration layer.",
-          "Engineered batch ingestion pipeline reducing operational costs by 25% and improving scalability by 20%.",
-          "Integrated a data splitting microservice into the orchestration pipeline after resolving integration gaps.",
-          "Deployed the orchestration layer on AKS and resolved multithreading issues post-deployment.",
-          "Created Grafana monitoring dashboards for consolidated Pod metrics and log monitoring across environments.",
-        ],
-      },
-      {
-        title: "Customer Data Platform – Microservices",
-        tech: ["C#", "Python", "MongoDB", "Docker", "Kubernetes", "GCP", "Azure"],
-        description: "Built and productized real-time microservices for Cleanse, Convert, CASS, Pinning, and Stitch as console apps and REST APIs.",
-        highlights: [
-          "Developed real-time microservices for data cleaning, address standardization, identity resolution, and data governance.",
-          "Delivered scalable microservice architectures for diverse deployments on Azure and GCP container platforms.",
-          "Implemented dynamic runtime statistics for microservices as the foundation for platform UI metrics.",
-          "Deployed platform APIs using ArgoCD with real-time monitoring dashboards.",
-        ],
-      },
+    endYear: 2019,
+    tech: ["C#", ".NET Core", "MongoDB", "Docker", "TFS"],
+    description: "Re-engineered real-time microservices from a legacy monolith — bulk processing dropped from 60+ hours to 2 minutes for 1M records.",
+    highlights: [
+      "Re-engineered data cleaning, address standardization, identity resolution, and data governance as independent microservices.",
+      "Containerized all services using Docker for consistent and portable deployments.",
+      "Loading performance: 30 minutes → 1.3 minutes for 100K records.",
+      "Bulk processing: 60+ hours → 2 minutes for 1M records.",
     ],
   },
   {
-    name: "Strategic Technology Resources International",
+    title: "HP CX Transformation",
+    company: "Deloitte",
+    role: "Business Technology Analyst",
+    period: "2019",
+    logo: "/images/logos/deloitte.png",
+    endYear: 2019,
+    tech: ["C#", "MS SQL", ".NET Core", "SSIS"],
+    description: "Created SSIS packages to populate data from multiple data feeds into databases using advanced transformations.",
+    highlights: [
+      "Created SSIS packages populating data from multiple feeds using lookup, derived column, and conditional split transformations.",
+      "Developed custom SSIS script components using C# for complex data manipulation.",
+    ],
+  },
+  {
+    title: "CDP Implementation (LGE)",
+    company: "Deloitte",
+    role: "Business Technology Analyst",
+    period: "2019 – 2020",
+    logo: "/images/logos/deloitte.png",
+    endYear: 2020,
+    tech: ["GCP", "PostgreSQL", "Talend", "Apache Airflow", "Python", "Docker", "Linux"],
+    description: "Built a configurable automation pipeline processing 400GB+ files daily, reducing processing time from 18–20 days to 2–3 days.",
+    highlights: [
+      "Built configurable automation pipeline processing 400GB+ files (download, decrypt, unzip, cleanse, load) — 18–20 days → 2–3 days.",
+      "Orchestrated data curation jobs using Apache Airflow for business rule-based execution.",
+      "Reduced critical data feed runtime from 13+ hours to under 1 hour through performance optimisation.",
+      "Developed multi-format data ingestion pipelines from cloud storage into relational and analytical databases.",
+    ],
+  },
+  {
+    title: "EDI & ERP Data Integration Platform",
+    company: "Strategic Technology Resources International",
+    role: "Full Stack Developer",
+    period: "2020",
+    logo: "/images/logos/stri.png",
+    endYear: 2020,
+    tech: [".NET Core", "Java", "MSSQL", "SSIS", "Azure"],
+    description: "Developed an application enabling data flow through ERP systems to identify customers and generate appropriate output files.",
+    highlights: [
+      "Developed configurable automation console apps and web services to process XML files into Azure-hosted database tables.",
+      "Enabled user authentication via LDAP integration.",
+      "Migrated existing web and Java applications to Azure and Windows platforms.",
+      "Developed complex SQL stored procedures and views to transform data from CSV and XML sources.",
+    ],
+  },
+  {
+    title: "Full Stack Web Application Development",
+    company: "Strategic Technology Resources International",
     role: "Full Stack Developer",
     period: "2020 – 2021",
     logo: "/images/logos/stri.png",
     endYear: 2021,
-    projects: [
-      {
-        title: "Full Stack Web Application Development",
-        tech: ["Angular", "AngularJS", "Node.js", "Asana", "Bitbucket"],
-        description: "Built modern single-page applications using AngularJS and Node.js with modularised front-end architecture.",
-        highlights: [
-          "Built modern SPAs using AngularJS and Node.js with highly modularised and maintainable front-end architecture.",
-          "Acted as interface between development team and client, ensuring crisp communication and timely delivery.",
-          "Cooperated with back-end developers in building and integrating RESTful APIs.",
-        ],
-      },
-      {
-        title: "Low-Code HR Application (ATS)",
-        tech: ["Zoho Creator", "Jira"],
-        description: "Developed a low-code Applicant Tracking System enabling employers to manage large volumes of applicant resumes.",
-        highlights: [
-          "Developed a low-code ATS application enabling employers to manage large volumes of applicant resumes.",
-          "Built features for job posting, application collection, social media distribution, and keyword-based applicant search.",
-          "Mentored and guided team members, ensuring product knowledge across the team.",
-        ],
-      },
-      {
-        title: "EDI & ERP Data Integration Platform",
-        tech: [".NET Core", "Java", "MSSQL", "SSIS", "Azure"],
-        description: "Developed an application enabling data flow through ERP systems to identify customers and generate appropriate output files.",
-        highlights: [
-          "Developed configurable automation console apps and web services to process XML files into Azure-hosted database tables.",
-          "Enabled user authentication via LDAP integration.",
-          "Migrated existing web and Java applications to Azure and Windows platforms.",
-          "Developed complex SQL stored procedures and views to transform data from CSV and XML sources.",
-        ],
-      },
+    tech: ["Angular", "AngularJS", "Node.js", "Asana", "Bitbucket"],
+    description: "Built modern single-page applications using AngularJS and Node.js with modularised, maintainable front-end architecture.",
+    highlights: [
+      "Built modern SPAs using AngularJS and Node.js with highly modularised and maintainable front-end architecture.",
+      "Acted as interface between development team and client, ensuring crisp communication and timely delivery.",
+      "Cooperated with back-end developers in building and integrating RESTful APIs.",
     ],
   },
   {
-    name: "Deloitte",
-    role: "Business Technology Analyst",
-    period: "2018 – 2020",
+    title: "CDM Microservices – Identity & Data Quality",
+    company: "Deloitte",
+    role: "Sr. Product Engineer",
+    period: "2021 – 2023",
     logo: "/images/logos/deloitte.png",
-    endYear: 2020,
-    projects: [
-      {
-        title: "Tech Modernization – Microservices Re-engineering",
-        tech: ["C#", ".NET Core", "MongoDB", "Docker", "TFS"],
-        description: "Re-engineered real-time microservices from a legacy monolith — bulk processing time dropped from 60+ hours to 2 minutes for 1M records.",
-        highlights: [
-          "Re-engineered data cleaning, address standardization, identity resolution, and data governance as independent microservices.",
-          "Containerized all services using Docker for consistent and portable deployments.",
-          "Loading performance: 30 minutes → 1.3 minutes for 100K records.",
-          "Bulk processing: 60+ hours → 2 minutes for 1M records.",
-        ],
-      },
-      {
-        title: "HP CX Transformation",
-        tech: ["C#", "MS SQL", ".NET Core", "SSIS"],
-        description: "Created SSIS packages to populate data from multiple data feeds into databases using advanced transformations.",
-        highlights: [
-          "Created SSIS packages populating data from multiple feeds using lookup, derived column, and conditional split transformations.",
-          "Developed custom SSIS script components using C# for complex data manipulation.",
-        ],
-      },
-      {
-        title: "CDP Implementation (LGE)",
-        tech: ["GCP", "PostgreSQL", "Talend", "Apache Airflow", "Python", "Docker", "Linux"],
-        description: "Built a configurable automation pipeline processing 400GB+ files daily, reducing processing time from 18–20 days to 2–3 days.",
-        highlights: [
-          "Built configurable automation pipeline processing 400GB+ files (download, decrypt, unzip, cleanse, load) — 18–20 days → 2–3 days.",
-          "Orchestrated data curation jobs using Apache Airflow for business rule-based execution.",
-          "Reduced critical data feed runtime from 13+ hours to under 1 hour through performance optimisation.",
-          "Developed multi-format data ingestion pipelines from cloud storage into relational and analytical databases.",
-        ],
-      },
+    endYear: 2023,
+    tech: ["C#", "Python", "MongoDB", "Docker", "Kubernetes", "Azure", "GCP", "ArgoCD", "Grafana"],
+    description: "Developed and productized real-time microservices for data cleaning, address standardization, and PII-based identity unification on Azure and GCP.",
+    highlights: [
+      "Implemented multi-threading in digital presence-based identity microservice — 4× performance boost.",
+      "Resolved multi-threading issues in PII-based identity microservice — 8× performance boost.",
+      "Refactored identity microservices to product standards with 10–12% incremental performance improvements.",
+      "Resolved all security scan vulnerabilities (WhiteSource, JFrog Xray) across identity microservices.",
+      "Created Grafana monitoring dashboards for consolidated Pod metrics and log monitoring across environments.",
+      "Deployed platform APIs using ArgoCD with real-time monitoring dashboards.",
     ],
   },
   {
-    name: "Capgemini Technology Services",
-    role: "Software Engineer",
-    period: "2016 – 2018",
-    logo: "/images/logos/capgemini.png",
-    endYear: 2018,
-    projects: [
-      {
-        title: "Banking & Sales Platform (RBC)",
-        tech: ["C#", "VB.Net", ".NET", "MVC", "TFS"],
-        description: "Assisted in development and maintenance of a web-based sales platform for a major financial institution to sell products to customers.",
-        highlights: [
-          "Developed and maintained an Application Launch Pad module for managing and refocusing application windows.",
-          "Created configurable environment-detection files to assign deployment parameters across different environments.",
-          "Contributed to ongoing maintenance and feature development of the customer-facing sales platform.",
-        ],
-      },
+    title: "Apache Airflow – Batch Ingestion Pipeline",
+    company: "Deloitte",
+    role: "Sr. Product Engineer",
+    period: "2023 – 2024",
+    logo: "/images/logos/deloitte.png",
+    endYear: 2024,
+    tech: ["Apache Airflow", "Python", "GCP", "Azure Kubernetes Service", "ArgoCD", "Grafana"],
+    description: "Engineered a batch ingestion pipeline orchestrating data quality and identity microservices, reducing operational costs by 25% and improving scalability by 20%.",
+    highlights: [
+      "Architected and led implementation of an end-to-end functional test suite for the orchestration layer.",
+      "Engineered batch ingestion pipeline reducing operational costs by 25% and improving scalability by 20%.",
+      "Integrated a data splitting microservice into the orchestration pipeline after resolving integration gaps.",
+      "Deployed the orchestration layer on AKS and resolved multithreading issues post-deployment.",
+    ],
+  },
+  {
+    title: "Identity Resolution – Cloud Agnostic Platform",
+    company: "Deloitte",
+    role: "Sr. Product Engineer",
+    period: "2023 – 2025",
+    logo: "/images/logos/deloitte.png",
+    endYear: 2025,
+    tech: ["Apache Spark", "Apache Airflow", "Python", "GCP", "AWS", "Azure", "Databricks", "MongoDB", "PostgreSQL", "Docker", "Kubernetes"],
+    description: "Migrated legacy .NET identity resolution pipeline to Apache Spark processing 800M records, then expanded to AWS and Azure (Databricks) — full multi-cloud support within 3 months.",
+    highlights: [
+      "Migrated legacy .NET identity resolution pipeline to Apache Spark — 70% performance improvement.",
+      "Designed a custom Spark pipeline processing 800 million records, reducing processing time by 50%.",
+      "Ported the platform to AWS and Azure (Databricks) enabling multi-cloud support within 3 months.",
+      "Built a self-service portal reducing IDR deployment time from weeks to hours.",
+      "Resolved critical production issues including database crashes, service connectivity failures, and data processing blockers.",
+      "Delivered secure non-root containerisation solutions, enabling teams to independently manage hardened containers.",
+      "Built an embedded analytics dashboard within Databricks, eliminating the need for a separate UI.",
+    ],
+  },
+  {
+    title: "Customer Segmentation – 3P Data & MRD Pipeline",
+    company: "Deloitte",
+    role: "Sr. Product Engineer",
+    period: "2025",
+    logo: "/images/logos/deloitte.png",
+    endYear: 2025,
+    tech: ["PySpark", "Databricks", "Feature Foundry", "Jupyter Notebooks", "GCP"],
+    description: "Designed a PySpark-based Data Prep Pipeline with advanced data quality checks to generate Final MRD for segmentation analysis.",
+    highlights: [
+      "Designed and implemented a PySpark-based Data Prep Pipeline for Final MRD generation.",
+      "Automated the third-party data pipeline and delivered it to UAT, reducing manual effort significantly.",
+      "Enabled analysts to transform raw data into MRD-ready format via self-serve Jupyter notebooks.",
+      "Achieved 90% code coverage and implemented static analysis feedback across segmentation modules.",
     ],
   },
 ];
 ---
 
 <BaseLayout title="Projects — Raviteja" description="Data engineering and cloud architecture projects by Raviteja Tholupunoori.">
-  <!-- Company groups -->
-  <div class="flex flex-col gap-12">
-    {companies.map(company => (
-      <section>
-        <!-- Company header -->
-        <div style="margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border);">
-          <h2 style="color:var(--fg); font-size:1rem; font-weight:600; margin:0 0 0.15rem;">{company.name}</h2>
-          <p style="color:var(--fg-muted); font-size:0.82rem; margin:0;">{company.role} · {company.period}</p>
+  <div class="grid sm:grid-cols-2 gap-3">
+    {projects.map(project => (
+      <button
+        class="project-card text-left"
+        data-title={project.title}
+        data-company={project.company}
+        data-role={project.role}
+        data-period={project.period}
+        data-tech={project.tech.join('||')}
+        data-description={project.description}
+        data-highlights={JSON.stringify(project.highlights)}
+        style="border:1px solid var(--border); border-radius:10px; background:var(--bg-subtle); padding:1.1rem 1.25rem; cursor:pointer; display:flex; flex-direction:column; gap:0.65rem; transition:border-color 0.2s; text-align:left;"
+        onmouseover="this.style.borderColor='var(--accent)'"
+        onmouseout="this.style.borderColor='var(--border)'"
+      >
+        <!-- Title row with logo -->
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:0.75rem;">
+          <h3 style="color:var(--fg); font-size:0.95rem; font-weight:600; margin:0; line-height:1.3; flex:1;">{project.title}</h3>
+          <img
+            src={project.logo}
+            alt={project.company}
+            width="28"
+            height="28"
+            style="border-radius:6px; object-fit:contain; flex-shrink:0; border:1px solid var(--border); background:var(--bg); padding:2px;"
+          />
         </div>
-
-        <!-- Project cards -->
-        <div class="grid sm:grid-cols-2 gap-3">
-          {company.projects.map(project => (
-            <button
-              class="project-card text-left"
-              data-title={project.title}
-              data-company={company.name}
-              data-role={company.role}
-              data-period={company.period}
-              data-tech={project.tech.join('||')}
-              data-description={project.description}
-              data-highlights={JSON.stringify(project.highlights)}
-              style="border:1px solid var(--border); border-radius:10px; background:var(--bg-subtle); padding:1.1rem 1.25rem; cursor:pointer; display:flex; flex-direction:column; gap:0.65rem; transition:border-color 0.2s; text-align:left;"
-              onmouseover="this.style.borderColor='var(--accent)'"
-              onmouseout="this.style.borderColor='var(--border)'"
-            >
-              <!-- Title row with logo -->
-              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:0.75rem;">
-                <h3 style="color:var(--fg); font-size:0.95rem; font-weight:600; margin:0; line-height:1.3; flex:1;">{project.title}</h3>
-                <img
-                  src={company.logo}
-                  alt={company.name}
-                  width="28"
-                  height="28"
-                  style="border-radius:6px; object-fit:contain; flex-shrink:0; border:1px solid var(--border); background:var(--bg); padding:2px;"
-                />
-              </div>
-              <p style="color:var(--fg-muted); font-size:0.82rem; margin:0; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">{project.description}</p>
-              <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
-                {project.tech.slice(0, 4).map(t => <span class="tag">{t}</span>)}
-                {project.tech.length > 4 && <span class="tag">+{project.tech.length - 4}</span>}
-              </div>
-              <!-- Footer row -->
-              <div style="display:flex; align-items:center; justify-content:space-between;">
-                <span style="color:var(--accent); font-size:0.78rem;">View details →</span>
-                <span style="color:var(--fg-muted); font-size:0.75rem;">{relativeTime(company.endYear)}</span>
-              </div>
-            </button>
-          ))}
+        <p style="color:var(--fg-muted); font-size:0.82rem; margin:0; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">{project.description}</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+          {project.tech.slice(0, 4).map(t => <span class="tag">{t}</span>)}
+          {project.tech.length > 4 && <span class="tag">+{project.tech.length - 4}</span>}
         </div>
-      </section>
+        <!-- Footer row -->
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="color:var(--accent); font-size:0.78rem;">View details →</span>
+          <span style="color:var(--fg-muted); font-size:0.75rem;">{relativeTime(project.endYear)}</span>
+        </div>
+      </button>
     ))}
   </div>
 
@@ -280,7 +230,6 @@ const companies = [
       id="project-modal"
       style="background:var(--bg); border:1px solid var(--border); border-radius:16px; width:100%; max-width:580px; max-height:88vh; overflow-y:auto; box-shadow:0 24px 60px rgba(0,0,0,0.3); transform:scale(0.95); opacity:0; transition:transform 0.2s ease, opacity 0.2s ease;"
     >
-      <!-- Header -->
       <div style="padding:1.5rem 1.5rem 0; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;">
         <div style="flex:1; min-width:0;">
           <p id="modal-meta" style="color:var(--fg-muted); font-size:0.75rem; margin:0 0 0.3rem;"></p>
@@ -292,14 +241,8 @@ const companies = [
           style="background:var(--bg-subtle); border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; flex-shrink:0; margin-top:2px; line-height:1;"
         >×</button>
       </div>
-
-      <!-- Tech tags -->
       <div id="modal-tech" style="padding:1rem 1.5rem 0; display:flex; flex-wrap:wrap; gap:0.4rem;"></div>
-
-      <!-- Description -->
       <p id="modal-description" style="color:var(--fg-muted); font-size:0.9rem; line-height:1.65; margin:0; padding:0.875rem 1.5rem 0;"></p>
-
-      <!-- Highlights -->
       <div style="padding:1rem 1.5rem 1.5rem;">
         <p style="color:var(--fg); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; margin:0 0 0.75rem;">Key Highlights</p>
         <ul id="modal-highlights" style="margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:0.5rem;"></ul>
@@ -360,11 +303,9 @@ const companies = [
     });
 
     document.getElementById('modal-close').addEventListener('click', closeModal);
-
     backdrop.addEventListener('click', function (e) {
       if (e.target === backdrop) closeModal();
     });
-
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeModal();
     });
