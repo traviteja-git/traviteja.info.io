@@ -74,4 +74,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       style="border-radius:12px;"
     ></iframe>
   </section>
+  <script is:inline>
+    // Fix iOS Safari viewport zoom when returning from an external link
+    window.addEventListener('pageshow', function () {
+      var viewport = document.querySelector('meta[name="viewport"]');
+      if (viewport) {
+        viewport.content = 'width=device-width, initial-scale=1.0';
+      }
+    });
+  </script>
 </BaseLayout>
