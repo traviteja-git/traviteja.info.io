@@ -1,17 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogCard from '../components/BlogCard.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
+import { projects, relativeTime } from '../data/projects';
 
 const allPosts = (await getCollection('blog'))
   .filter(p => !p.data.draft)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3);
 
-const featuredProjects = (await getCollection('projects'))
-  .filter(p => p.data.featured)
-  .slice(0, 3);
+const recentProjects = [...projects].reverse().slice(0, 4);
 ---
 
 <BaseLayout
@@ -24,8 +22,8 @@ const featuredProjects = (await getCollection('projects'))
     <h1 style="color:var(--fg); font-size:2.25rem; font-weight:700; line-height:1.2; margin:0 0 1.25rem;">
       Hey, I'm Raviteja 👋
     </h1>
-      <h2 style="color:var(--fg-muted); font-size:0.875rem; margin-bottom:0.75rem;">
-      Data Engineer &amp; Cloud Architect  
+    <h2 style="color:var(--fg-muted); font-size:0.875rem; margin-bottom:0.75rem;">
+      Data Engineer &amp; Cloud Architect
     </h2>
     <p style="color:var(--fg-muted); font-size:1.05rem; max-width:42rem; margin:0 0 1.75rem; line-height:1.7;">
       9+ years building scalable data pipelines, cloud-native architectures, and ETL solutions.
@@ -69,27 +67,123 @@ const featuredProjects = (await getCollection('projects'))
     </section>
   )}
 
-  <!-- Featured projects -->
-  {featuredProjects.length > 0 && (
-    <section>
-      <div class="flex items-center justify-between mb-6">
-        <h2 style="color:var(--fg); font-size:1.1rem; font-weight:600; margin:0;">Featured projects</h2>
-        <a href="/projects" style="color:var(--fg-muted); font-size:0.85rem;" class="hover:opacity-70 transition-opacity">
-          View all →
-        </a>
+  <!-- Recent projects -->
+  <section class="mb-20">
+    <div class="flex items-center justify-between mb-6">
+      <h2 style="color:var(--fg); font-size:1.1rem; font-weight:600; margin:0;">Recent projects</h2>
+      <a href="/projects" style="color:var(--fg-muted); font-size:0.85rem;" class="hover:opacity-70 transition-opacity">
+        View all →
+      </a>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-3">
+      {recentProjects.map(project => (
+        <button
+          class="project-card text-left"
+          data-title={project.title}
+          data-company={project.company}
+          data-role={project.role}
+          data-period={project.period}
+          data-tech={project.tech.join('||')}
+          data-description={project.description}
+          data-highlights={JSON.stringify(project.highlights)}
+          style="border:1px solid var(--border); border-radius:10px; background:var(--bg-subtle); padding:1.1rem 1.25rem; cursor:pointer; display:flex; flex-direction:column; gap:0.65rem; transition:border-color 0.2s; text-align:left;"
+          onmouseover="this.style.borderColor='var(--accent)'"
+          onmouseout="this.style.borderColor='var(--border)'"
+        >
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:0.75rem;">
+            <h3 style="color:var(--fg); font-size:0.95rem; font-weight:600; margin:0; line-height:1.3; flex:1;">{project.title}</h3>
+            <img src={project.logo} alt={project.company} width="28" height="28"
+              style="border-radius:6px; object-fit:contain; flex-shrink:0; border:1px solid var(--border); background:var(--bg); padding:2px;" />
+          </div>
+          <p style="color:var(--fg-muted); font-size:0.82rem; margin:0; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">{project.description}</p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+            {project.tech.slice(0, 4).map(t => <span class="tag">{t}</span>)}
+            {project.tech.length > 4 && <span class="tag">+{project.tech.length - 4}</span>}
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <span style="color:var(--accent); font-size:0.78rem;">View details →</span>
+            <span style="color:var(--fg-muted); font-size:0.75rem;">{relativeTime(project.endYear)}</span>
+          </div>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Modal (shared for homepage project cards) -->
+  <div id="project-modal-backdrop"
+    style="display:none; position:fixed; inset:0; z-index:100; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:1rem;">
+    <div id="project-modal"
+      style="background:var(--bg); border:1px solid var(--border); border-radius:16px; width:100%; max-width:580px; max-height:88vh; overflow-y:auto; box-shadow:0 24px 60px rgba(0,0,0,0.3); transform:scale(0.95); opacity:0; transition:transform 0.2s ease, opacity 0.2s ease;">
+      <div style="padding:1.5rem 1.5rem 0; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;">
+        <div style="flex:1; min-width:0;">
+          <p id="modal-meta" style="color:var(--fg-muted); font-size:0.75rem; margin:0 0 0.3rem;"></p>
+          <h2 id="modal-title" style="color:var(--fg); font-size:1.25rem; font-weight:700; margin:0; line-height:1.3;"></h2>
+        </div>
+        <button id="modal-close" aria-label="Close"
+          style="background:var(--bg-subtle); border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; flex-shrink:0; margin-top:2px; line-height:1;">×</button>
       </div>
-      <div class="grid sm:grid-cols-2 gap-4">
-        {featuredProjects.map(project => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            tech={project.data.tech}
-            github={project.data.github}
-            liveUrl={project.data.liveUrl}
-            slug={project.slug}
-          />
-        ))}
+      <div id="modal-tech" style="padding:1rem 1.5rem 0; display:flex; flex-wrap:wrap; gap:0.4rem;"></div>
+      <p id="modal-description" style="color:var(--fg-muted); font-size:0.9rem; line-height:1.65; margin:0; padding:0.875rem 1.5rem 0;"></p>
+      <div style="padding:1rem 1.5rem 1.5rem;">
+        <p style="color:var(--fg); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; margin:0 0 0.75rem;">Key Highlights</p>
+        <ul id="modal-highlights" style="margin:0; padding-left:1.25rem; display:flex; flex-direction:column; gap:0.5rem; list-style-type:disc;"></ul>
       </div>
-    </section>
-  )}
+    </div>
+  </div>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    var backdrop = document.getElementById('project-modal-backdrop');
+    var modal    = document.getElementById('project-modal');
+
+    function openModal(card) {
+      document.getElementById('modal-title').textContent = card.dataset.title;
+      document.getElementById('modal-meta').textContent  = card.dataset.company + ' · ' + card.dataset.role + ' · ' + card.dataset.period;
+      document.getElementById('modal-description').textContent = card.dataset.description;
+
+      var techEl = document.getElementById('modal-tech');
+      techEl.innerHTML = '';
+      card.dataset.tech.split('||').forEach(function (t) {
+        var s = document.createElement('span');
+        s.className = 'tag';
+        s.textContent = t.trim();
+        techEl.appendChild(s);
+      });
+
+      var hlEl = document.getElementById('modal-highlights');
+      hlEl.innerHTML = '';
+      JSON.parse(card.dataset.highlights).forEach(function (h) {
+        var li = document.createElement('li');
+        li.style.cssText = 'color:var(--fg-muted); font-size:0.875rem; line-height:1.65;';
+        li.textContent = h;
+        hlEl.appendChild(li);
+      });
+
+      backdrop.style.display = 'flex';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          modal.style.transform = 'scale(1)';
+          modal.style.opacity   = '1';
+        });
+      });
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.style.transform = 'scale(0.95)';
+      modal.style.opacity   = '0';
+      setTimeout(function () {
+        backdrop.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 200);
+    }
+
+    document.querySelectorAll('.project-card').forEach(function (card) {
+      card.addEventListener('click', function () { openModal(card); });
+    });
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    backdrop.addEventListener('click', function (e) { if (e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+  })();
+</script>
