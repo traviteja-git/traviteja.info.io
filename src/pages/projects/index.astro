@@ -182,7 +182,7 @@ const projects = [
 
 <BaseLayout title="Projects — Raviteja" description="Data engineering and cloud architecture projects by Raviteja Tholupunoori.">
   <div class="grid sm:grid-cols-2 gap-3">
-    {projects.map(project => (
+    {[...projects].reverse().map(project => (
       <button
         class="project-card text-left"
         data-title={project.title}
