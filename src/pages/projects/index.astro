@@ -1,11 +1,27 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+function relativeTime(endYear: number | null): string {
+  if (!endYear) return 'Currently active';
+  const now = new Date();
+  const end = new Date(endYear, 11, 31);
+  const diffMs = now.getTime() - end.getTime();
+  const diffYears = diffMs / (1000 * 60 * 60 * 24 * 365.25);
+  if (diffYears < 1) {
+    const months = Math.max(1, Math.floor(diffYears * 12));
+    return months === 1 ? '1 month ago' : `${months} months ago`;
+  }
+  const years = Math.floor(diffYears);
+  return years === 1 ? '1 year ago' : `${years} years ago`;
+}
+
 const companies = [
   {
     name: "Deloitte",
     role: "Sr. Product Engineer — IDR & Segmentation",
     period: "2023 – Present",
+    logo: "/images/logos/deloitte.png",
+    endYear: null,
     projects: [
       {
         title: "IDR – Core Platform Engineering",
@@ -58,6 +74,8 @@ const companies = [
     name: "Deloitte",
     role: "Sr. Product Engineer — Hux / CDM",
     period: "2021 – 2023",
+    logo: "/images/logos/deloitte.png",
+    endYear: 2023,
     projects: [
       {
         title: "CDM Microservices – Identity & Data Quality",
@@ -100,6 +118,8 @@ const companies = [
     name: "Strategic Technology Resources International",
     role: "Full Stack Developer",
     period: "2020 – 2021",
+    logo: "/images/logos/stri.png",
+    endYear: 2021,
     projects: [
       {
         title: "Full Stack Web Application Development",
@@ -138,6 +158,8 @@ const companies = [
     name: "Deloitte",
     role: "Business Technology Analyst",
     period: "2018 – 2020",
+    logo: "/images/logos/deloitte.png",
+    endYear: 2020,
     projects: [
       {
         title: "Tech Modernization – Microservices Re-engineering",
@@ -176,6 +198,8 @@ const companies = [
     name: "Capgemini Technology Services",
     role: "Software Engineer",
     period: "2016 – 2018",
+    logo: "/images/logos/capgemini.png",
+    endYear: 2018,
     projects: [
       {
         title: "Banking & Sales Platform (RBC)",
@@ -226,13 +250,27 @@ const companies = [
               onmouseover="this.style.borderColor='var(--accent)'"
               onmouseout="this.style.borderColor='var(--border)'"
             >
-              <h3 style="color:var(--fg); font-size:0.95rem; font-weight:600; margin:0; line-height:1.3;">{project.title}</h3>
+              <!-- Title row with logo -->
+              <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:0.75rem;">
+                <h3 style="color:var(--fg); font-size:0.95rem; font-weight:600; margin:0; line-height:1.3; flex:1;">{project.title}</h3>
+                <img
+                  src={company.logo}
+                  alt={company.name}
+                  width="28"
+                  height="28"
+                  style="border-radius:6px; object-fit:contain; flex-shrink:0; border:1px solid var(--border); background:var(--bg); padding:2px;"
+                />
+              </div>
               <p style="color:var(--fg-muted); font-size:0.82rem; margin:0; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">{project.description}</p>
               <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
                 {project.tech.slice(0, 4).map(t => <span class="tag">{t}</span>)}
                 {project.tech.length > 4 && <span class="tag">+{project.tech.length - 4}</span>}
               </div>
-              <span style="color:var(--accent); font-size:0.78rem;">View details →</span>
+              <!-- Footer row -->
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <span style="color:var(--accent); font-size:0.78rem;">View details →</span>
+                <span style="color:var(--fg-muted); font-size:0.75rem;">{relativeTime(company.endYear)}</span>
+              </div>
             </button>
           ))}
         </div>
