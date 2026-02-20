@@ -97,6 +97,9 @@ const articleLD = type === 'article' ? JSON.stringify({
     <!-- JSON-LD: Article (blog posts only) -->
     {articleLD && <script type="application/ld+json" set:html={articleLD} />}
 
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3842671548593949" crossorigin="anonymous"></script>
+
     <!-- Preconnect for external resources -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
