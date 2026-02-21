@@ -117,6 +117,15 @@ const articleLD = type === 'article' ? JSON.stringify({
       gtag('config', 'G-BFNWX56LLL');
     </script>
 
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PRT2DF43');
+    </script>
+
     <!-- Apply saved theme before first paint to avoid flash -->
     <script is:inline>
       (function () {
@@ -128,6 +137,10 @@ const articleLD = type === 'article' ? JSON.stringify({
     </script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRT2DF43"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
     <Header />
     <main class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <slot />
