@@ -99,6 +99,84 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       style="border-radius:12px;"
     ></iframe>
   </section>
+  <!-- LinkedIn posts by Astronomer -->
+  <section style="margin-top:2.5rem;">
+    <h3 style="color:var(--fg); font-size:1rem; font-weight:600; margin:0 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">Shared by Astronomer on LinkedIn</h3>
+
+    <div style="position:relative;">
+      {[
+        { src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7415967165536772096", height: 986 },
+        { src: "https://www.linkedin.com/embed/feed/update/urn:li:share:7365078161006452736", height: 922 },
+        { src: "https://www.linkedin.com/embed/feed/update/urn:li:share:7316145958596055040", height: 922 },
+      ].map((post, i) => (
+        <div
+          class="li-slide"
+          data-index={String(i)}
+          style={`display:${i === 0 ? 'block' : 'none'};`}
+        >
+          <div style="display:flex; justify-content:center;">
+            <iframe
+              src={post.src}
+              height={post.height}
+              width="504"
+              frameborder="0"
+              allowfullscreen
+              title={`Astronomer LinkedIn post ${i + 1}`}
+              style="border-radius:12px; border:1px solid var(--border); max-width:100%;"
+            ></iframe>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Controls -->
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-top:1rem;">
+      <button
+        id="li-prev"
+        aria-label="Previous post"
+        style="background:var(--bg-subtle); border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; width:2.25rem; height:2.25rem; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; flex-shrink:0;"
+      >←</button>
+
+      <div style="display:flex; align-items:center; gap:0.4rem;">
+        {[0, 1, 2].map(i => (
+          <button
+            class="li-dot"
+            data-index={String(i)}
+            aria-label={`Go to post ${i + 1}`}
+            style={`width:0.45rem; height:0.45rem; border-radius:50%; border:none; cursor:pointer; padding:0; background:${i === 0 ? 'var(--fg)' : 'var(--border)'}; transition:background 0.2s;`}
+          ></button>
+        ))}
+      </div>
+
+      <button
+        id="li-next"
+        aria-label="Next post"
+        style="background:var(--bg-subtle); border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; width:2.25rem; height:2.25rem; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; flex-shrink:0;"
+      >→</button>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var slides = document.querySelectorAll('.li-slide');
+      var dots   = document.querySelectorAll('.li-dot');
+      var total  = slides.length;
+      var current = 0;
+
+      function goTo(n) {
+        slides[current].style.display = 'none';
+        dots[current].style.background = 'var(--border)';
+        current = (n + total) % total;
+        slides[current].style.display = 'block';
+        dots[current].style.background = 'var(--fg)';
+      }
+
+      document.getElementById('li-prev').addEventListener('click', function () { goTo(current - 1); });
+      document.getElementById('li-next').addEventListener('click', function () { goTo(current + 1); });
+      dots.forEach(function (dot, i) { dot.addEventListener('click', function () { goTo(i); }); });
+    })();
+  </script>
+
   <script is:inline>
     // Fix iOS Safari viewport zoom when returning from an external link
     window.addEventListener('pageshow', function () {
