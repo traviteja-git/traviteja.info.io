@@ -11,7 +11,7 @@ You can spend a long time blaming the AI for bad suggestions. Copilot giving gen
 
 Turns out it wasn't the AI. It was the repo.
 
-Untyped functions. A `utils.py` pushing 600 lines. No record of any architectural decisions anywhere. The tools were doing their best with what they had — and what they had was almost nothing to go on.
+Untyped functions. A catch-all utility file pushing 600 lines. No record of any architectural decisions anywhere. The tools were doing their best with what they had — and what they had was almost nothing to go on.
 
 Once you clean things up, the suggestions get noticeably better. Same tools, same models. Here's what actually makes the difference.
 
