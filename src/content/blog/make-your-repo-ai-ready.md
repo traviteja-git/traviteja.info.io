@@ -1,21 +1,21 @@
 ---
 title: "How to Get Better AI Code Suggestions: Fix Your Repo, Not the Model"
-description: "Bad AI code suggestions? It's usually not the model — it's your repo. Here's what I changed to make Copilot, Cursor, and Claude actually useful across any stack."
+description: "Bad AI code suggestions? It's usually not the model — it's your repo. Here's what to change to make Copilot, Cursor, and Claude actually useful across any stack."
 date: "2026-02-25"
 tags: ["ai", "developer-tools", "github-copilot", "cursor", "productivity"]
 image: "/images/blog/make-your-repo-ai-ready/make-your-repo-ai-ready.png"
 draft: false
 ---
 
-![How to get better AI code suggestions by fixing your repo structure — GitHub Copilot, Cursor, and Claude Code](/images/blog/make-your-repo-ai-ready/make-your-repo-ai-ready.png)
-
-I spent a while blaming the AI for bad suggestions. Copilot giving me generic boilerplate. Cursor missing obvious context. Claude Code doing something plausible but completely wrong for my project.
+You can spend a long time blaming the AI for bad suggestions. Copilot giving generic boilerplate. Cursor missing obvious context. Claude Code doing something plausible but completely wrong for your project.
 
 Turns out it wasn't the AI. It was the repo.
 
 Untyped functions. A `utils.py` pushing 600 lines. No record of any architectural decisions anywhere. The tools were doing their best with what they had — and what they had was almost nothing to go on.
 
-Once I cleaned things up, the suggestions got noticeably better. Same tools, same models. Here's what actually made the difference.
+Once you clean things up, the suggestions get noticeably better. Same tools, same models. Here's what actually makes the difference.
+
+![How to get better AI code suggestions by fixing your repo structure — GitHub Copilot, Cursor, and Claude Code](/images/blog/make-your-repo-ai-ready/make-your-repo-ai-ready.png)
 
 ---
 
@@ -37,7 +37,7 @@ Think of it as a briefing for someone who starts fresh every session. What's the
 
 "Write clean code" does nothing. The AI just defaults to whatever's most common on the internet. "SQLAlchemy async sessions only, never sync" — that gets applied straight away. Specificity is the whole point.
 
-Here's what mine looks like for a FastAPI project:
+Here's what it looks like for a FastAPI project:
 
 ```
 # What this project is
@@ -62,7 +62,7 @@ Auth: JWT via python-jose. Tests: pytest + httpx.
 - Hard-coded secrets — env vars only
 ```
 
-This one file does more for suggestion quality than anything else I've tried. Thirty minutes to write, and it improves every trigger across the entire repo.
+This one file does more for suggestion quality than anything else to try. Thirty minutes to write, and it improves every trigger across the entire repo.
 
 ---
 
@@ -110,7 +110,7 @@ def calculate_current_streak(check_in_dates: list[date]) -> int:
     ...
 ```
 
-After I wrote that function, Copilot auto-suggested `get_longest_streak` on the very next line — right signature, right docstring format, right argument name. It saw the pattern and knew what came next. That kind of suggestion only happens when the code gives it enough to work with.
+After writing that function, Copilot auto-suggested `get_longest_streak` on the very next line — right signature, right docstring format, right argument name. It saw the pattern and knew what came next. That kind of suggestion only happens when the code gives it enough to work with.
 
 Works the same in any typed language — TypeScript interfaces, Go structs, Java generics. The shape of your data is what the AI reasons from.
 
