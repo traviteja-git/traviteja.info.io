@@ -143,6 +143,7 @@ See `/prompts` folder for reusable prompts:
 | `prompts/new-article.md` | Full end-to-end: research → write → publish |
 | `prompts/draft-article.md` | Research + write only, saves as draft |
 | `prompts/publish-article.md` | Publish an existing draft + update sitemap + push |
+| `prompts/generate-article-image.md` | Generate a hero image for any blog post |
 
 ---
 
