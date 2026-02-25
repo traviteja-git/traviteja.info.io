@@ -8,36 +8,90 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const allTags = [...new Set(posts.flatMap(p => p.data.tags ?? []))].sort();
+
+const searchData = posts.map(p => ({
+  slug: p.slug,
+  tags: p.data.tags ?? [],
+}));
 ---
 
 <BaseLayout title="Blog — Raviteja" description="Articles on data engineering, cloud architecture, and software development.">
-  <header class="mb-10">
+  <header class="mb-8">
     <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 0.75rem;">Blog</h1>
     <p style="color:var(--fg-muted); font-size:1rem; margin:0;">
       Thoughts on data engineering, cloud architecture, and building things.
     </p>
   </header>
 
+  <!-- Tag filters -->
   {allTags.length > 0 && (
     <div class="flex flex-wrap gap-2 mb-8">
-      {allTags.map(tag => <span class="tag">{tag}</span>)}
+      <button class="tag-filter tag active" data-tag="all">All</button>
+      {allTags.map(tag => (
+        <button class="tag-filter tag" data-tag={tag}>{tag}</button>
+      ))}
     </div>
   )}
 
+  <!-- No results -->
+  <p id="no-results" style="display:none; color:var(--fg-muted); font-size:0.9rem;">No articles for this tag.</p>
+
+  <!-- Posts -->
   {posts.length === 0 ? (
     <p style="color:var(--fg-muted);">No articles yet. Check back soon.</p>
   ) : (
     <div class="flex flex-col gap-4">
       {posts.map(post => (
-        <BlogCard
-          title={post.data.title}
-          description={post.data.description}
-          date={post.data.date}
-          slug={post.slug}
-          tags={post.data.tags}
-          image={post.data.image}
-        />
+        <div class="post-card" data-slug={post.slug}>
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            slug={post.slug}
+            tags={post.data.tags}
+            image={post.data.image}
+          />
+        </div>
       ))}
     </div>
   )}
 </BaseLayout>
+
+<style>
+  .tag-filter {
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border);
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .tag-filter.active {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+</style>
+
+<script define:vars={{ searchData }}>
+  const cards = document.querySelectorAll('.post-card');
+  const tagButtons = document.querySelectorAll('.tag-filter');
+  const noResults = document.getElementById('no-results');
+
+  tagButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tagButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const tag = btn.dataset.tag;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const post = searchData.find(p => p.slug === card.dataset.slug);
+        const show = tag === 'all' || (post && post.tags.includes(tag));
+        card.style.display = show ? 'block' : 'none';
+        if (show) visible++;
+      });
+
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+</script>
