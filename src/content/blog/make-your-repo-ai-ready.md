@@ -1,7 +1,7 @@
 ---
 title: "How to Get Better AI Code Suggestions: Fix Your Repo, Not the Model"
 description: "Bad AI code suggestions? It's usually not the model — it's your repo. Here's what to change to make Copilot, Cursor, and Claude actually useful across any stack."
-date: "2026-02-25"
+date: "2026-02-20"
 tags: ["ai", "developer-tools", "github-copilot", "cursor", "productivity"]
 image: "/images/blog/make-your-repo-ai-ready/make-your-repo-ai-ready.png"
 draft: false
