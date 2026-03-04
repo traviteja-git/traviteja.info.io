@@ -1,16 +1,23 @@
 # traviteja.com — Agent & Contributor Guide
 
-Personal portfolio and technical blog of **Raviteja Tholupunoori**, Senior Data Engineer & Cloud Architect with 9+ years of experience at Deloitte. Apache Airflow Champion.
+Personal portfolio and technical blog of **Raviteja Tholupunoori**, Senior Data Engineer & Cloud Architect, 9+ years at Deloitte. Apache Airflow Champion. Featured on the Astronomer podcast.
+
+**Live site:** https://traviteja.com
+**GitHub repo:** https://github.com/traviteja-git/traviteja.info.io
+**Google Search Console:** verified (meta tag in BaseLayout.astro)
 
 ---
 
 ## Tech Stack
 
-- **Framework**: Astro 5 (static site generation — NOT a React SPA)
-- **Styling**: Tailwind CSS v4 via `@tailwindcss/vite`
-- **Deployment**: GitHub Actions → GitHub Pages
-- **CI**: Uses `npm ci` — package-lock.json must stay in sync. Never run `npm install` for new packages without committing the lockfile.
-- **Live site**: https://traviteja.com
+| Layer | Tool |
+|---|---|
+| Framework | Astro 5 — fully static, zero JS by default |
+| Styling | Tailwind CSS v4 via `@tailwindcss/vite` (no `tailwind.config.js`) |
+| Content | Astro Content Collections — Markdown files in `src/content/blog/` |
+| Deployment | GitHub Actions (`npm ci` + `npm run build`) → GitHub Pages |
+| Analytics | GA4 (`G-BFNWX56LLL`) + GTM (`GTM-PRT2DF43`) — both in BaseLayout |
+| Ads | Google AdSense (`ca-pub-3842671548593949`) — script in BaseLayout |
 
 ---
 
@@ -19,170 +26,192 @@ Personal portfolio and technical blog of **Raviteja Tholupunoori**, Senior Data 
 ```
 src/
   content/
-    blog/          ← Blog posts (markdown, content collection)
-    projects/      ← Project detail pages (markdown)
+    blog/              ← Blog posts (.md) — the ONLY content collection in active use
+    projects/          ← Exists in schema but NOT used for rendering — ignore
+  content.config.ts    ← Defines blog + projects collection schemas
+  data/
+    projects.ts        ← ALL project data lives here (hardcoded TypeScript array)
   layouts/
-    BaseLayout.astro   ← All pages — SEO meta, OG, JSON-LD, GA
-    BlogLayout.astro   ← Blog post wrapper — passes type=article to BaseLayout
+    BaseLayout.astro   ← Shell for every page: <head>, SEO, JSON-LD, GA, GTM, theme
+    BlogLayout.astro   ← Wraps blog posts: breadcrumb schema, share buttons, related posts
   pages/
-    index.astro    ← Homepage
-    about.astro    ← Full portfolio (experience, skills, certs, recommendations)
-    blog/          ← Blog index + [slug].astro
-    projects/      ← Projects index + [slug].astro
-    podcast.astro  ← Podcast page
+    index.astro        ← Homepage: hero, Featured In, recent blog posts, projects modal
+    about.astro        ← Full portfolio: experience timeline, skills, certs, recommendations
+    blog/
+      index.astro      ← Blog index with tag filters (client-side JS)
+      [slug].astro     ← Dynamic blog post route — reads from content collection
+    projects/
+      index.astro      ← Projects page — renders from src/data/projects.ts (NOT content collection)
+      [slug].astro     ← Exists but only banking-sales-platform has a .md file
+    podcast.astro      ← Podcast appearance page (static)
   components/
-    Header.astro
+    Header.astro       ← Nav with mobile hamburger, dark/light theme toggle
     Footer.astro
-    BlogCard.astro
-    ProjectCard.astro
+    BlogCard.astro     ← Used on blog index and homepage recent posts section
   styles/
-    global.css     ← CSS custom properties (--bg, --fg, --accent, --border, --fg-muted, --bg-subtle)
+    global.css         ← CSS custom properties: --bg, --fg, --fg-muted, --accent, --border, --bg-subtle
 public/
+  sitemap.xml          ← MANUAL static sitemap — update when adding blog posts (see below)
+  robots.txt           ← Allow all, references /sitemap.xml
   images/
-    blog/          ← Blog hero images (subfolder per post)
-    logos/         ← Company/cert logos used on About page
-  sitemap.xml      ← Static sitemap — must be updated manually when adding pages
-  robots.txt
-  manifest.json
-  CNAME            ← traviteja.com
+    blog/              ← Hero images, one subfolder per post slug
+    logos/             ← Company/cert logos used on About and projects
+  og-default.png       ← Default OG image (1200×630) used when no post image
+  avatar.jpg           ← Profile photo used on homepage hero
+  CNAME                ← traviteja.com
+  ads.txt              ← AdSense publisher verification
+  manifest.json        ← PWA manifest
 ```
+
+---
+
+## Critical Architecture Facts
+
+### Projects — Modal Only, NOT Pages
+Projects data lives exclusively in `src/data/projects.ts` as a typed TypeScript array. They render as **click-to-open modals** on the homepage and projects index — they are NOT standalone pages. The `src/content/projects/` collection and `src/pages/projects/[slug].astro` route exist but are effectively unused.
+
+**Do NOT add project URLs to `public/sitemap.xml`** — they return 404. This was a bug that was fixed: all project slugs except `banking-sales-platform` had no rendered page, and even that one was removed from the sitemap.
+
+### Sitemap — Manual, Static
+`public/sitemap.xml` is a hand-maintained file. It contains only:
+- Core pages: `/`, `/about/`, `/blog/`, `/projects/`, `/podcast/`
+- Blog posts: one `<url>` block per post
+
+**When adding a new blog post**, copy an existing `<url>` block and update `<loc>` and `<lastmod>`. Use `<changefreq>monthly</changefreq>` and `<priority>0.8</priority>`.
+
+No auto-generated sitemap (`@astrojs/sitemap`) — it was attempted but caused CI failures due to cross-platform `package-lock.json` issues and was reverted.
+
+### CI — npm ci, Lock File Sensitive
+The GitHub Actions workflow uses `npm ci` with `cache: npm`. The `package-lock.json` **must stay in sync with `package.json`**.
+
+**Known CI failure pattern:** Installing new npm packages on macOS can break CI because:
+1. `@types/node` version conflicts between packages cause `npm ci` sync errors
+2. Platform-specific optional deps (e.g. `@rollup/rollup-linux-x64-gnu`) are excluded from macOS-generated lock files, causing build failures on the Linux CI runner
+
+**If CI breaks after `npm install`:** Do not try `--include=optional` or changing `npm ci` to `npm install` — these have been attempted and still failed. The safest approach is to revert the package change and find an alternative.
+
+---
+
+## SEO Architecture (fully implemented)
+
+All SEO logic lives in `src/layouts/BaseLayout.astro` and `src/layouts/BlogLayout.astro`.
+
+### BaseLayout.astro — Every Page Gets:
+- `<link rel="canonical">` — dynamic from `Astro.url.pathname + Astro.site`
+- `<meta name="description">` — from props, with fallback default
+- Full Open Graph tags: `og:locale`, `og:site_name`, `og:type`, `og:title`, `og:description`, `og:url`, `og:image`, `og:image:width` (1200), `og:image:height` (630)
+- `article:published_time` and `article:author` — when `type="article"`
+- Twitter/X card: `twitter:card`, `twitter:site` (@raviteja0096), `twitter:creator` (@raviteja0096), `twitter:title`, `twitter:description`, `twitter:image`
+- **WebSite JSON-LD** schema
+- **Person JSON-LD** schema with `sameAs`: LinkedIn (`www.linkedin.com/in/raviteja0096`), GitHub, Medium
+- **TechArticle JSON-LD** — only on blog posts (`type="article"`), includes `datePublished`, `dateModified`, publisher as `Organization` with logo
+- Named `<slot name="head" />` — for page-specific schema injection (used by BlogLayout)
+- Google Search Console verification meta tag
+- GA4 + GTM scripts (async)
+- AdSense script (async)
+- Theme flash prevention (inline script reads localStorage before paint)
+
+### BlogLayout.astro — Blog Posts Also Get:
+- Makes `image` URL absolute via `new URL(image, Astro.site)` before passing to BaseLayout
+- **BreadcrumbList JSON-LD** injected via `slot="head"` (Home → Blog → Article title)
+- Share buttons (LinkedIn + X/Twitter) with encoded URLs
+- Related posts section (passed in from `[slug].astro`)
+- Reading time display
+
+### OG Image Handling
+- Default: `https://traviteja.com/og-default.png` (absolute, hardcoded in BaseLayout)
+- Blog posts: relative path from frontmatter (e.g. `/images/blog/slug/hero.png`) → made absolute in BlogLayout before passing to BaseLayout
+- Never pass a relative path directly to BaseLayout from any other page
 
 ---
 
 ## Blog Post Format
 
-File location: `src/content/blog/[seo-optimised-slug].md`
+File: `src/content/blog/[seo-slug].md`
 
 ```markdown
 ---
-title: "Full title here"
-description: "150–160 character description with long-tail keywords. Used as meta description and OG description."
+title: "Full title — keyword rich, under 60 chars ideally"
+description: "150–160 character meta description with long-tail keywords. Used verbatim as meta description and OG description."
 date: "YYYY-MM-DD"
 tags: ["tag1", "tag2", "tag3"]
 image: "/images/blog/[slug]/hero.png"
 draft: false
 ---
 
-Article content in markdown...
+Article content...
 ```
 
-### Slug naming rules
-- Lowercase, hyphen-separated
-- Keyword-rich (e.g. `apache-airflow-architecture-explained` not `airflow-post`)
-- Match the folder name for images: `public/images/blog/[slug]/`
+### Slug rules
+- Lowercase, hyphen-separated, keyword-rich
+- Example: `apache-airflow-architecture-simplified` not `airflow-post`
+- Must match the image subfolder: `public/images/blog/[slug]/`
 
-### Image alt text rule
-Always use descriptive, keyword-rich alt text:
-```markdown
-![Apache Airflow Architecture Diagram showing Scheduler, Executor and Workers](/images/blog/...)
-```
-
----
-
-## SEO Requirements (must follow for every new page/post)
-
-1. **Title**: Specific, keyword-rich. Format: `Topic — Raviteja` for blog, or `Raviteja Tholupunoori | Keyword` for pages
-2. **Description**: 150–160 chars, include long-tail keywords, no generic text
-3. **Image**: Hero image in `public/images/blog/[slug]/` with SEO filename (e.g. `apache-airflow-architecture-diagram.png`)
-4. **Tags**: 3–5 lowercase tags relevant to the content
-5. **Sitemap**: Add new URL to `public/sitemap.xml` — copy an existing `<url>` block and update `<loc>`
-6. **H2/H3 hierarchy**: One H1 (the title), H2 for main sections, H3 for subsections
-
----
-
-## Writing Style Guide
-
-All blog content must sound **human-written and personal**. Raviteja writes from his own experience as a senior data engineer.
-
-### Voice & Tone
-- First-person throughout ("I", "my", "in my experience")
-- Direct and opinionated — state views clearly, don't hedge everything
-- Conversational but technically credible
-- Admit uncertainty where it exists ("still figuring out...", "honestly...")
-
-### Structure rules
-- **Vary sentence length** — mix short punchy sentences with longer ones. Never uniform.
-- **Short paragraphs** — 2–4 lines max. Single-sentence paragraphs are fine for emphasis.
-- **No perfect parallel lists everywhere** — use prose where possible, lists only when genuinely list-like
-- **No corporate transitions** — avoid "In conclusion", "To summarize", "It is worth noting"
-- **No AI tells** — avoid "It is important to note", "This is not just X, it is Y", "Let's explore", "In the X era"
-
-### What to include
-- Specific examples from real projects (Airflow, CDP, Spark, LG Electronics, Deloitte)
-- Honest takes on what was hard or what failed
-- Practical advice grounded in real experience, not generic theory
-
-### What to avoid
-- Generic "here's what the documentation says" content
-- Lists of 5 identical bullet points
-- Formal academic tone
-- Anything that reads like it was generated by AI
+### Title format
+- Blog posts: `{Title} — Raviteja` (BlogLayout appends this automatically)
+- Pages: `Raviteja Tholupunoori | {Keyword}` or `{Topic} — Raviteja Tholupunoori`
 
 ---
 
 ## Workflow: Adding a New Blog Post
 
-1. Research the topic (web search for recent developments, examples, real data)
-2. Write the article following the writing style guide above
-3. Choose an SEO-optimised slug
-4. Create `src/content/blog/[slug].md` with correct frontmatter
-5. Add hero image to `public/images/blog/[slug]/` with SEO filename
-6. Add entry to `public/sitemap.xml`
-7. Run `npm run build` to verify no errors
-8. Commit all files and push
-9. Resubmit sitemap in Google Search Console
+1. Create `src/content/blog/[slug].md` with correct frontmatter
+2. Add hero image to `public/images/blog/[slug]/` (SEO filename, e.g. `airflow-architecture-diagram.png`)
+3. Add a `<url>` block to `public/sitemap.xml` (copy existing, update `<loc>` + `<lastmod>`)
+4. Run `npm run build` — must pass with 0 errors
+5. Commit on a feature branch (`post/[slug]`) and open a PR
+6. After merge, resubmit sitemap in Google Search Console
 
 ---
 
-## Commands Available
+## Writing Style Guide
 
-See `/prompts` folder for reusable prompts:
+All content is first-person, from Raviteja's direct experience as a senior data engineer.
 
-| File | Purpose |
-|---|---|
-| `prompts/new-article.md` | Full end-to-end: research → write → publish |
-| `prompts/draft-article.md` | Research + write only, saves as draft |
-| `prompts/publish-article.md` | Publish an existing draft + update sitemap + push |
-| `prompts/generate-article-image.md` | Generate a hero image for any blog post |
+**Voice:** Conversational, opinionated, technically credible. Not corporate. Not AI-sounding.
+
+**Do:**
+- First-person ("I", "my", "in my experience")
+- Short paragraphs (2–4 lines). Single-sentence paragraphs for emphasis.
+- Varied sentence length — mix punchy and longer sentences
+- Real examples: Deloitte, LG Electronics, CDP, Spark, specific metrics ("400GB+ daily", "60+ hours to 2 minutes")
+- Honest takes: admit what was hard, what failed, what you're still figuring out
+
+**Don't:**
+- "It is important to note", "Let's explore", "In conclusion", "To summarize"
+- "This is not just X, it is Y" — classic AI tell
+- Generic documentation summaries
+- Uniform bullet-point lists where prose works better
 
 ---
 
-## Git Workflow — Branching Strategy
+## Git Workflow
 
-**Never push directly to `main`.** Every task gets its own branch and a Pull Request.
-
-Branch naming: `type/short-description`
-
-| Type | When |
-|---|---|
-| `feat/` | New feature or page |
-| `post/` | New blog article |
-| `fix/` | Bug fix |
-| `seo/` | SEO improvements |
-| `style/` | UI / design changes |
-| `chore/` | Config, deps, housekeeping |
+**Never push directly to `main`.** Every change gets its own branch + PR.
 
 ```bash
-# Always start here
 git checkout main && git pull origin main
-git checkout -b post/my-new-article
+git checkout -b post/my-new-article   # or feat/, fix/, seo/, style/, chore/
 
-# After changes
-npm run build          # must pass before committing
-git add [files]
-git commit -m "post: new article on [topic]"
+# make changes
+npm run build          # must pass
+git add [specific files]
+git commit -m "post: article on [topic]"
 git push origin post/my-new-article
-gh pr create --title "post: new article on [topic]"
+gh pr create --title "post: [topic]"
+gh pr merge --merge
 ```
 
-See `prompts/feature-branch.md` for the full workflow.
+Branch naming: `feat/`, `post/`, `fix/`, `seo/`, `style/`, `chore/`
 
 ---
 
 ## Do Not
 
-- Push directly to `main` — always use a feature branch + PR
-- Run `npm install [package]` without committing the updated `package-lock.json` — CI will fail
-- Use `@astrojs/sitemap` or any new Astro integration without testing CI first
-- Add `og:image` with a relative path — must be absolute URL (BaseLayout handles this automatically)
-- Commit to main without running `npm run build` first
+- Push directly to `main`
+- Add project URLs to `sitemap.xml` — they render as modals, not pages, and return 404
+- Install new npm packages without verifying CI passes — lock file cross-platform issues have broken CI before
+- Use `@astrojs/sitemap` — attempted and reverted due to CI failures
+- Pass a relative `og:image` path to BaseLayout from non-blog pages — use absolute URLs
+- Run `git add .` or `git add -A` — always add specific files to avoid committing secrets or binaries
+- Commit without running `npm run build` first
