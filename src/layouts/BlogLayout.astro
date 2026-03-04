@@ -35,6 +35,16 @@ const publishedISO = new Date(date).toISOString();
 const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
 const twitterShareURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageURL)}&text=${encodeURIComponent(title)}`;
 const linkedinShareURL = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageURL)}`;
+
+const breadcrumbLD = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',  item: 'https://traviteja.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Blog',  item: 'https://traviteja.com/blog/' },
+    { '@type': 'ListItem', position: 3, name: title },
+  ],
+});
 ---
 
 <BaseLayout
@@ -44,6 +54,9 @@ const linkedinShareURL = `https://www.linkedin.com/sharing/share-offsite/?url=${
   type="article"
   publishedDate={publishedISO}
 >
+  <!-- JSON-LD: Breadcrumb -->
+  <script type="application/ld+json" set:html={breadcrumbLD} slot="head" />
+
   <!-- Back link -->
   <a href="/blog" style="color:var(--fg-muted); font-size:0.875rem;" class="inline-flex items-center gap-1 hover:opacity-70 transition-opacity mb-8">
     ← All articles

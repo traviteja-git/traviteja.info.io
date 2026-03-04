@@ -24,6 +24,13 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
+const websiteLD = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Raviteja Tholupunoori',
+  url: 'https://traviteja.com',
+});
+
 const personLD = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -31,8 +38,9 @@ const personLD = JSON.stringify({
   url: 'https://traviteja.com',
   jobTitle: 'Data Engineer & Cloud Architect',
   sameAs: [
-    'https://linkedin.com/in/raviteja0096',
+    'https://www.linkedin.com/in/raviteja0096',
     'https://github.com/traviteja-git',
+    'https://medium.com/@raviteja0096',
   ],
 });
 
@@ -48,11 +56,14 @@ const articleLD = type === 'article' ? JSON.stringify({
     url: 'https://traviteja.com',
   },
   publisher: {
-    '@type': 'Person',
+    '@type': 'Organization',
     name: 'Raviteja Tholupunoori',
-    url: 'https://traviteja.com',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://traviteja.com/og-default.png',
+    },
   },
-  ...(publishedDate ? { datePublished: publishedDate } : {}),
+  ...(publishedDate ? { datePublished: publishedDate, dateModified: publishedDate } : {}),
   url: canonicalURL.toString(),
 }) : null;
 ---
@@ -73,12 +84,15 @@ const articleLD = type === 'article' ? JSON.stringify({
     <meta name="author" content="Raviteja Tholupunoori" />
 
     <!-- Open Graph -->
+    <meta property="og:locale"      content="en_US" />
     <meta property="og:site_name"   content="Raviteja Tholupunoori" />
     <meta property="og:type"        content={type} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url"         content={canonicalURL} />
-    {image && <meta property="og:image" content={image} />}
+    {image && <meta property="og:image"        content={image} />}
+    {image && <meta property="og:image:width"  content="1200" />}
+    {image && <meta property="og:image:height" content="630" />}
     {type === 'article' && publishedDate && (
       <meta property="article:published_time" content={publishedDate} />
     )}
@@ -88,14 +102,21 @@ const articleLD = type === 'article' ? JSON.stringify({
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card"        content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:site"        content="@raviteja0096" />
+    <meta name="twitter:creator"     content="@raviteja0096" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}
 
+    <!-- JSON-LD: WebSite (all pages) -->
+    <script type="application/ld+json" set:html={websiteLD} />
     <!-- JSON-LD: Person (all pages) -->
     <script type="application/ld+json" set:html={personLD} />
     <!-- JSON-LD: Article (blog posts only) -->
     {articleLD && <script type="application/ld+json" set:html={articleLD} />}
+
+    <!-- Additional page-level JSON-LD (e.g. breadcrumbs from BlogLayout) -->
+    <slot name="head" />
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3842671548593949" crossorigin="anonymous"></script>
