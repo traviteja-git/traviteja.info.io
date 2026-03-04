@@ -12,7 +12,7 @@ const { title, description, date, slug, tags = [], image } = Astro.props;
 const formatted = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 
-<a href={`/blog/${slug}`} class="block group" style="text-decoration:none;">
+<a href={`/blog/${slug}`} title={title} class="block group" style="text-decoration:none;">
   <article style="border-bottom:1px solid var(--border); padding:1.5rem 0; display:flex; align-items:flex-start; gap:1.5rem;" class="group-hover:opacity-90 transition-opacity">
     <!-- Text -->
     <div style="flex:1; min-width:0;">
@@ -34,6 +34,7 @@ const formatted = new Date(date).toLocaleDateString('en-US', { year: 'numeric', 
         <img
           src={image}
           alt={title}
+          loading="lazy"
           style="width:100%; height:100%; object-fit:cover; display:block;"
         />
       </div>
