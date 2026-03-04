@@ -58,7 +58,7 @@ const breadcrumbLD = JSON.stringify({
   <script type="application/ld+json" set:html={breadcrumbLD} slot="head" />
 
   <!-- Back link -->
-  <a href="/blog" style="color:var(--fg-muted); font-size:0.875rem;" class="inline-flex items-center gap-1 hover:opacity-70 transition-opacity mb-8">
+  <a href="/blog" title="All articles" style="color:var(--fg-muted); font-size:0.875rem;" class="inline-flex items-center gap-1 hover:opacity-70 transition-opacity mb-8">
     ← All articles
   </a>
 
@@ -145,7 +145,7 @@ const breadcrumbLD = JSON.stringify({
 
   <!-- Footer nav -->
   <div style="border-top:1px solid var(--border); margin-top:3rem; padding-top:1.5rem;">
-    <a href="/blog" style="color:var(--fg-muted); font-size:0.875rem;" class="hover:opacity-70 transition-opacity">
+    <a href="/blog" title="Back to all articles" style="color:var(--fg-muted); font-size:0.875rem;" class="hover:opacity-70 transition-opacity">
       ← Back to all articles
     </a>
   </div>
