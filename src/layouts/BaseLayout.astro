@@ -16,7 +16,7 @@ interface Props {
 
 const {
   title,
-  description = 'Personal website of Raviteja Tholupunoori — Data Engineer and Cloud Architect with 9+ years building scalable data pipelines on GCP, AWS, and Azure.',
+  description = 'Raviteja Tholupunoori — Senior Data Engineer at Deloitte, Apache Airflow Champion, and GCP Certified Architect specializing in multi-cloud data pipelines.',
   image = 'https://traviteja.com/og-default.png',
   type = 'website',
   publishedDate,
@@ -35,13 +35,44 @@ const personLD = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Raviteja Tholupunoori',
+  alternateName: 'Ravi Teja Tholupunoori',
   url: 'https://traviteja.com',
-  jobTitle: 'Data Engineer & Cloud Architect',
+  image: 'https://traviteja.com/avatar.jpg',
+  jobTitle: 'Senior Data Engineer',
+  description: 'Senior Data Engineer and Apache Airflow Champion at Deloitte with 9+ years building multi-cloud data pipelines on GCP, AWS, and Azure.',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Deloitte Digital',
+    url: 'https://www.deloittedigital.com'
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'CVR College of Engineering'
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Hyderabad',
+    addressCountry: 'IN'
+  },
+  knowsAbout: [
+    'Apache Airflow',
+    'Data Engineering',
+    'Google Cloud Platform',
+    'Amazon Web Services',
+    'Microsoft Azure',
+    'Apache Spark',
+    'Databricks',
+    'Identity Resolution',
+    'Python',
+    'Kubernetes'
+  ],
+  award: 'Astronomer Champions Program – Apache Airflow Champion (Cohort 3)',
   sameAs: [
-    'https://www.linkedin.com/in/raviteja0096',
+    'https://linkedin.com/in/raviteja0096',
     'https://github.com/traviteja-git',
     'https://medium.com/@raviteja0096',
-  ],
+    'https://www.astronomer.io/blog/introducing-cohort-3-astronomer-champions-program-apache-airflow/'
+  ]
 });
 
 const articleLD = type === 'article' ? JSON.stringify({
