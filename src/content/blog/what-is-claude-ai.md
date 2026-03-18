@@ -7,7 +7,7 @@ image: "../../assets/blog/claude/what-is-claude-ai/what-is-claude-ai.png"
 draft: false
 ---
 
-I was already using GitHub Copilot and ChatGPT for code generation when a friend mentioned Claude. Both tools worked fine. Not great, but good enough to ship. I figured I'd try Claude on something real rather than a toy prompt — so I typed a single message describing exactly how I imagined my personal website: the sections, the layout, the tone I was going for.
+I was already using GitHub Copilot and ChatGPT for code generation when [a friend](https://panchmukesh.in/) mentioned Claude. Both tools worked fine. Not great, but good enough to ship. I figured I'd try Claude on something real rather than a toy prompt — so I typed a single message describing exactly how I imagined my personal website: the sections, the layout, the tone I was going for.
 
 Two or three iterations later, I had something that matched what was in my head. That hadn't happened with the other tools. Not that fast, not with that level of accuracy on the first pass.
 
