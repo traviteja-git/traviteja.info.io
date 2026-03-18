@@ -52,12 +52,12 @@ title: "Post Title"
 description: "150–160 character description with target keywords"
 date: "YYYY-MM-DD"
 tags: ["tag1", "tag2"]
-image: "/images/blog/[post-slug]/hero.png"
+image: "../../assets/blog/[post-slug]/[seo-descriptive-filename].png"
 draft: false
 ---
 ```
 
-Hero images go in `public/images/blog/[post-slug]/`. OG images must be 1200×630px and use absolute paths (BlogLayout handles the conversion).
+Hero images go in `src/assets/blog/[post-slug]/`. Use a descriptive SEO filename (e.g. `how-to-prompt-claude.png`), not `hero.png`. OG images must be 1200×630px and use absolute paths (BlogLayout handles the conversion).
 
 ## Sitemap — Manual, Must Update
 

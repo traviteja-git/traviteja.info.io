@@ -63,7 +63,7 @@ title: "[Full title]"
 description: "[150–160 char description]"
 date: "[YYYY-MM-DD]"
 tags: ["tag1", "tag2", "tag3"]
-image: "/images/blog/[slug]/hero.png"
+image: "../../assets/blog/[slug]/[seo-descriptive-filename].png"
 draft: true
 ---
 ```
@@ -77,7 +77,7 @@ After creating the file, tell the user:
 - Slug and proposed URL: `traviteja.com/blog/[slug]`
 - What still needs to be done before publishing:
   - [ ] Review and edit the article
-  - [ ] Add hero image to `public/images/blog/[slug]/`
+  - [ ] Add hero image to `src/assets/blog/[slug]/` (SEO filename, not `hero.png`)
   - [ ] Change `draft: true` → `draft: false`
   - [ ] Update `public/sitemap.xml`
   - [ ] Run `npm run build` and push

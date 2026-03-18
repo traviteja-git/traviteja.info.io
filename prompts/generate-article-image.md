@@ -11,8 +11,8 @@ Use this prompt to generate a feature image for any new blog post on traviteja.c
 | **Dimensions** | 1200 × 630 px |
 | **Format** | PNG |
 | **Target file size** | Under 150kb (compress after generation) |
-| **Filename** | `hero.png` |
-| **Save location** | `public/images/blog/[slug]/hero.png` |
+| **Filename** | SEO-descriptive name (e.g. `how-to-prompt-claude.png`) — not `hero.png` |
+| **Save location** | `src/assets/blog/[slug]/[seo-descriptive-filename].png` |
 
 **Why these specs:**
 - 1200 × 630 is the standard for Twitter `summary_large_image` and LinkedIn/Facebook OG cards (your BaseLayout uses `summary_large_image`)
@@ -66,13 +66,90 @@ Replace `[ARTICLE TITLE]`, `[TOPIC]`, and `[KEYWORDS]` before using.
 
 ## SEO Checklist After Saving the Image
 
-- [ ] Filename is `hero.png` (matches frontmatter `image` field)
-- [ ] Saved at `public/images/blog/[slug]/hero.png`
-- [ ] Alt text in the markdown is descriptive and keyword-rich:
+- [ ] Filename is SEO-descriptive (e.g. `how-to-prompt-claude.png`) — not `hero.png`
+- [ ] Saved at `src/assets/blog/[slug]/[seo-descriptive-filename].png`
+- [ ] Frontmatter `image` field uses relative path: `../../assets/blog/[slug]/[seo-descriptive-filename].png`
+- [ ] Alt text in the markdown body is descriptive and keyword-rich:
   ```markdown
-  ![How to get better AI code suggestions by fixing your repo structure — GitHub Copilot, Cursor, Claude](/images/blog/[slug]/hero.png)
+  ![How to get better AI code suggestions by fixing your repo structure — GitHub Copilot, Cursor, Claude](/images/blog/[slug]/[seo-descriptive-filename].png)
   ```
 - [ ] File size is under 150kb (use [squoosh.app](https://squoosh.app) or [tinypng.com](https://tinypng.com) if needed)
+
+---
+
+## How to Generate the Gemini Prompt After Writing an Article
+
+After the article is written, read the full article and extract:
+
+1. **Article title** — exact title from frontmatter
+2. **Core concept** — the single main idea the article teaches (1 sentence)
+3. **Key visual metaphor** — the most concrete, visual thing in the article (e.g. a terminal prompt, a code snippet, a pipeline diagram)
+4. **Target keywords** — 3–4 keywords from the article's SEO focus
+
+Then fill in the template below and give it to Gemini Imagen (or any image generation model) as the generation prompt.
+
+### Gemini-ready prompt template
+
+```
+Generate a 1200 × 630 px PNG hero image for a technical blog post.
+
+Article title: [ARTICLE TITLE]
+Topic: [CORE CONCEPT IN ONE SENTENCE]
+
+Canvas: 1200 × 630 px.
+
+Background: Clean dark background (#0f0f0f). Subtle dot grid overlay at very low opacity. Soft blue radial glow (#2563eb at 10–15% opacity) fading in from one corner — not dominant, just depth.
+
+Main visual: [DESCRIBE THE KEY VISUAL ELEMENT — e.g. "A terminal window showing a structured prompt with sections labeled 'Role:', 'Context:', 'Goal:', 'Return:' — each line highlighted in soft blue or teal monospace text. The contrast between a short vague line above and the detailed structured block below makes the point visually."]
+
+Typography (left-aligned, inside safe zone):
+- Large bold headline: [ARTICLE TITLE — keep under 50 chars if possible]
+- Small monospace label underneath: [3–4 keywords separated by · dots]
+
+Colors: #0f0f0f background, #60a5fa (soft blue) for accents, #f0f0f0 for headline text, #a0a0a0 for secondary labels, #2dd4bf (teal) sparingly.
+
+Rules:
+- No people, no hands, no stock imagery
+- Flat dark UI aesthetic — technical, not decorative
+- Keep all text and visuals within the inner 1120 × 550 px safe zone
+- Headline must be readable at 600px wide
+- Output: 1200 × 630 px PNG
+```
+
+### Example — claude-101-how-to-get-good-answers
+
+**Extracted context:**
+- Title: `Claude 101 — How to Actually Get Good Answers`
+- Core concept: Structured prompts (role + context + goal + return format) consistently outperform vague ones
+- Key visual: A before/after terminal — one line of vague text vs a structured block with labeled sections
+- Keywords: `how to prompt claude · claude ai tutorial · prompting tips · better responses`
+
+**Filled Gemini prompt:**
+```
+Generate a 1200 × 630 px PNG hero image for a technical blog post.
+
+Article title: Claude 101 — How to Actually Get Good Answers
+Topic: How adding role, context, goal, and return format to a Claude prompt dramatically improves the response quality.
+
+Canvas: 1200 × 630 px.
+
+Background: Clean dark background (#0f0f0f). Subtle dot grid overlay at very low opacity. Soft blue radial glow (#2563eb at 12% opacity) fading from the top-right corner.
+
+Main visual: A terminal-style UI split into two panels. Left panel shows a short vague prompt: "Write Python code to process data." — dimmed, muted. Right panel shows a structured prompt block with clearly labeled sections: "Role:", "Context:", "Goal:", "Constraints:", "Return:" — each label in #60a5fa blue, values in #f0f0f0 white monospace. A subtle arrow or divider between the two panels implies before/after.
+
+Typography (left-aligned, inside safe zone):
+- Large bold headline: Claude 101 — How to Actually Get Good Answers
+- Small monospace label underneath: how to prompt claude · claude ai tutorial · prompting tips
+
+Colors: #0f0f0f background, #60a5fa for section labels, #f0f0f0 for headline and prompt values, #a0a0a0 for secondary text, #2dd4bf teal sparingly for highlights.
+
+Rules:
+- No people, no hands, no stock imagery
+- Flat dark UI aesthetic — looks like a real dev blog, not a SaaS landing page
+- Keep all text and visuals within the inner 1120 × 550 px safe zone
+- Headline readable at 600px wide
+- Output: 1200 × 630 px PNG
+```
 
 ---
 
