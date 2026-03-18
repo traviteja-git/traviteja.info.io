@@ -15,7 +15,7 @@ Untyped functions. A catch-all utility file pushing 600 lines. No record of any 
 
 Once you clean things up, the suggestions get noticeably better. Same tools, same models. Here's what actually makes the difference.
 
-![How to get better AI code suggestions by fixing your repo structure — GitHub Copilot, Cursor, and Claude Code](/images/blog/make-your-repo-ai-ready/make-your-repo-ai-ready.png)
+![How to get better AI code suggestions by fixing your repo structure — GitHub Copilot, Cursor, and Claude Code](../../assets/blog/make-your-repo-ai-ready/make-your-repo-ai-ready.png)
 
 ---
 

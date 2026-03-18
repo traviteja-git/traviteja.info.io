@@ -7,7 +7,7 @@ image: "../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.pn
 draft: false
 ---
 
-![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
+![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
 A year ago, a developer needed to understand their code, their framework, and their tools.
 
