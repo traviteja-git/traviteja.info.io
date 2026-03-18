@@ -66,12 +66,28 @@ title: "[Full title]"
 description: "[150–160 char description with long-tail keywords]"
 date: "[YYYY-MM-DD today's date]"
 tags: ["tag1", "tag2", "tag3"]
-image: "/images/blog/[slug]/hero.png"
+image: "../../assets/blog/[slug]/[seo-descriptive-filename].png"
 draft: false
 ---
 ```
 
-Add `![Descriptive alt text with keywords](/images/blog/[slug]/hero.png)` as the first line after frontmatter if an image exists.
+Add `![Descriptive alt text with keywords](/images/blog/[slug]/[seo-descriptive-filename].png)` as the first line after frontmatter if an image exists.
+
+---
+
+### Step 4.5 — Generate Gemini Image Prompt
+
+After writing the article, read `prompts/generate-article-image.md` and follow the **"How to Generate the Gemini Prompt After Writing an Article"** section.
+
+Extract from the article:
+- The exact title
+- The core concept (one sentence)
+- The best visual metaphor in the article
+- 3–4 target keywords
+
+Fill in the Gemini-ready prompt template and output it to the user so they can paste it directly into Gemini Imagen to generate the hero image.
+
+The image should be saved to: `src/assets/blog/[slug]/[seo-descriptive-filename].png`
 
 ---
 
@@ -107,5 +123,5 @@ Open `public/sitemap.xml` and add a new `<url>` block inside the Blog posts sect
 ### Step 7 — Remind the User
 
 After pushing, remind Raviteja to:
-- Add a hero image to `public/images/blog/[slug]/` if not already done (SEO-optimised filename)
+- Add a hero image to `src/assets/blog/[slug]/` — use an SEO-descriptive filename, not `hero.png` (e.g. `how-to-prompt-claude.png`)
 - Resubmit `sitemap.xml` in Google Search Console

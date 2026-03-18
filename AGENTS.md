@@ -120,7 +120,7 @@ All SEO logic lives in `src/layouts/BaseLayout.astro` and `src/layouts/BlogLayou
 
 ### OG Image Handling
 - Default: `https://traviteja.com/og-default.png` (absolute, hardcoded in BaseLayout)
-- Blog posts: relative path from frontmatter (e.g. `/images/blog/slug/hero.png`) → made absolute in BlogLayout before passing to BaseLayout
+- Blog posts: relative path from frontmatter (e.g. `../../assets/blog/[slug]/[seo-filename].png`) → made absolute in BlogLayout before passing to BaseLayout
 - Never pass a relative path directly to BaseLayout from any other page
 
 ---
@@ -135,7 +135,7 @@ title: "Full title — keyword rich, under 60 chars ideally"
 description: "150–160 character meta description with long-tail keywords. Used verbatim as meta description and OG description."
 date: "YYYY-MM-DD"
 tags: ["tag1", "tag2", "tag3"]
-image: "/images/blog/[slug]/hero.png"
+image: "../../assets/blog/[slug]/[seo-descriptive-filename].png"
 draft: false
 ---
 
@@ -145,7 +145,7 @@ Article content...
 ### Slug rules
 - Lowercase, hyphen-separated, keyword-rich
 - Example: `apache-airflow-architecture-simplified` not `airflow-post`
-- Must match the image subfolder: `public/images/blog/[slug]/`
+- Must match the image subfolder: `src/assets/blog/[slug]/`
 
 ### Title format
 - Blog posts: `{Title} — Raviteja` (BlogLayout appends this automatically)
@@ -156,7 +156,7 @@ Article content...
 ## Workflow: Adding a New Blog Post
 
 1. Create `src/content/blog/[slug].md` with correct frontmatter
-2. Add hero image to `public/images/blog/[slug]/` (SEO filename, e.g. `airflow-architecture-diagram.png`)
+2. Add hero image to `src/assets/blog/[slug]/` (SEO filename, e.g. `airflow-architecture-diagram.png` — not `hero.png`)
 3. Add a `<url>` block to `public/sitemap.xml` (copy existing, update `<loc>` + `<lastmod>`)
 4. Run `npm run build` — must pass with 0 errors
 5. Commit on a feature branch (`post/[slug]`) and open a PR

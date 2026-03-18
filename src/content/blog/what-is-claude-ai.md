@@ -1,9 +1,9 @@
 ---
 title: "What is Claude AI? Honest Review After Using It for Real Work"
 description: "I used Claude AI for real projects — building this site, analyzing docs, writing code. My honest take on what it does well and where it still falls short."
-date: "2026-03-18"
+date: "2026-03-15"
 tags: ["ai", "claude", "tools", "productivity"]
-image: "../../assets/blog/claude/what-is-claude-ai/what-is-claude-ai.png"
+image: "../../assets/blog/claude/what-is-claude-ai.png"
 draft: false
 ---
 
@@ -14,8 +14,6 @@ Two or three iterations later, I had something that matched what was in my head.
 That was the moment I stopped treating Claude as just another option and bought the Pro subscription. Here's what I actually think about it — where it earns that $20, and where it still frustrates me.
 
 Before getting into my experience, it helps to understand what Claude actually is and how it's structured.
-
-![What is Claude AI — built by Anthropic, used for real work](/images/blog/claude/what-is-claude-ai/what-is-claude-ai.png)
 
 ## What is Claude AI?
 
