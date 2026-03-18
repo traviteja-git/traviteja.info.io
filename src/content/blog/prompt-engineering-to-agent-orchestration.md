@@ -7,13 +7,13 @@ image: "../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.pn
 draft: false
 ---
 
-![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
-
 A year ago, a developer needed to understand their code, their framework, and their tools.
 
 Today, that same developer needs to understand how to decompose a goal into tasks, assign those tasks to the right agents, design the tools those agents can use, handle failures across a distributed system of AI workers, and connect all of it to the external applications their team already runs on.
 
 That is a staggering expansion in scope. And it happened in roughly twelve months.
+
+![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
 ---
 
