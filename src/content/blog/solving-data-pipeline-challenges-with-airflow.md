@@ -11,7 +11,7 @@ draft: false
 
 Imagine you are a data engineer at a growing tech company, and one of your key responsibilities is to ensure that data from various sources is collected, transformed, and loaded into a central data warehouse for analysis. The complexity of managing these data pipelines increases as the volume of data grows, leading to frequent errors, missed deadlines, and a lot of manual intervention.
 
-![Data Pipeline Challenges](/images/blog/pipeline/hero.jpeg)
+![Data Pipeline Challenges](../../assets/blog/pipeline/hero.jpeg)
 
 
 ## My Journey with Airflow
@@ -24,13 +24,13 @@ Post this, I worked for 3–4 years and gained much knowledge and solved differe
 
 **High Level Architecture Diagram**
 
-![High Level Architecture Diagram](/images/blog/pipeline/architecture.png)
+![High Level Architecture Diagram](../../assets/blog/pipeline/architecture.png)
 
 ## About Airflow
 
 Apache Airflow is an open-source platform to programmatically author, schedule, and monitor workflows. Since its inception at Airbnb in 2014, Airflow has grown to become a widely adopted tool for orchestrating complex computational workflows and data processing pipelines. With its robust and extensible framework, Airflow is a top choice for data engineers and developers aiming to automate and manage their workflows.
 
-![Airflow Use Cases](/images/blog/pipeline/usecases.png)
+![Airflow Use Cases](../../assets/blog/pipeline/usecases.png)
 
 ## Use Cases
 

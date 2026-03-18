@@ -13,7 +13,7 @@ That's not using AI. That's using a slightly smarter search engine.
 
 The people getting real leverage from these tools aren't using better prompts. They've built better habits. Here are the seven that actually matter in 2026.
 
-![7 Skills to Master AI in 2026](/images/blog/ai-agents/7-skills-to-master-Ai.jpg)
+![7 Skills to Master AI in 2026](../../assets/blog/ai-agents/7-skills-to-master-Ai.jpg)
 
 ---
 

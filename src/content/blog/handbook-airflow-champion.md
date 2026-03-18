@@ -36,21 +36,21 @@ After my application was reviewed by Astronomer's team, I was **selected as a Ch
 
 **Confirmation Mail**
 
-![Confirmation Mail](/images/blog/champion/confirmation-mail.png)
+![Confirmation Mail](../../assets/blog/champion/confirmation-mail.png)
 
 **Certificate and Badge**
 
-![Certificate and Badge](/images/blog/champion/certificate.png)
+![Certificate and Badge](../../assets/blog/champion/certificate.png)
 
 - **Certificate:** [Credly Badge](https://www.credly.com/badges/f31d1c0d-cb76-44a0-82fa-c24cfbd8e5aa/public_url)
 
 **LinkedIn Post by Astronomer**
 
-![LinkedIn Post by Astronomer](/images/blog/champion/linkedin-post.png)
+![LinkedIn Post by Astronomer](../../assets/blog/champion/linkedin-post.png)
 
 **Astronomer Champions Announcement**
 
-![Astronomer Champions Announcement](/images/blog/champion/announcement.png)
+![Astronomer Champions Announcement](../../assets/blog/champion/announcement.png)
 
 - [Introducing Cohort 3 of the Astronomer Champions Program](https://www.astronomer.io/blog/introducing-cohort-3-astronomer-champions-program-apache-airflow/)
 
@@ -67,17 +67,17 @@ Champions are community leaders who dedicate their time and expertise to enhanci
 
 ### Pre-requisites
 
-![Prerequisites](/images/blog/champion/prerequisites.png)
+![Prerequisites](../../assets/blog/champion/prerequisites.png)
 
 Once your application is reviewed and selected for a cohort you'll receive a mail and you can start your Champion journey.
 
 **What it means to be a Champion**
 
-![What it means to be a Champion](/images/blog/champion/what-it-means.png)
+![What it means to be a Champion](../../assets/blog/champion/what-it-means.png)
 
 ### Benefits
 
-![Benefits](/images/blog/champion/benefits.png)
+![Benefits](../../assets/blog/champion/benefits.png)
 
 As a Champion member you'll enjoy exclusive benefits including complimentary certifications, access to Airflow contributors, beta access to new features, academy courses and certifications — and of course, swag 🎁
 

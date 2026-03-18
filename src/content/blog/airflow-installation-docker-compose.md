@@ -9,7 +9,7 @@ draft: false
 
 > Originally published on [Medium – Apache Airflow publication](https://medium.com/apache-airflow/airflow-installation-simplified-using-docker-compose-podman-compose-d840a24248ba).
 
-![Airflow Installation](/images/blog/installation/header.png)
+![Airflow Installation](../../assets/blog/installation/header.png)
 
 **Contents**
 - Introduction
@@ -28,7 +28,7 @@ This guide will break down the setup process into two easy-to-follow methods, ge
 
 **Sample Airflow UI:**
 
-![Sample Airflow UI](/images/blog/installation/airflow-ui.png)
+![Sample Airflow UI](../../assets/blog/installation/airflow-ui.png)
 
 ## Installing Airflow
 
@@ -160,7 +160,7 @@ Besides the common environment variables, we have four volumes: `dags`, `logs`, 
 - **config** — For Airflow configurations
 - **plugins** — For extra plugins
 
-![Airflow Volumes](/images/blog/installation/volumes.png)
+![Airflow Volumes](../../assets/blog/installation/volumes.png)
 
 ### Permissions
 
@@ -200,7 +200,7 @@ docker-compose up airflow-init
 podman compose up airflow-init
 ```
 
-![Running airflow-init](/images/blog/installation/init-run.png)
+![Running airflow-init](../../assets/blog/installation/init-run.png)
 
 Then start all services in detached mode:
 
@@ -212,7 +212,7 @@ docker compose up -d
 podman compose up -d
 ```
 
-![Containers running](/images/blog/installation/containers-running.png)
+![Containers running](../../assets/blog/installation/containers-running.png)
 
 ## Accessing the Web Interface
 
@@ -222,8 +222,6 @@ Once all containers are up and running, open [localhost:8080](http://localhost:8
 - **Password:** `airflow`
 
 After logging in you can see your DAGs listed in the UI.
-
-![DAGs Page](/images/blog/installation/dags-page.png)
 
 We've successfully installed the full version of Airflow in just a few minutes using Docker! 🎉
 

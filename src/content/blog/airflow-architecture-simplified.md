@@ -11,7 +11,7 @@ draft: false
 
 [Apache Airflow](https://airflow.apache.org/) is an open-source platform designed to orchestrate complex data workflows. It uses **Directed Acyclic Graphs (DAGs)** to define a series of tasks and their dependencies. Airflow is made up of several microservices that collaborate to execute these tasks. Here's a straightforward breakdown of the key components of Airflow's architecture.
 
-![Apache Airflow Architecture Overview](/images/blog/architecture/overview.gif)
+![Apache Airflow Architecture Overview](../../assets/blog/architecture/overview.gif)
 
 ## Components
 
@@ -19,13 +19,13 @@ draft: false
 
 The Airflow UI where you can monitor and manage DAGs, Variables, Connections, and check logs. It provides a dashboard that helps you visualise your data workflows, check their progress, and troubleshoot any issues.
 
-![Web Server](/images/blog/architecture/webserver.gif)
+![Web Server](../../assets/blog/architecture/webserver.gif)
 
 ### Scheduler 🕰️
 
 Responsible for managing the execution of tasks. It monitors the DAGs and schedules tasks based on their dependencies and timing configurations, making sure that tasks are executed in the right order and at the right time.
 
-![Scheduler](/images/blog/architecture/scheduler.gif)
+![Scheduler](../../assets/blog/architecture/scheduler.gif)
 
 ### Executor ⚙️
 
@@ -33,13 +33,13 @@ The Executor's primary role involves executing tasks actively. It interacts with
 
 Airflow offers various Executor types like `LocalExecutor`, `CeleryExecutor`, and `KubernetesExecutor` — each tailored to specific infrastructure setups and operational needs.
 
-![Executor](/images/blog/architecture/executor.gif)
+![Executor](../../assets/blog/architecture/executor.gif)
 
 ### Worker 👷
 
 The Worker is a component that performs the tasks assigned by the Executor. Depending on the chosen Executor, it can be a separate process or container. Workers are responsible for executing the actual code or scripts defined in your tasks and reporting their status back to the Executor.
 
-![Worker](/images/blog/architecture/worker.gif)
+![Worker](../../assets/blog/architecture/worker.gif)
 
 ### Metadata Database 🛢
 
@@ -47,13 +47,13 @@ This is where Airflow keeps track of all your workflows, including details about
 
 Airflow supports different databases like PostgreSQL, MySQL, or SQLite, depending on what works best for your setup.
 
-![Metadata Database](/images/blog/architecture/metadata-db.gif)
+![Metadata Database](../../assets/blog/architecture/metadata-db.gif)
 
 ### Message Broker ✉️ (Optional)
 
 In setups where the `CeleryExecutor` is used for distributing tasks, a message broker plays a crucial role. Brokers like RabbitMQ or Redis act as a middleman between the Scheduler and the Workers — passing task details from the Scheduler to the Workers, ensuring tasks are executed reliably and efficiently across the distributed system.
 
-![Message Broker](/images/blog/architecture/message-broker.gif)
+![Message Broker](../../assets/blog/architecture/message-broker.gif)
 
 ---
 
