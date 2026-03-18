@@ -85,11 +85,7 @@ When the system is under load, or when a conversation has been running long and 
 
 Pro users operate on something like a rolling five-hour window. I don't get a "you've used X out of Y" indicator. I get cut off and told to wait. Anthropic knows exactly how much I've used. The opacity feels like a choice, not a technical constraint — and that bothers me more than the limit itself.
 
-Worth knowing before you commit. The three issues in short:
-
-- No way to reset or buy extra quota — you wait up to 4 hours
-- Performance drops under high load or in long sessions
-- No usage meter — you just get cut off
+Worth knowing before you commit. If you need guaranteed availability for time-critical work, factor it in.
 
 ## Who should use it
 
