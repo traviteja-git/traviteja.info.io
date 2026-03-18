@@ -64,6 +64,28 @@ const grouped = topics.map(topic => ({
     <p id="no-results" style="display:none; color:var(--fg-muted); font-size:0.9rem;">No articles match your search.</p>
   </div>
 
+  <!-- Recent articles (visible on All tab only) -->
+  <div id="recent-section" class="mb-10">
+    <h2 style="color:var(--fg); font-size:1rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin:0 0 0.25rem;">
+      Recent
+    </h2>
+    <div style="height:2px; background:var(--accent); width:2.5rem; margin-bottom:1rem;"></div>
+    <div class="flex flex-col">
+      {posts.slice(0, 3).map(post => (
+        <div class="post-card" data-slug={post.slug}>
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            slug={post.slug}
+            tags={post.data.tags}
+            image={post.data.image}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
   <!-- Grouped view (all topics) -->
   <div id="grouped-view">
     {grouped.map(topic => topic.posts.length > 0 && (
@@ -145,6 +167,7 @@ const grouped = topics.map(topic => ({
   const searchCount = document.getElementById('search-count');
   const noResults = document.getElementById('no-results');
   const topicCards = document.querySelectorAll('.post-card-topic');
+  const recentSection = document.getElementById('recent-section');
 
   let activeTopic = 'all';
 
@@ -169,9 +192,11 @@ const grouped = topics.map(topic => ({
     if (topic === 'all') {
       groupedView.style.display = '';
       topicView.style.display = 'none';
+      recentSection.style.display = '';
     } else {
       groupedView.style.display = 'none';
       topicView.style.display = '';
+      recentSection.style.display = 'none';
       topicCards.forEach(card => {
         const cardTopics = card.dataset.topic?.split(' ') ?? [];
         card.style.display = cardTopics.includes(topic) ? '' : 'none';
@@ -191,6 +216,7 @@ const grouped = topics.map(topic => ({
     // Hide both views, show search results
     groupedView.style.display = 'none';
     topicView.style.display = 'none';
+    recentSection.style.display = 'none';
     searchResults.style.display = '';
 
     const matches = searchIndex.filter(
