@@ -1,0 +1,6 @@
+# Netlify redirects
+# Add 301 redirects here for any renamed/moved pages to fix GSC 404 errors.
+# Format: /old-path  /new-path  301
+#
+# Example (fill in after checking GSC → Pages → "Not found (404)"):
+# /blog/old-slug/  /blog/new-slug/  301
