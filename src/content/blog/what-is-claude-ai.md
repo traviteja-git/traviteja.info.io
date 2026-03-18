@@ -3,7 +3,7 @@ title: "What is Claude AI, and Why Should You Care?"
 description: "What is Claude AI, how it compares to ChatGPT, Anthropic's models explained — from a developer who built a website with a single prompt."
 date: "2026-03-18"
 tags: ["ai", "claude", "tools", "productivity"]
-image: "/images/blog/what-is-claude-ai/hero.png"
+image: "/images/blog/claude/what-is-claude-ai/what-is-claude-ai.png"
 draft: false
 ---
 
@@ -12,6 +12,10 @@ I was already using GitHub Copilot and ChatGPT for code generation when a friend
 Two or three iterations later, I had something that matched what was in my head. That hadn't happened with the other tools. Not that fast, not with that level of accuracy on the first pass.
 
 That was the moment I stopped treating Claude as just another option and bought the Pro subscription. Here's what I actually think about it — where it earns that $20, and where it still frustrates me.
+
+
+![What is Claude AI — comparison with ChatGPT, Anthropic models explained](/images/blog/claude/what-is-claude-ai/what-is-claude-ai.png)
+
 
 ## What is Claude AI?
 
@@ -35,19 +39,34 @@ On the free tier you get access to a limited version. Pro ($20/month) gives you 
 
 Both tools write, summarize, explain, and generate code. The differences show up in specifics.
 
-Context is the most obvious one. Claude handles long documents without losing the thread. I've pasted full codebases, 50-page technical specs, dense reports — it holds throughout. The top-tier models support up to 200,000 tokens, which in practice means entire books or full repositories in one session. ChatGPT has closed the gap here, but Claude was ahead earlier and still feels more consistent on large inputs.
+| | Claude | ChatGPT |
+|---|---|---|
+| **Context window** | Up to 200k tokens — books, full codebases | Competitive, but less consistent on large inputs |
+| **Code quality** | Better at matching intent, not just instructions | Good, but needs more cleanup in my experience |
+| **Writing tone** | More direct, less corporate by default | Tends toward verbose, over-qualified responses |
+| **Image generation** | No | Yes (DALL-E) |
+| **Ecosystem / plugins** | Limited | Broad — more third-party integrations |
+| **Pricing** | Free + Pro ($20/mo) | Free + Plus ($20/mo) |
+
+Context is the most obvious difference in practice. I've pasted full codebases, 50-page technical specs, dense reports into Claude — it holds the thread throughout. The top-tier models support up to 200,000 tokens, which in practice means entire books or full repositories in one session. ChatGPT has closed the gap here, but Claude still feels more consistent on large inputs.
 
 Code quality is harder to quantify, but my experience building this site makes it hard to dismiss. I described the layout, the sections, the aesthetic — and Claude came back with code that reflected what I actually meant, not just what I literally typed. Other tools gave me something technically correct but requiring more cleanup.
 
 And Claude writes more like a person by default. Less "Certainly! Here's a comprehensive overview..." and more actual direct communication. If you write a lot — reports, documentation, emails — this matters more than you'd think.
 
-Where ChatGPT still wins: broader ecosystem, native image generation via DALL-E, and more third-party integrations. Claude doesn't generate images. If you're deep in the OpenAI toolchain, the switching cost is real.
+If you're deep in the OpenAI toolchain, the switching cost is real. Claude doesn't generate images, and the plugin ecosystem is much smaller.
 
 ## Where Claude actually pulls ahead
 
+### Long document analysis
+
 Give it a hundred-page report and ask it to find contradictions, extract specific data points, or summarize only section 4. It does this without losing the thread. For anyone dealing with contracts, research papers, or dense technical documentation, this alone is worth testing.
 
+### Staying on track across long sessions
+
 When I'm iterating across many exchanges — building a feature step by step, refining a document over many rounds — Claude tracks earlier context without reinterpreting it. Other tools drift. Claude stays on the thing you were actually building. [LINK: make your repo AI-ready] covers how I structured this project to take advantage of that.
+
+### Code that does what you meant
 
 I keep coming back to the website example. There's a difference between code that compiles and code that does what you meant. Claude more often produces the second. Not always. But often enough that it changed how I work.
 
