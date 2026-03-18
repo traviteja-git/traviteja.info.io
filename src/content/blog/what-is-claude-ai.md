@@ -48,6 +48,7 @@ Both tools write, summarize, explain, and generate code. The differences show up
 | **Ecosystem / plugins** | Limited | Broad — more third-party integrations |
 | **Pricing** | Free + Pro ($20/mo) | Free + Plus ($20/mo) |
 
+
 Context is the most obvious difference in practice. I've pasted full codebases, 50-page technical specs, dense reports into Claude — it holds the thread throughout. The top-tier models support up to 200,000 tokens, which in practice means entire books or full repositories in one session. ChatGPT has closed the gap here, but Claude still feels more consistent on large inputs.
 
 Code quality is harder to quantify, but my experience building this site makes it hard to dismiss. I described the layout, the sections, the aesthetic — and Claude came back with code that reflected what I actually meant, not just what I literally typed. Other tools gave me something technically correct but requiring more cleanup.
@@ -84,13 +85,17 @@ When the system is under load, or when a conversation has been running long and 
 
 Pro users operate on something like a rolling five-hour window. I don't get a "you've used X out of Y" indicator. I get cut off and told to wait. Anthropic knows exactly how much I've used. The opacity feels like a choice, not a technical constraint — and that bothers me more than the limit itself.
 
-Worth knowing before you commit. If you need guaranteed availability for time-critical work, factor it in.
+Worth knowing before you commit. The three issues in short:
+
+- No way to reset or buy extra quota — you wait up to 4 hours
+- Performance drops under high load or in long sessions
+- No usage meter — you just get cut off
 
 ## Who should use it
 
-If you deal with long documents, contracts, dense emails, or any kind of text-heavy work: try it on something real. It reads carefully and responds specifically. It hallucinates less than you'd expect, though it still makes things up sometimes — all of them do. [LINK: 7 skills to master AI in 2026] has more on building these tools into actual daily workflow rather than just using them for one-off tasks.
+**Knowledge workers** — if you deal with long documents, contracts, dense emails, or any kind of text-heavy work, try it on something real. It reads carefully and responds specifically. It still makes things up sometimes (all of them do), but less than you'd expect. [LINK: 7 skills to master AI in 2026] has more on building these tools into actual daily workflow.
 
-If you're a developer who hasn't used Claude on a real codebase — not a test prompt, but a full feature or a complex refactor — try it. The context handling changes how you can work with it on larger projects. The free tier is enough to find out.
+**Developers** — if you haven't used Claude on a real codebase yet, not a test prompt but a full feature or complex refactor, try it. The context handling changes how you work on larger projects. The free tier is enough to find out.
 
 ## One next step
 
