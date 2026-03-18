@@ -1,7 +1,7 @@
 ---
 title: "Claude 101 — How to Actually Get Good Answers"
 description: "Most Claude prompts fail for the same reason: too vague. Here's how to prompt Claude the right way — with real before/after examples from a data engineer."
-date: "2026-03-18"
+date: "2026-03-19"
 tags: ["ai", "claude", "productivity", "prompt-engineering"]
 image: "../../assets/blog/claude/claude-101-how-to-get-good-answers/how-to-prompt-claude.png"
 draft: false

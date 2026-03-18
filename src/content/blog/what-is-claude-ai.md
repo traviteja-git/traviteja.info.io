@@ -1,7 +1,7 @@
 ---
 title: "What is Claude AI? Honest Review After Using It for Real Work"
 description: "I used Claude AI for real projects — building this site, analyzing docs, writing code. My honest take on what it does well and where it still falls short."
-date: "2026-03-19"
+date: "2026-03-15"
 tags: ["ai", "claude", "tools", "productivity"]
 image: "../../assets/blog/claude/what-is-claude-ai.png"
 draft: false
