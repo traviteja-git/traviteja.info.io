@@ -3,7 +3,7 @@ title: "Solving Data Pipeline Challenges with Apache Airflow: A Real-Life Exampl
 description: "Real-world migration from Talend ETL to Apache Airflow for a customer data platform (CDP) processing 800M+ records — use cases, DAG design, pros and cons, and lessons from production pipelines."
 date: "2024-07-09"
 tags: ["airflow", "data-engineering", "etl", "pipelines"]
-image: "/images/blog/pipeline/hero.jpeg"
+image: "../../assets/blog/pipeline/hero.jpeg"
 draft: false
 ---
 
