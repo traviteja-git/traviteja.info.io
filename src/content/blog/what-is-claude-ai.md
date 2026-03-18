@@ -1,6 +1,6 @@
 ---
-title: "What is Claude AI, and Why Should You Care?"
-description: "What is Claude AI, how it compares to ChatGPT, Anthropic's models explained — from a developer who built a website with a single prompt."
+title: "What is Claude AI? Honest Review After Using It for Real Work"
+description: "I used Claude AI for real projects — building this site, analyzing docs, writing code. My honest take on what it does well and where it still falls short."
 date: "2026-03-18"
 tags: ["ai", "claude", "tools", "productivity"]
 image: "../../assets/blog/claude/what-is-claude-ai/what-is-claude-ai.png"
@@ -13,9 +13,9 @@ Two or three iterations later, I had something that matched what was in my head.
 
 That was the moment I stopped treating Claude as just another option and bought the Pro subscription. Here's what I actually think about it — where it earns that $20, and where it still frustrates me.
 
+Before getting into my experience, it helps to understand what Claude actually is and how it's structured.
 
-![What is Claude AI — comparison with ChatGPT, Anthropic models explained](/images/blog/claude/what-is-claude-ai/what-is-claude-ai.png)
-
+![What is Claude AI — built by Anthropic, used for real work](/images/blog/claude/what-is-claude-ai/what-is-claude-ai.png)
 
 ## What is Claude AI?
 
@@ -25,7 +25,7 @@ In practical terms, it's in the same category as ChatGPT: you give it text, it g
 
 You access Claude at claude.ai. There's a free tier, and a Pro plan at $20/month that gives you the latest models and higher usage limits.
 
-## Claude AI models: which one are you actually using?
+## Claude AI models explained
 
 Anthropic names its models after the Claude version and a size tier. The current generation is Claude 4, but you'll also encounter the Claude 3.5 series depending on what plan you're on.
 
@@ -48,6 +48,7 @@ Both tools write, summarize, explain, and generate code. The differences show up
 | **Ecosystem / plugins** | Limited | Broad — more third-party integrations |
 | **Pricing** | Free + Pro ($20/mo) | Free + Plus ($20/mo) |
 
+If you only remember one thing: Claude is stronger at handling large, complex inputs — ChatGPT is stronger as a general-purpose ecosystem.
 
 Context is the most obvious difference in practice. I've pasted full codebases, 50-page technical specs, dense reports into Claude — it holds the thread throughout. The top-tier models support up to 200,000 tokens, which in practice means entire books or full repositories in one session. ChatGPT has closed the gap here, but Claude still feels more consistent on large inputs.
 
@@ -65,11 +66,11 @@ Give it a hundred-page report and ask it to find contradictions, extract specifi
 
 ### Staying on track across long sessions
 
-When I'm iterating across many exchanges — building a feature step by step, refining a document over many rounds — Claude tracks earlier context without reinterpreting it. Other tools drift. Claude stays on the thing you were actually building. [How I made this repo AI-ready](/blog/make-your-repo-ai-ready/) covers how I structured this project to take advantage of that.
+When I'm iterating across many exchanges — building a feature step by step, refining a document over many rounds — Claude tracks earlier context without reinterpreting it. Other tools drift. Claude stays on the thing you were actually building. I wrote about how I structured this exact project around that strength — [How I made this repo AI-ready](/blog/make-your-repo-ai-ready/) goes into the specifics.
 
-### Code that does what you meant
+### Writing that doesn't need cleanup
 
-I keep coming back to the website example. There's a difference between code that compiles and code that does what you meant. Claude more often produces the second. Not always. But often enough that it changed how I work.
+Claude's default tone is more direct than most models. When I'm drafting something — an explanation, a doc, a summary — it tends to come back at the right length and register without me having to strip out the padding. Not universal, but consistent enough to rely on.
 
 ## Where it breaks
 
@@ -96,3 +97,5 @@ Worth knowing before you commit. If you need guaranteed availability for time-cr
 ## One next step
 
 Go to claude.ai and try it with something you're actually working on — a real document, a real problem, a real codebase question. Not a test prompt. That's the only test that matters.
+
+Claude isn't better at everything. But for long, complex work — the kind where context and precision actually matter — it's the first tool that consistently feels like it understands what you're trying to do. That distinction is worth $20 a month if this kind of work is what you do.
