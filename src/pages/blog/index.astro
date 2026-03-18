@@ -13,11 +13,9 @@ const topics = [
   { id: 'career',   label: 'Career & Community',     tags: ['career', 'community', 'certification'] },
 ];
 
-function topicFor(postTags: string[]): string {
-  for (const t of topics) {
-    if (postTags.some(tag => t.tags.includes(tag))) return t.id;
-  }
-  return 'other';
+function topicsFor(postTags: string[]): string {
+  const matched = topics.filter(t => postTags.some(tag => t.tags.includes(tag))).map(t => t.id);
+  return matched.length > 0 ? matched.join(' ') : 'other';
 }
 
 const grouped = topics.map(topic => ({
@@ -98,7 +96,7 @@ const grouped = topics.map(topic => ({
       {posts.map(post => (
         <div
           class="post-card-topic"
-          data-topic={topicFor(post.data.tags ?? [])}
+          data-topic={topicsFor(post.data.tags ?? [])}
           style="display:none;"
         >
           <BlogCard
@@ -175,7 +173,8 @@ const grouped = topics.map(topic => ({
       groupedView.style.display = 'none';
       topicView.style.display = '';
       topicCards.forEach(card => {
-        card.style.display = card.dataset.topic === topic ? '' : 'none';
+        const cardTopics = card.dataset.topic?.split(' ') ?? [];
+        card.style.display = cardTopics.includes(topic) ? '' : 'none';
       });
     }
   }
