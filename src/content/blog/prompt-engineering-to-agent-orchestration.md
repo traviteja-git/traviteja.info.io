@@ -3,7 +3,7 @@ title: "From Prompt Engineering to Orchestrating AI Agents"
 description: "A developer's journey from replacing Stack Overflow with ChatGPT to orchestrating multi-agent systems with MCP servers — how AI changed the way we actually build software."
 date: "2026-02-19"
 tags: ["ai", "agents", "prompt-engineering", "llm", "developer-tools"]
-image: "/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png"
+image: "../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png"
 draft: false
 ---
 

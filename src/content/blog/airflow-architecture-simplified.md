@@ -3,7 +3,7 @@ title: "Apache Airflow Architecture Simplified"
 description: "Apache Airflow architecture explained: Web Server, Scheduler, Executor types, Workers, Metadata DB, and Message Broker — how DAGs and microservices collaborate to orchestrate data workflows at scale."
 date: "2024-07-18"
 tags: ["airflow", "data-engineering", "architecture"]
-image: "/images/blog/architecture/overview.gif"
+image: "../../assets/blog/architecture/overview.gif"
 draft: false
 ---
 

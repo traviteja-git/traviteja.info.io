@@ -3,7 +3,7 @@ title: "7 Skills to Master AI in 2026"
 description: "Most developers use AI like a search engine. Here's the playbook to use it like a force multiplier — seven skills that separate people who get results from people who get frustrated."
 date: "2026-02-25"
 tags: ["ai", "productivity", "developer-tools", "chatgpt", "prompt-engineering"]
-image: "/images/blog/ai-agents/7-skills-to-master-Ai.jpg"
+image: "../../assets/blog/ai-agents/7-skills-to-master-Ai.jpg"
 draft: false
 ---
 

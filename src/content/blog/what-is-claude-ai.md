@@ -3,7 +3,7 @@ title: "What is Claude AI, and Why Should You Care?"
 description: "What is Claude AI, how it compares to ChatGPT, Anthropic's models explained — from a developer who built a website with a single prompt."
 date: "2026-03-18"
 tags: ["ai", "claude", "tools", "productivity"]
-image: "/images/blog/claude/what-is-claude-ai/what-is-claude-ai.png"
+image: "../../assets/blog/claude/what-is-claude-ai/what-is-claude-ai.png"
 draft: false
 ---
 
