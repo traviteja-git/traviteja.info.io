@@ -65,7 +65,7 @@ Give it a hundred-page report and ask it to find contradictions, extract specifi
 
 ### Staying on track across long sessions
 
-When I'm iterating across many exchanges — building a feature step by step, refining a document over many rounds — Claude tracks earlier context without reinterpreting it. Other tools drift. Claude stays on the thing you were actually building. [LINK: make your repo AI-ready] covers how I structured this project to take advantage of that.
+When I'm iterating across many exchanges — building a feature step by step, refining a document over many rounds — Claude tracks earlier context without reinterpreting it. Other tools drift. Claude stays on the thing you were actually building. [How I made this repo AI-ready](/blog/make-your-repo-ai-ready/) covers how I structured this project to take advantage of that.
 
 ### Code that does what you meant
 
@@ -89,7 +89,7 @@ Worth knowing before you commit. If you need guaranteed availability for time-cr
 
 ## Who should use it
 
-**Knowledge workers** — if you deal with long documents, contracts, dense emails, or any kind of text-heavy work, try it on something real. It reads carefully and responds specifically. It still makes things up sometimes (all of them do), but less than you'd expect. [LINK: 7 skills to master AI in 2026] has more on building these tools into actual daily workflow.
+**Knowledge workers** — if you deal with long documents, contracts, dense emails, or any kind of text-heavy work, try it on something real. It reads carefully and responds specifically. It still makes things up sometimes (all of them do), but less than you'd expect. [7 skills to master AI in 2026](/blog/7-skills-to-master-ai-2026/) has more on building these tools into actual daily workflow.
 
 **Developers** — if you haven't used Claude on a real codebase yet, not a test prompt but a full feature or complex refactor, try it. The context handling changes how you work on larger projects. The free tier is enough to find out.
 
