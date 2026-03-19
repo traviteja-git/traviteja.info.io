@@ -14,9 +14,22 @@ const { Content } = await render(post);
 
 const readingTime = Math.ceil(post.body.split(/\s+/).length / 200);
 
-const allPosts = await getCollection('blog');
+const allPosts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+// Prev / Next by chronological order
+const currentIndex = allPosts.findIndex(p => p.slug === post.slug);
+const prevPost = currentIndex > 0
+  ? { slug: allPosts[currentIndex - 1].slug, title: allPosts[currentIndex - 1].data.title }
+  : undefined;
+const nextPost = currentIndex < allPosts.length - 1
+  ? { slug: allPosts[currentIndex + 1].slug, title: allPosts[currentIndex + 1].data.title }
+  : undefined;
+
+// Related posts by shared tags
 const relatedPosts = allPosts
-  .filter(p => !p.data.draft && p.slug !== post.slug)
+  .filter(p => p.slug !== post.slug)
   .filter(p => p.data.tags?.some((tag: string) => post.data.tags?.includes(tag)))
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3)
@@ -28,16 +41,20 @@ const relatedPosts = allPosts
     tags: p.data.tags,
     image: p.data.image,
   }));
+
 ---
 
 <BlogLayout
   title={post.data.title}
   description={post.data.description}
   date={post.data.date}
+  updatedDate={post.data.updatedDate}
   tags={post.data.tags}
   image={post.data.image}
   readingTime={readingTime}
   relatedPosts={relatedPosts}
+  prevPost={prevPost}
+  nextPost={nextPost}
 >
   <Content />
 </BlogLayout>

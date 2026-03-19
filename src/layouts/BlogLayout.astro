@@ -16,25 +16,27 @@ interface Props {
   title: string;
   description: string;
   date: string;
+  updatedDate?: string;
   tags?: string[];
   image?: ImageMetadata;
   readingTime?: number;
   relatedPosts?: RelatedPost[];
+  prevPost?: { slug: string; title: string };
+  nextPost?: { slug: string; title: string };
 }
 
-const { title, description, date, tags = [], image, readingTime, relatedPosts = [] } = Astro.props;
+const { title, description, date, updatedDate, tags = [], image, readingTime, relatedPosts = [], prevPost, nextPost } = Astro.props;
 
 const formatted = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
+const formattedUpdated = updatedDate
+  ? new Date(updatedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
 
-// Make image URL absolute for OG / Twitter cards
-// image.src is a root-relative path like /_astro/hero.abc123.webp
 const imageURL = image ? new URL(image.src, Astro.site).toString() : undefined;
-// ISO date for article:published_time
 const publishedISO = new Date(date).toISOString();
 
-// Share URLs
 const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
 const twitterShareURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageURL)}&text=${encodeURIComponent(title)}`;
 const linkedinShareURL = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageURL)}`;
@@ -57,7 +59,6 @@ const breadcrumbLD = JSON.stringify({
   type="article"
   publishedDate={publishedISO}
 >
-  <!-- JSON-LD: Breadcrumb -->
   <script type="application/ld+json" set:html={breadcrumbLD} slot="head" />
 
   <!-- Reading progress bar -->
@@ -76,16 +77,36 @@ const breadcrumbLD = JSON.stringify({
     <h1 style="color:var(--fg); font-size:2rem; font-weight:700; line-height:1.25; margin:0 0 0.75rem;">
       {title}
     </h1>
-    <p style="color:var(--fg-muted); font-size:0.9rem; margin:0; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-      <span>{formatted}</span>
-      {readingTime && (
-        <>
-          <span style="opacity:0.4;">·</span>
-          <span>{readingTime} min read</span>
-        </>
-      )}
-    </p>
+    <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; margin-top:0.25rem;">
+      <a href="/about" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none;" title="About Raviteja">
+        <img src="/avatar.jpg" alt="Raviteja Tholupunoori" width="32" height="32"
+          style="border-radius:50%; object-fit:cover; object-position:center 15%; border:1.5px solid var(--border); flex-shrink:0; width:32px; height:32px; min-width:32px;" />
+        <span style="color:var(--fg); font-size:0.875rem; font-weight:500;" class="hover:text-[var(--accent)] transition-colors">Raviteja</span>
+      </a>
+      <span style="color:var(--border);">·</span>
+      <p style="color:var(--fg-muted); font-size:0.875rem; margin:0; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+        <span>{formatted}</span>
+        {formattedUpdated && (
+          <>
+            <span style="opacity:0.4;">·</span>
+            <span>Updated {formattedUpdated}</span>
+          </>
+        )}
+        {readingTime && (
+          <>
+            <span style="opacity:0.4;">·</span>
+            <span>{readingTime} min read</span>
+          </>
+        )}
+      </p>
+    </div>
   </header>
+
+  <!-- Table of Contents (injected by JS for articles with 3+ H2s) -->
+  <nav id="toc" style="display:none; border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; margin-bottom:2.5rem; background:var(--bg-subtle);" aria-label="Table of contents">
+    <p style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-muted); margin:0 0 0.6rem;">On this page</p>
+    <ol id="toc-list" style="margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:0.3rem; list-style-type:decimal;"></ol>
+  </nav>
 
   <!-- Article body -->
   <article class="prose">
@@ -93,7 +114,7 @@ const breadcrumbLD = JSON.stringify({
   </article>
 
   <!-- Share buttons -->
-  <div style="border-top:1px solid var(--border); margin-top:3rem; padding-top:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+  <div style="border-top:1px solid var(--border); margin-top:2rem; padding-top:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
     <span style="color:var(--fg-muted); font-size:0.875rem;">Found this useful? Share it.</span>
     <div style="display:flex; gap:0.75rem;">
       <a
@@ -151,10 +172,36 @@ const breadcrumbLD = JSON.stringify({
     </div>
   )}
 
+  <!-- Prev / Next navigation -->
+  {(prevPost || nextPost) && (
+    <div style="border-top:1px solid var(--border); margin-top:3rem; padding-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+      <div>
+        {prevPost && (
+          <a href={`/blog/${prevPost.slug}/`} style="text-decoration:none; display:block;" class="hover:opacity-80 transition-opacity">
+            <p style="color:var(--fg-muted); font-size:0.75rem; margin:0 0 0.25rem; text-transform:uppercase; letter-spacing:0.06em;">← Previous</p>
+            <p style="color:var(--fg); font-size:0.875rem; font-weight:500; margin:0; line-height:1.4;">{prevPost.title}</p>
+          </a>
+        )}
+      </div>
+      <div style="text-align:right;">
+        {nextPost && (
+          <a href={`/blog/${nextPost.slug}/`} style="text-decoration:none; display:block;" class="hover:opacity-80 transition-opacity">
+            <p style="color:var(--fg-muted); font-size:0.75rem; margin:0 0 0.25rem; text-transform:uppercase; letter-spacing:0.06em;">Next →</p>
+            <p style="color:var(--fg); font-size:0.875rem; font-weight:500; margin:0; line-height:1.4;">{nextPost.title}</p>
+          </a>
+        )}
+      </div>
+    </div>
+  )}
+
   <!-- Footer nav -->
-  <div style="border-top:1px solid var(--border); margin-top:3rem; padding-top:1.5rem;">
+  <div style="border-top:1px solid var(--border); margin-top:2rem; padding-top:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
     <a href="/blog" title="Back to all articles" style="color:var(--fg-muted); font-size:0.875rem;" class="hover:opacity-70 transition-opacity">
       ← Back to all articles
+    </a>
+    <a href="/rss.xml" title="RSS feed" style="color:var(--fg-muted); font-size:0.8rem; display:inline-flex; align-items:center; gap:0.3rem;" class="hover:text-[var(--accent)] transition-colors">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+      RSS
     </a>
   </div>
 </BaseLayout>
@@ -181,6 +228,52 @@ const breadcrumbLD = JSON.stringify({
       a.setAttribute('aria-hidden', 'true');
       a.textContent = ' #';
       heading.appendChild(a);
+    });
+  })();
+
+  // Table of Contents — show if 3+ H2s
+  (function () {
+    var headings = document.querySelectorAll('.prose h2');
+    if (headings.length < 3) return;
+    var toc = document.getElementById('toc');
+    var list = document.getElementById('toc-list');
+    if (!toc || !list) return;
+    headings.forEach(function (h) {
+      if (!h.id) return;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent.replace(' #', '').trim();
+      a.style.cssText = 'color:var(--fg-muted); font-size:0.875rem; text-decoration:none;';
+      a.addEventListener('mouseover', function () { a.style.color = 'var(--accent)'; });
+      a.addEventListener('mouseout', function () { a.style.color = 'var(--fg-muted)'; });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    toc.style.display = 'block';
+  })();
+
+  // Copy button on code blocks
+  (function () {
+    document.querySelectorAll('.prose pre').forEach(function (pre) {
+      var btn = document.createElement('button');
+      btn.textContent = 'Copy';
+      btn.className = 'copy-btn';
+      btn.setAttribute('aria-label', 'Copy code');
+      btn.addEventListener('click', function () {
+        var code = pre.querySelector('code');
+        if (!code) return;
+        navigator.clipboard.writeText(code.textContent || '').then(function () {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(function () {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      });
+      pre.style.position = 'relative';
+      pre.appendChild(btn);
     });
   })();
 </script>
