@@ -59,6 +59,45 @@ draft: false
 
 Hero images go in `src/assets/blog/[post-slug]/`. Use a descriptive SEO filename (e.g. `how-to-prompt-claude.png`), not `hero.png`. OG images must be 1200×630px and use absolute paths (BlogLayout handles the conversion).
 
+### Tags — use these consistently
+
+Pick 3–5 tags from this list (add new ones sparingly):
+
+- **Topics**: `ai`, `data-engineering`, `airflow`, `spark`, `etl`, `pipelines`, `architecture`
+- **Tools**: `claude`, `chatgpt`, `github-copilot`, `cursor`, `docker`, `kubernetes`, `gcp`, `aws`, `azure`
+- **Skills**: `prompt-engineering`, `productivity`, `career`, `certification`, `community`
+- **Types**: `developer-tools`, `llm`, `agents`
+
+### Callout blocks — use these in article body
+
+Available in any `.md` file via raw HTML:
+
+```html
+<div class="callout callout-tip">
+A practical tip or shortcut the reader should know.
+</div>
+
+<div class="callout callout-info">
+Background context or a neutral note worth highlighting.
+</div>
+
+<div class="callout callout-warning">
+Something that will break, cost money, or cause problems if ignored.
+</div>
+
+<div class="callout callout-danger">
+A hard stop — security risk, data loss, or irreversible action.
+</div>
+```
+
+When to use callouts:
+- **tip**: actionable shortcuts, "do this first", configuration advice
+- **info**: context that doesn't fit inline but is worth surfacing
+- **warning**: default settings that are wrong for production, common mistakes, gotchas
+- **danger**: security risks, credential exposure, destructive operations
+
+Aim for 1–3 callouts per article. Don't overuse them — if everything is highlighted, nothing is.
+
 ## Sitemap — Manual, Must Update
 
 `public/sitemap.xml` is **manually maintained**. `@astrojs/sitemap` is intentionally not used (caused CI failures). When adding a blog post, copy an existing `<url>` block and update `<loc>` and `<lastmod>`.

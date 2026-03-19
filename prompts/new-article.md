@@ -33,7 +33,7 @@ Before writing, decide:
 1. **Slug**: lowercase, hyphen-separated, keyword-rich (e.g. `apache-spark-performance-tuning-tips` not `spark-post`)
 2. **Title**: specific and keyword-rich. Format: `"Topic — Raviteja"` or a punchy declarative title
 3. **Description**: 150–160 characters, include long-tail keywords (specific tools, use cases, numbers)
-4. **Tags**: 3–5 lowercase tags
+4. **Tags**: 3–5 tags chosen from the approved list in `CLAUDE.md` — use existing tags before inventing new ones
 5. **Target keyword**: the main phrase someone would search to find this article
 
 ---
@@ -50,6 +50,14 @@ Follow the writing style from `AGENTS.md` strictly:
 - Include a comparison table or code snippet if it adds genuine value
 - Do NOT write in a way that sounds AI-generated (no "It is worth noting", no "In conclusion", no perfect parallel lists)
 
+**Use callout blocks where they add real value** (see `CLAUDE.md` for full guidance):
+- `callout-tip` — actionable shortcut, "do this first" advice
+- `callout-info` — background context worth surfacing
+- `callout-warning` — production gotchas, wrong defaults, common mistakes
+- `callout-danger` — security risks, irreversible actions
+
+Aim for 1–3 callouts per article. Don't force them — only add where the content genuinely warrants it.
+
 Aim for 800–1500 words. Quality over length.
 
 ---
@@ -65,7 +73,7 @@ Use this frontmatter:
 title: "[Full title]"
 description: "[150–160 char description with long-tail keywords]"
 date: "[YYYY-MM-DD today's date]"
-tags: ["tag1", "tag2", "tag3"]
+tags: ["tag1", "tag2", "tag3"]   # use approved tags from CLAUDE.md
 image: "../../assets/blog/[slug]/[seo-descriptive-filename].png"
 draft: false
 ---

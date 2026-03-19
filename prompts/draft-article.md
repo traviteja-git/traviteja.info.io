@@ -49,6 +49,14 @@ Follow the writing style from `AGENTS.md` strictly:
 - H2 for main sections, H3 for subsections
 - No AI-sounding phrases
 
+**Use callout blocks where they add real value** (see `CLAUDE.md` for full guidance):
+- `callout-tip` — actionable shortcut, "do this first" advice
+- `callout-info` — background context worth surfacing
+- `callout-warning` — production gotchas, wrong defaults, common mistakes
+- `callout-danger` — security risks, irreversible actions
+
+Aim for 1–3 callouts per article. Only add where the content genuinely warrants it.
+
 ---
 
 ### Step 4 — Create as Draft
@@ -62,7 +70,7 @@ Set `draft: true` in frontmatter so it does not appear on the live site:
 title: "[Full title]"
 description: "[150–160 char description]"
 date: "[YYYY-MM-DD]"
-tags: ["tag1", "tag2", "tag3"]
+tags: ["tag1", "tag2", "tag3"]   # use approved tags from CLAUDE.md
 image: "../../assets/blog/[slug]/[seo-descriptive-filename].png"
 draft: true
 ---
