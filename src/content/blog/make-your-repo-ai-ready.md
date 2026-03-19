@@ -21,6 +21,8 @@ Once you clean things up, the suggestions get noticeably better. Same tools, sam
 
 ## First: understand what the AI actually sees
 
+![What the AI sees vs what's invisible — open file, nearby files, and instruction file are in context; everything else is not](/diagrams/ai-context-window.svg)
+
 When you trigger a suggestion, the AI reads your open file, a few nearby files, and any instruction file you've set up. That's it. Everything else is invisible.
 
 If that slice is a file called `utils.py` with untyped functions, you get generic code that could belong to any project anywhere. If it has typed functions, a clear module name, and a project briefing — you start getting code that actually fits your codebase.

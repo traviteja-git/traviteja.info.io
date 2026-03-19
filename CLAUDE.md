@@ -59,6 +59,63 @@ draft: false
 
 Hero images go in `src/assets/blog/[post-slug]/`. Use a descriptive SEO filename (e.g. `how-to-prompt-claude.png`), not `hero.png`. OG images must be 1200×630px and use absolute paths (BlogLayout handles the conversion).
 
+### Tags — use consistently
+
+Pick 3–5 tags from this list (add new ones sparingly):
+
+- **Topics**: `ai`, `data-engineering`, `airflow`, `spark`, `etl`, `pipelines`, `architecture`
+- **Tools**: `claude`, `chatgpt`, `github-copilot`, `cursor`, `docker`, `kubernetes`, `gcp`, `aws`, `azure`
+- **Skills**: `prompt-engineering`, `productivity`, `career`, `certification`, `community`
+- **Types**: `developer-tools`, `llm`, `agents`
+
+### Callout blocks — use in article body
+
+Available in any `.md` file via raw HTML:
+
+```html
+<div class="callout callout-tip">Practical tip or shortcut.</div>
+<div class="callout callout-info">Background context worth surfacing.</div>
+<div class="callout callout-warning">Production gotcha, wrong default, common mistake.</div>
+<div class="callout callout-danger">Security risk, data loss, irreversible action.</div>
+```
+
+Aim for 1–3 callouts per article. Only add where content genuinely warrants it.
+
+### Inline SVG diagrams — create when concepts need visual explanation
+
+SVG diagrams go in `public/diagrams/` and are referenced in markdown as:
+
+```markdown
+![Alt text describing the diagram](/diagrams/filename.svg)
+```
+
+**When to create a diagram** — ask: "Would a diagram help the reader grasp this faster than text alone?" Good candidates:
+- Multi-step flows or processes (pipelines, architectures, request/response)
+- Comparisons between options (tiers, modes, approaches)
+- Conceptual frameworks with named parts (the four-part prompt pattern)
+- Timelines showing progression or evolution
+- "What's visible vs invisible" spatial concepts
+
+**When NOT to create a diagram:**
+- Simple lists that read fine as text
+- When a screenshot already exists and covers it
+- Personal/narrative sections (career stories, opinions)
+
+**How to create SVGs:**
+- Canvas size: 900px wide, height as needed (300–480px typical)
+- Background: `#f8faff`, border: `#e4e4e7`, accent: `#2563eb`
+- Font: `system-ui, -apple-system, sans-serif` via `<style>` in `<defs>`
+- Save to `public/diagrams/[descriptive-name].svg`
+- Reference immediately after introducing the concept in the article
+- Aim for 1–2 diagrams per article — don't over-diagram
+
+Existing diagrams in `public/diagrams/` for reference:
+- `prompt-engineering-evolution.svg` — expanding bars timeline
+- `prompt-pattern-four-parts.svg` — four connected boxes with arrows
+- `ai-context-window.svg` — two-zone visible/invisible layout
+- `7-skills-map.svg` — three-column grouped cards
+- `claude-model-tiers.svg` — staircase tiers with badges
+
 ## Sitemap — Manual, Must Update
 
 `public/sitemap.xml` is **manually maintained**. `@astrojs/sitemap` is intentionally not used (caused CI failures). When adding a blog post, copy an existing `<url>` block and update `<loc>` and `<lastmod>`.

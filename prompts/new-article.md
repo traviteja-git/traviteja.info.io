@@ -52,6 +52,8 @@ Follow the writing style from `AGENTS.md` strictly:
 
 Aim for 800–1500 words. Quality over length.
 
+**Create SVG diagrams for concepts that benefit from visual explanation.** See `CLAUDE.md` for full guidance. Ask: would a diagram help the reader grasp this faster than text alone?
+
 ---
 
 ### Step 4 — Create the Markdown File

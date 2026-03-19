@@ -1,0 +1,63 @@
+<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="360" fill="#f8faff" rx="12"/>
+  <rect width="900" height="360" fill="none" stroke="#e4e4e7" stroke-width="1.5" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#111111">Claude model tiers — speed vs capability trade-off</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" fill="#6b7280">All three are Claude. Pick based on what the task actually needs.</text>
+
+  <!-- Axis labels -->
+  <text x="30" y="106" font-size="11" fill="#9ca3af">← faster</text>
+  <text x="30" y="232" font-size="11" fill="#9ca3af">slower →</text>
+  <line x1="28" y1="112" x2="28" y2="228" stroke="#e4e4e7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="28,108 24,118 32,118" fill="#e4e4e7"/>
+
+  <!-- HAIKU tier -->
+  <rect x="58" y="80" width="780" height="72" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" rx="10"/>
+  <rect x="58" y="80" width="6" height="72" fill="#60a5fa" rx="3"/>
+  <!-- Model name -->
+  <text x="84" y="107" font-size="15" font-weight="700" fill="#1d4ed8">Claude Haiku</text>
+  <text x="84" y="126" font-size="12" fill="#3b82f6">Fast  ·  lightweight  ·  lowest cost</text>
+  <!-- Use cases -->
+  <text x="290" y="107" font-size="12" fill="#374151">Best for: high-volume tasks, real-time responses, simple Q&amp;A</text>
+  <text x="290" y="126" font-size="11" fill="#6b7280">When speed matters more than depth — chatbots, classification, quick lookups</text>
+  <!-- Speed/capability badges -->
+  <rect x="730" y="90" width="96" height="20" fill="#bfdbfe" rx="10"/>
+  <text x="778" y="105" text-anchor="middle" font-size="10.5" fill="#1d4ed8">Speed  ★★★★★</text>
+  <rect x="730" y="116" width="96" height="20" fill="#eff6ff" rx="10"/>
+  <text x="778" y="131" text-anchor="middle" font-size="10.5" fill="#3b82f6">Depth   ★★★</text>
+
+  <!-- SONNET tier -->
+  <rect x="58" y="164" width="700" height="72" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5" rx="10"/>
+  <rect x="58" y="164" width="6" height="72" fill="#8b5cf6" rx="3"/>
+  <text x="84" y="191" font-size="15" font-weight="700" fill="#5b21b6">Claude Sonnet</text>
+  <text x="84" y="210" font-size="12" fill="#7c3aed">Balanced  ·  daily sweet spot  ·  most used</text>
+  <text x="310" y="191" font-size="12" fill="#374151">Best for: coding, analysis, writing, most real work</text>
+  <text x="310" y="210" font-size="11" fill="#6b7280">The default for Pro users — capable enough, fast enough, cost-effective</text>
+  <rect x="650" y="174" width="96" height="20" fill="#ddd6fe" rx="10"/>
+  <text x="698" y="189" text-anchor="middle" font-size="10.5" fill="#5b21b6">Speed  ★★★★</text>
+  <rect x="650" y="200" width="96" height="20" fill="#f5f3ff" rx="10"/>
+  <text x="698" y="215" text-anchor="middle" font-size="10.5" fill="#7c3aed">Depth  ★★★★</text>
+
+  <!-- OPUS tier -->
+  <rect x="58" y="248" width="580" height="72" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1.5" rx="10"/>
+  <rect x="58" y="248" width="6" height="72" fill="#ec4899" rx="3"/>
+  <text x="84" y="275" font-size="15" font-weight="700" fill="#9d174d">Claude Opus</text>
+  <text x="84" y="294" font-size="12" fill="#be185d">Most capable  ·  complex reasoning  ·  slower</text>
+  <text x="310" y="275" font-size="12" fill="#374151">Best for: multi-step reasoning, nuanced judgment</text>
+  <text x="310" y="294" font-size="11" fill="#6b7280">When getting it right matters more than getting it fast</text>
+  <rect x="530" y="258" width="96" height="20" fill="#fce7f3" rx="10"/>
+  <text x="578" y="273" text-anchor="middle" font-size="10.5" fill="#9d174d">Speed  ★★</text>
+  <rect x="530" y="284" width="96" height="20" fill="#fdf2f8" rx="10"/>
+  <text x="578" y="299" text-anchor="middle" font-size="10.5" fill="#be185d">Depth  ★★★★★</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="342" text-anchor="middle" font-size="11" fill="#9ca3af">Free tier: limited Haiku. Pro ($20/mo): Sonnet default + Opus on demand.</text>
+</svg>

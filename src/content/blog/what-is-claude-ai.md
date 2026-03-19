@@ -25,6 +25,8 @@ You access Claude at claude.ai. There's a free tier, and a Pro plan at $20/month
 
 ## Claude AI models explained
 
+![Claude model tiers — Haiku, Sonnet, and Opus compared on speed, capability, and best use cases](/diagrams/claude-model-tiers.svg)
+
 Anthropic names its models after the Claude version and a size tier. The current generation is Claude 4, but you'll also encounter the Claude 3.5 series depending on what plan you're on.
 
 - **Claude Haiku** — fast, cheap, good for high-volume tasks where speed matters more than depth
