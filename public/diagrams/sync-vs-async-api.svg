@@ -1,0 +1,113 @@
+<svg width="900" height="420" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="420" fill="#f8faff" rx="12"/>
+  <rect width="900" height="420" fill="none" stroke="#e4e4e7" stroke-width="1.5" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#111111">Sync vs Async API — Why it matters under real traffic</text>
+
+  <!-- ── LEFT PANEL: Sync ── -->
+  <rect x="28" y="54" width="404" height="348" fill="#fff1f2" stroke="#fca5a5" stroke-width="1.5" rx="10"/>
+  <text x="230" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#dc2626">Synchronous (blocks on every request)</text>
+
+  <!-- Client -->
+  <rect x="52" y="96" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+  <text x="102" y="121" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Client</text>
+
+  <!-- Arrow: Client → API -->
+  <line x1="154" y1="116" x2="198" y2="116" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="176" y="110" text-anchor="middle" font-size="10" fill="#6b7280">POST /process</text>
+
+  <!-- API -->
+  <rect x="200" y="96" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+  <text x="250" y="121" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">API</text>
+
+  <!-- Arrow: API → Heavy Job -->
+  <line x1="300" y1="116" x2="344" y2="116" stroke="#ef4444" stroke-width="1.8" marker-end="url(#arrow-red)"/>
+  <text x="322" y="110" text-anchor="middle" font-size="10" fill="#dc2626">blocks</text>
+
+  <!-- Heavy Job -->
+  <rect x="346" y="96" width="62" height="40" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" rx="7"/>
+  <text x="377" y="116" text-anchor="middle" font-size="11" font-weight="600" fill="#dc2626">Heavy</text>
+  <text x="377" y="130" text-anchor="middle" font-size="11" font-weight="600" fill="#dc2626">Job</text>
+
+  <!-- Waiting indicator -->
+  <line x1="102" y1="136" x2="102" y2="260" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="250" y1="136" x2="250" y2="260" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="52" y="200" width="300" height="30" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" rx="5"/>
+  <text x="202" y="220" text-anchor="middle" font-size="11" fill="#dc2626">Connection held open — job running...</text>
+
+  <!-- Return arrow -->
+  <line x1="344" y1="270" x2="154" y2="270" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="250" y="264" text-anchor="middle" font-size="10" fill="#6b7280">response (eventually)</text>
+
+  <!-- Problems list -->
+  <text x="52" y="308" font-size="11" font-weight="700" fill="#dc2626">Problems:</text>
+  <text x="52" y="326" font-size="11" fill="#374151">• Requests time out under load</text>
+  <text x="52" y="342" font-size="11" fill="#374151">• API and worker can't scale independently</text>
+  <text x="52" y="358" font-size="11" fill="#374151">• One slow job blocks all connections</text>
+  <text x="52" y="374" font-size="11" fill="#374151">• Dev works fine — prod breaks</text>
+
+  <!-- ── RIGHT PANEL: Async ── -->
+  <rect x="468" y="54" width="404" height="348" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" rx="10"/>
+  <text x="670" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">Asynchronous (returns immediately)</text>
+
+  <!-- Client -->
+  <rect x="488" y="96" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+  <text x="538" y="121" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Client</text>
+
+  <!-- Arrow: Client → API -->
+  <line x1="590" y1="116" x2="634" y2="116" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="612" y="110" text-anchor="middle" font-size="10" fill="#6b7280">POST /process</text>
+
+  <!-- API -->
+  <rect x="636" y="96" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+  <text x="686" y="121" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">API</text>
+
+  <!-- Arrow: API → Queue -->
+  <line x1="736" y1="116" x2="790" y2="116" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+  <text x="763" y="110" text-anchor="middle" font-size="10" fill="#16a34a">enqueue</text>
+
+  <!-- Queue -->
+  <rect x="792" y="96" width="56" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="7"/>
+  <text x="820" y="121" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">Queue</text>
+
+  <!-- Immediate return -->
+  <line x1="634" y1="155" x2="590" y2="155" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+  <text x="612" y="148" text-anchor="middle" font-size="10" fill="#16a34a">202 accepted</text>
+
+  <!-- Async worker -->
+  <line x1="820" y1="136" x2="820" y2="188" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="762" y="190" width="108" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="7"/>
+  <text x="816" y="210" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">Background</text>
+  <text x="816" y="224" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">Worker</text>
+
+  <!-- Worker processes independently -->
+  <rect x="488" y="200" width="258" height="30" fill="#dcfce7" stroke="#86efac" stroke-width="1" rx="5"/>
+  <text x="617" y="220" text-anchor="middle" font-size="11" fill="#16a34a">API free — worker runs independently</text>
+
+  <!-- Benefits list -->
+  <text x="488" y="308" font-size="11" font-weight="700" fill="#16a34a">Benefits:</text>
+  <text x="488" y="326" font-size="11" fill="#374151">• API latency stays low regardless of job size</text>
+  <text x="488" y="342" font-size="11" fill="#374151">• API and worker scale independently</text>
+  <text x="488" y="358" font-size="11" fill="#374151">• No connection timeouts under load</text>
+  <text x="488" y="374" font-size="11" fill="#374151">• Resilient to spikes</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="410" text-anchor="middle" font-size="11" fill="#94a3b8">The code change was small. The architectural shift was everything.</text>
+</svg>
