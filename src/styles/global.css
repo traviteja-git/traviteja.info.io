@@ -285,6 +285,33 @@ a:hover { color: var(--accent-hover); }
   display: block;
 }
 
+/* Dark mode: invert + hue-rotate keeps blue accents approximately intact
+   while flipping the light background to dark and dark text to light */
+[data-theme="dark"] .prose img[src$=".svg"] {
+  filter: invert(0.9) hue-rotate(180deg);
+}
+
+/* ── Copy button on code blocks ──────────────────────────────── */
+.copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  line-height: 1.5;
+}
+.prose pre:hover .copy-btn { opacity: 1; }
+.copy-btn.copied { color: #16a34a; border-color: #16a34a; }
+.copy-btn:focus-visible { opacity: 1; outline: 2px solid var(--accent); outline-offset: 2px; }
+
 /* ── Tag pills ───────────────────────────────────────────────── */
 .tag {
   display: inline-block;

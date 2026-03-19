@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — Page Not Found | Raviteja"
+  description="This page doesn't exist or was moved."
+>
+  <div style="text-align:center; padding:6rem 0 4rem;">
+    <p style="font-size:5rem; font-weight:700; color:var(--border); margin:0; line-height:1;">404</p>
+    <h1 style="font-size:1.5rem; font-weight:600; color:var(--fg); margin:1.25rem 0 0.5rem;">Page not found</h1>
+    <p style="color:var(--fg-muted); margin:0 0 2.5rem; font-size:0.95rem;">
+      This URL doesn't exist or was moved. Try one of these instead.
+    </p>
+    <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+      <a href="/"
+        style="background:var(--fg); color:var(--bg); border-radius:8px; padding:0.5rem 1.25rem; font-size:0.875rem; font-weight:500; text-decoration:none;"
+        class="hover:opacity-80 transition-opacity">
+        ← Home
+      </a>
+      <a href="/blog"
+        style="border:1px solid var(--border); color:var(--fg); border-radius:8px; padding:0.5rem 1.25rem; font-size:0.875rem; font-weight:500; text-decoration:none;"
+        class="hover:border-[var(--accent)] transition-colors">
+        Blog
+      </a>
+      <a href="/about"
+        style="border:1px solid var(--border); color:var(--fg-muted); border-radius:8px; padding:0.5rem 1.25rem; font-size:0.875rem; font-weight:500; text-decoration:none;"
+        class="hover:border-[var(--accent)] transition-colors">
+        About
+      </a>
+    </div>
+  </div>
+</BaseLayout>

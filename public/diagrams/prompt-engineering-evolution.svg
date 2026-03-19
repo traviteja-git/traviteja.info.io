@@ -2,16 +2,20 @@
   <defs>
     <style>
       text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .bg-fill { fill: #f8faff; }
+      .title-text { fill: #111111; }
+      .sub-text { fill: #6b7280; }
+      .muted-text { fill: #9ca3af; }
     </style>
   </defs>
 
   <!-- Background -->
-  <rect width="900" height="420" fill="#f8faff" rx="12"/>
+  <rect width="900" height="420" class="bg-fill" rx="12"/>
   <rect width="900" height="420" fill="none" stroke="#e4e4e7" stroke-width="1.5" rx="12"/>
 
   <!-- Title -->
-  <text x="450" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="#111111">From prompts to orchestration — how developer scope expanded</text>
-  <text x="450" y="62" text-anchor="middle" font-size="12" fill="#6b7280">Each stage adds to the one before it. The scope never shrinks.</text>
+  <text x="450" y="44" text-anchor="middle" font-size="16" font-weight="700" class="title-text">From prompts to orchestration — how developer scope expanded</text>
+  <text x="450" y="62" text-anchor="middle" font-size="12" class="sub-text">Each stage adds to the one before it. The scope never shrinks.</text>
 
   <!-- Year label column x=100 (right-align), bars start x=116 -->
 
@@ -42,5 +46,5 @@
   <!-- Expanding scope arrow on right -->
   <line x1="800" y1="395" x2="800" y2="78" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
   <polygon points="800,74 796,84 804,84" fill="#cbd5e1"/>
-  <text x="800" y="410" text-anchor="middle" font-size="10" fill="#9ca3af">expanding scope</text>
+  <text x="800" y="410" text-anchor="middle" font-size="10" class="muted-text">expanding scope</text>
 </svg>

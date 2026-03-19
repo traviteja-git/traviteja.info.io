@@ -2,16 +2,20 @@
   <defs>
     <style>
       text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .bg-fill { fill: #f8faff; }
+      .title-text { fill: #111111; }
+      .sub-text { fill: #6b7280; }
+      .muted-text { fill: #9ca3af; }
     </style>
   </defs>
 
   <!-- Background -->
-  <rect width="900" height="360" fill="#f8faff" rx="12"/>
+  <rect width="900" height="360" class="bg-fill" rx="12"/>
   <rect width="900" height="360" fill="none" stroke="#e4e4e7" stroke-width="1.5" rx="12"/>
 
   <!-- Title -->
-  <text x="450" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#111111">Claude model tiers — speed vs capability trade-off</text>
-  <text x="450" y="58" text-anchor="middle" font-size="12" fill="#6b7280">All three are Claude. Pick based on what the task actually needs.</text>
+  <text x="450" y="40" text-anchor="middle" font-size="16" font-weight="700" class="title-text">Claude model tiers — speed vs capability trade-off</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" class="sub-text">All three are Claude. Pick based on what the task actually needs.</text>
 
   <!-- Axis labels -->
   <text x="30" y="106" font-size="11" fill="#9ca3af">← faster</text>
@@ -59,5 +63,5 @@
   <text x="578" y="299" text-anchor="middle" font-size="10.5" fill="#be185d">Depth  ★★★★★</text>
 
   <!-- Bottom note -->
-  <text x="450" y="342" text-anchor="middle" font-size="11" fill="#9ca3af">Free tier: limited Haiku. Pro ($20/mo): Sonnet default + Opus on demand.</text>
+  <text x="450" y="342" text-anchor="middle" font-size="11" class="muted-text">Free tier: limited Haiku. Pro ($20/mo): Sonnet default + Opus on demand.</text>
 </svg>
