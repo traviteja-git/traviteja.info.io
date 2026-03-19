@@ -41,53 +41,238 @@ a {
 }
 a:hover { color: var(--accent-hover); }
 
-/* ── Prose (blog articles) — Medium-inspired typography ─────── */
+/* ── Prose (blog articles) ───────────────────────────────────── */
 .prose {
   font-size: 1.125rem; /* 18px */
-  line-height: 1.6;
+  line-height: 1.75;
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Lead paragraph — first paragraph slightly larger */
+.prose > p:first-of-type {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: var(--fg);
+}
+
+/* Headings — clear visual hierarchy between sections */
 .prose h1, .prose h2, .prose h3, .prose h4 {
   color: var(--fg);
-  line-height: 1.2;
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
+  line-height: 1.25;
   font-weight: 700;
+  margin-bottom: 0.75rem;
 }
-.prose h1 { font-size: 2rem; }
-.prose h2 { font-size: 1.5rem; }
-.prose h3 { font-size: 1.2rem; }
+.prose h1 { font-size: 2rem;   margin-top: 2.5rem; }
 
-.prose p   { color: var(--fg); margin-bottom: 1.5rem; }
-.prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
-.prose li  { margin-bottom: 0.5rem; color: var(--fg); line-height: 1.6; }
+/* H2 — main section break: larger gap above, accent underline */
+.prose h2 {
+  font-size: 1.4rem;
+  margin-top: 3.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--border);
+}
 
+/* H3 — subsection: accent left bar */
+.prose h3 {
+  font-size: 1.15rem;
+  margin-top: 2.5rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--accent);
+}
+
+.prose h4 { font-size: 1rem; margin-top: 2rem; }
+
+.prose p { color: var(--fg); margin-bottom: 1.5rem; }
+
+/* Lists — restore bullets/numbers stripped by Tailwind preflight */
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.prose li {
+  margin-bottom: 0.6rem;
+  color: var(--fg);
+  line-height: 1.7;
+  padding-left: 0.25rem;
+}
+
+/* Nested lists */
+.prose ul ul, .prose ol ol, .prose ul ol, .prose ol ul {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+.prose ul ul  { list-style-type: circle; }
+
+/* Horizontal rule — section divider */
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* Images */
+.prose img {
+  width: 100%;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+}
+
+/* Inline code */
 .prose code {
   background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 0.1rem 0.4rem;
-  font-size: 0.875rem;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.9rem;
   font-family: "Fira Code", "JetBrains Mono", monospace;
 }
+
+/* Code blocks — let Shiki control background/colours, we handle layout */
 .prose pre {
-  background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 1.25rem;
+  padding: 1.25rem 1.5rem;
   overflow-x: auto;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
 }
-.prose pre code { background: none; border: none; padding: 0; }
+.prose pre code { background: none; border: none; padding: 0; font-size: inherit; }
 
+/* Shiki dual-theme: swap colours when dark mode active */
+[data-theme="dark"] .prose pre {
+  background-color: var(--shiki-dark-bg) !important;
+}
+[data-theme="dark"] .prose pre span {
+  color: var(--shiki-dark) !important;
+}
+
+/* Anchor links on headings */
+.prose h2 .heading-anchor,
+.prose h3 .heading-anchor {
+  opacity: 0;
+  margin-left: 0.4rem;
+  color: var(--fg-muted);
+  font-weight: 400;
+  font-size: 0.8em;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.prose h2:hover .heading-anchor,
+.prose h3:hover .heading-anchor {
+  opacity: 1;
+}
+
+/* Blockquote */
 .prose blockquote {
   border-left: 3px solid var(--accent);
-  padding-left: 1rem;
+  background: var(--bg-subtle);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1.25rem;
   color: var(--fg-muted);
-  margin: 1.5rem 0;
+  margin: 1.75rem 0;
   font-style: italic;
 }
+
+/* Strong */
+.prose strong { color: var(--fg); font-weight: 700; }
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+.prose th, .prose td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+}
+.prose th {
+  background: var(--bg-subtle);
+  font-weight: 600;
+  color: var(--fg);
+}
+.prose tr:nth-child(even) { background: var(--bg-subtle); }
+
 .prose a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── Callout blocks ──────────────────────────────────────────── */
+/*
+  Usage in any .md article (HTML is valid in Astro markdown):
+
+  <div class="callout callout-tip">
+  Your tip text here. Markdown **bold** and `code` work inside.
+  </div>
+
+  Variants: callout-tip | callout-warning | callout-info | callout-danger
+*/
+
+.callout {
+  border-left: 4px solid var(--border);
+  border-radius: 0 8px 8px 0;
+  padding: 0.9rem 1.25rem 0.9rem 1.1rem;
+  margin: 2rem 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Label row auto-generated via ::before */
+.callout::before {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin-bottom: 0.45rem;
+}
+
+/* Tip — teal */
+.callout-tip {
+  border-left-color: #0d9488;
+  background: rgba(13, 148, 136, 0.07);
+}
+.callout-tip::before   { content: "TIP";     color: #0d9488; }
+
+/* Info — blue */
+.callout-info {
+  border-left-color: var(--accent);
+  background: rgba(37, 99, 235, 0.06);
+}
+.callout-info::before  { content: "NOTE";    color: var(--accent); }
+
+/* Warning — amber */
+.callout-warning {
+  border-left-color: #d97706;
+  background: rgba(217, 119, 6, 0.07);
+}
+.callout-warning::before { content: "WARNING"; color: #d97706; }
+
+/* Danger — red */
+.callout-danger {
+  border-left-color: #dc2626;
+  background: rgba(220, 38, 38, 0.07);
+}
+.callout-danger::before { content: "CAUTION"; color: #dc2626; }
+
+/* Dark mode — bump opacity slightly */
+[data-theme="dark"] .callout-tip     { background: rgba(13, 148, 136, 0.12); }
+[data-theme="dark"] .callout-info    { background: rgba(96, 165, 250, 0.1);  }
+[data-theme="dark"] .callout-warning { background: rgba(217, 119, 6, 0.12);  }
+[data-theme="dark"] .callout-danger  { background: rgba(220, 38, 38, 0.12);  }
+
+/* Callout text inherits prose but resets margin on last child */
+.callout p:last-child { margin-bottom: 0; }
 
 /* ── Tag pills ───────────────────────────────────────────────── */
 .tag {

@@ -84,6 +84,10 @@ When the system is under load, or when a conversation has been running long and 
 
 Pro users operate on something like a rolling five-hour window. I don't get a "you've used X out of Y" indicator. I get cut off and told to wait. Anthropic knows exactly how much I've used. The opacity feels like a choice, not a technical constraint — and that bothers me more than the limit itself.
 
+<div class="callout callout-warning">
+If you rely on Claude for time-sensitive work, be aware: there's no usage meter and no way to buy more capacity mid-session. Budget your heavy usage earlier in the day and keep a backup option ready for when the limit hits at the wrong moment.
+</div>
+
 Worth knowing before you commit. If you need guaranteed availability for time-critical work, factor it in.
 
 ## Who should use it

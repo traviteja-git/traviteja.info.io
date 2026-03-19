@@ -60,6 +60,9 @@ const breadcrumbLD = JSON.stringify({
   <!-- JSON-LD: Breadcrumb -->
   <script type="application/ld+json" set:html={breadcrumbLD} slot="head" />
 
+  <!-- Reading progress bar -->
+  <div id="reading-progress" style="position:fixed; top:0; left:0; height:2px; width:0%; background:var(--accent); z-index:999; transition:width 0.08s linear;" aria-hidden="true"></div>
+
   <!-- Back link -->
   <a href="/blog" title="All articles" style="color:var(--fg-muted); font-size:0.875rem;" class="inline-flex items-center gap-1 hover:opacity-70 transition-opacity mb-8">
     ← All articles
@@ -155,3 +158,29 @@ const breadcrumbLD = JSON.stringify({
     </a>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  // Reading progress bar
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    window.addEventListener('scroll', function () {
+      var scrollTop = document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      bar.style.width = (docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0) + '%';
+    }, { passive: true });
+  })();
+
+  // Anchor links on H2 / H3
+  (function () {
+    document.querySelectorAll('.prose h2, .prose h3').forEach(function (heading) {
+      if (!heading.id) return;
+      var a = document.createElement('a');
+      a.href = '#' + heading.id;
+      a.className = 'heading-anchor';
+      a.setAttribute('aria-hidden', 'true');
+      a.textContent = ' #';
+      heading.appendChild(a);
+    });
+  })();
+</script>

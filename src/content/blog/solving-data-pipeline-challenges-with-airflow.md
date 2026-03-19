@@ -66,6 +66,10 @@ Apart from the CDP use case above, Airflow solves a wide variety of problems:
 
 - **Operational Overhead ⏳** — Maintaining an Airflow deployment, including managing the database and worker nodes, can be complex and require significant operational effort.
 
+<div class="callout callout-warning">
+If you're evaluating Airflow for a small team with straightforward scheduling needs, the operational overhead can outweigh the benefits. Managed options like AWS MWAA, Google Cloud Composer, or Astronomer exist for exactly this reason — they're worth considering before committing to self-hosting.
+</div>
+
 - **Dependency Management 🧩** — Handling Python dependencies across different tasks can be challenging, often requiring careful management of virtual environments or containers.
 
 ## Conclusion
