@@ -149,12 +149,11 @@ const articleLD = type === 'article' ? JSON.stringify({
     <!-- Additional page-level JSON-LD (e.g. breadcrumbs from BlogLayout) -->
     <slot name="head" />
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3842671548593949" crossorigin="anonymous"></script>
-
     <!-- Preconnect for external resources -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
     <!-- Favicon & manifest -->
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
@@ -186,6 +185,17 @@ const articleLD = type === 'article' ? JSON.stringify({
         const theme = stored ?? (prefersDark ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
       })();
+    </script>
+
+    <!-- Google AdSense — deferred until after page load to avoid render contention -->
+    <script is:inline>
+      window.addEventListener('load', function () {
+        var s = document.createElement('script');
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3842671548593949';
+        s.async = true;
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      });
     </script>
   </head>
   <body>

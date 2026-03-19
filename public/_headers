@@ -1,0 +1,20 @@
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000
+
+/diagrams/*
+  Cache-Control: public, max-age=31536000
+
+/avatar.jpg
+  Cache-Control: public, max-age=31536000
+
+/og-default.png
+  Cache-Control: public, max-age=31536000
+
+/favicon.png
+  Cache-Control: public, max-age=31536000
+
+/manifest.json
+  Cache-Control: public, max-age=86400
