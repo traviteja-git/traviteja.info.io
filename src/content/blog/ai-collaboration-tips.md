@@ -11,7 +11,7 @@ I copied a PySpark transformation out of Claude's response straight into a pipel
 
 It worked. Tests passed. The job ran.
 
-Three weeks later, a colleague flagged it in a performance review. The transformation used a wide operation where a narrow one was enough. More shuffle, slower execution, higher cost. Nothing broke. It just ran worse than it should have.
+I noticed it while analyzing performance — tasks were taking longer than expected. The transformation used a wide operation where a narrow one was enough. More shuffle, slower execution, higher cost. Nothing broke. It just ran worse than it should have.
 
 The mistake wasn't the code. It was skipping the review because it *looked* right. Once output compiles and reads clean, the temptation to move on is real. That's the actual risk.
 
