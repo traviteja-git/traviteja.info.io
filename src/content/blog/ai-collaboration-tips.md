@@ -15,7 +15,7 @@ Three weeks later, a colleague flagged it in a performance review. The transform
 
 The mistake wasn't the code. It was skipping the review because it *looked* right. Once output compiles and reads clean, the temptation to move on is real. That's the actual risk.
 
----
+![AI Collaboration](../../assets/blog/ai-collaboration-tips/ai-collaboration-tips.jpg)
 
 ## AI removes effort, not thinking
 
