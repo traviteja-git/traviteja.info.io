@@ -158,4 +158,4 @@ If you like the diagrams, all designs (GIFs, images, and draw.io templates) are 
 
 **Repo:** [https://github.com/raviteja-git/Airflow/tree/main/Airflow%20Architecture](https://github.com/raviteja10096/Airflow/tree/main/Airflow_Architecture)
 
-Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/raviteja0096/) if you have any questions or want to learn more about Airflow!
+Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/traviteja/) if you have any questions or want to learn more about Airflow!

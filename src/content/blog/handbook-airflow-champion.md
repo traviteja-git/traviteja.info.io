@@ -85,4 +85,4 @@ Once your application is reviewed and selected for a cohort you'll receive a mai
 
 As a Champion member you'll enjoy exclusive benefits including complimentary certifications, access to Airflow contributors, beta access to new features, academy courses and certifications — and of course, swag 🎁
 
-Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/raviteja0096/) if you have any questions or want to learn more about the program!
+Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/traviteja/) if you have any questions or want to learn more about the program!
