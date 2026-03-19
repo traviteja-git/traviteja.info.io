@@ -7,7 +7,7 @@ image: "../../assets/blog/ai-collaboration-tips/ai-collaboration-tips.jpg"
 draft: false
 ---
 
-I copied a PySpark transformation out of Claude's response straight into a pipeline last year.
+I copied a PySpark transformation out of Claude's response straight into a pipeline last month  .
 
 It worked. Tests passed. The job ran.
 
@@ -24,6 +24,8 @@ Tasks that used to take hours now take minutes. Debugging a DAG, writing a trans
 AI is excellent at the first draft. The generic case. What it doesn't know is your specific pipeline, your data distribution, your cost constraints, or why your team made a particular architectural call two years ago.
 
 I'd say AI handles about 60% of the effort on most technical tasks. The remaining 40% — judgment, trade-offs, production-readiness — is still on you. And that 40% has gotten harder, not easier, because the code around it looks confident. AI-generated code doesn't come with hedges or "TODO: revisit this." It just looks done. That's the part nobody tells you about.
+
+<div class="callout callout-info">AI compresses the first 60% of effort — research, boilerplate, first drafts. The remaining 40% is judgment: does this fit your system, your constraints, your production reality? That part doesn't shrink.</div>
 
 ---
 
@@ -48,6 +50,8 @@ Not because Claude is untrustworthy. Because AI tools aren't the right place to 
 What I do instead: abstract before pasting. Replace real values with mock data. Describe the schema instead of sharing actual records. Turn it into a type-of-problem question rather than a here-is-my-actual-system question.
 
 Cleaning a prompt takes a few minutes. And it has a side effect — it usually forces you to understand what you're actually asking. If you can describe the problem without the specific data, you probably understand it better than you did when you started.
+
+<div class="callout callout-warning">Never paste raw production data, client identifiers, or internal system details into an AI tool. Abstract first — replace real values with mock data, describe schemas instead of sharing records. Every prompt is a potential data surface.</div>
 
 ---
 
@@ -82,6 +86,10 @@ def process_data(payload: RequestModel):
 Accept the request, push to a queue, return immediately. The actual processing happens async, separate from the API layer. Latency dropped, timeouts went away, and now the two concerns scale independently.
 
 AI gave me something that was syntactically correct, ran fine in dev, and would have caused real problems in production. It optimized for "does this work?" I needed "will this survive traffic?"
+
+![Sync vs async API architecture comparison](/diagrams/sync-vs-async-api.svg)
+
+<div class="callout callout-danger">AI-generated code optimises for correctness, not production-readiness. It won't flag that your endpoint will time out under real traffic, or that two concerns shouldn't share a process boundary. That review is on you.</div>
 
 That's the gap. AI solves for correctness. Production-readiness is still your problem.
 
