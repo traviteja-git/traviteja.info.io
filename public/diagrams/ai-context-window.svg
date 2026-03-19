@@ -1,0 +1,75 @@
+<svg width="900" height="420" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="420" fill="#f8faff" rx="12"/>
+  <rect width="900" height="420" fill="none" stroke="#e4e4e7" stroke-width="1.5" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#111111">What the AI actually sees when you trigger a suggestion</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" fill="#6b7280">Everything outside the context window is invisible — the suggestions reflect that.</text>
+
+  <!-- Left panel: IN CONTEXT (visible) -->
+  <rect x="28" y="74" width="370" height="310" fill="#f0fdf4" stroke="#22c55e" stroke-width="2" rx="10"/>
+  <rect x="28" y="74" width="370" height="40" fill="#16a34a" rx="10"/>
+  <rect x="28" y="100" width="370" height="14" fill="#16a34a"/>
+  <text x="213" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">✓  IN CONTEXT  —  AI can see this</text>
+
+  <!-- File items in left panel -->
+  <!-- Item 1: Open file -->
+  <rect x="50" y="130" width="326" height="52" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="7"/>
+  <rect x="50" y="130" width="6" height="52" fill="#16a34a" rx="3"/>
+  <text x="68" y="151" font-size="12" font-weight="700" fill="#15803d">Your open file</text>
+  <text x="68" y="168" font-size="11" fill="#6b7280">streak_calculator.py — typed, focused, named clearly</text>
+
+  <!-- Item 2: Nearby files -->
+  <rect x="50" y="194" width="326" height="52" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="7"/>
+  <rect x="50" y="194" width="6" height="52" fill="#16a34a" rx="3"/>
+  <text x="68" y="215" font-size="12" font-weight="700" fill="#15803d">Nearby open files</text>
+  <text x="68" y="232" font-size="11" fill="#6b7280">habit_service.py, models.py — same module, same job</text>
+
+  <!-- Item 3: Instruction file -->
+  <rect x="50" y="258" width="326" height="52" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="7"/>
+  <rect x="50" y="258" width="6" height="52" fill="#16a34a" rx="3"/>
+  <text x="68" y="279" font-size="12" font-weight="700" fill="#15803d">Instruction file</text>
+  <text x="68" y="296" font-size="11" fill="#6b7280">CLAUDE.md / .cursorrules — rules, stack, constraints</text>
+
+  <!-- Item 4: README -->
+  <rect x="50" y="322" width="326" height="46" fill="#ffffff" stroke="#86efac" stroke-width="1.5" rx="7"/>
+  <rect x="50" y="322" width="6" height="46" fill="#86efac" rx="3"/>
+  <text x="68" y="341" font-size="12" font-weight="700" fill="#15803d">README / docs</text>
+  <text x="68" y="358" font-size="11" fill="#6b7280">If indexed — architecture decisions, business rules</text>
+
+  <!-- Right panel: OUT OF CONTEXT (invisible) -->
+  <rect x="422" y="74" width="450" height="310" fill="#fafafa" stroke="#e4e4e7" stroke-width="2" rx="10"/>
+  <rect x="422" y="74" width="450" height="40" fill="#9ca3af" rx="10"/>
+  <rect x="422" y="100" width="450" height="14" fill="#9ca3af"/>
+  <text x="647" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">✗  INVISIBLE  —  AI cannot see this</text>
+
+  <!-- Invisible items -->
+  <rect x="444" y="130" width="406" height="42" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="7"/>
+  <text x="464" y="150" font-size="12" fill="#9ca3af">All other files in the repo</text>
+  <text x="464" y="165" font-size="10.5" fill="#d1d5db">utils.py with 600 lines? Invisible. Other modules? Invisible.</text>
+
+  <rect x="444" y="184" width="406" height="42" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="7"/>
+  <text x="464" y="204" font-size="12" fill="#9ca3af">Git history and past decisions</text>
+  <text x="464" y="219" font-size="10.5" fill="#d1d5db">Why you chose async sessions, why that module was split</text>
+
+  <rect x="444" y="238" width="406" height="42" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="7"/>
+  <text x="464" y="258" font-size="12" fill="#9ca3af">Business rules not in code</text>
+  <text x="464" y="273" font-size="10.5" fill="#d1d5db">"Streak resets on any missed day" — if it's not written, it's unknown</text>
+
+  <rect x="444" y="292" width="406" height="42" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="7"/>
+  <text x="464" y="312" font-size="12" fill="#9ca3af">Deployment config, env vars, infra</text>
+  <text x="464" y="327" font-size="10.5" fill="#d1d5db">Prod constraints, cost limits, SLA requirements</text>
+
+  <rect x="444" y="346" width="406" height="28" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="7"/>
+  <text x="464" y="364" font-size="11" fill="#9ca3af">Anything not in an open file or instruction document</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="402" text-anchor="middle" font-size="11" fill="#6b7280">The fix: write it down. Instruction files, typed functions, documented decisions — that's what closes the gap.</text>
+</svg>

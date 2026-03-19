@@ -274,6 +274,17 @@ a:hover { color: var(--accent-hover); }
 /* Callout text inherits prose but resets margin on last child */
 .callout p:last-child { margin-bottom: 0; }
 
+/* ── Inline diagrams (SVG illustrations in prose) ───────────── */
+.prose img[src$=".svg"] {
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  margin: 2rem auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ── Tag pills ───────────────────────────────────────────────── */
 .tag {
   display: inline-block;

@@ -15,6 +15,8 @@ The people getting real leverage from these tools aren't using better prompts. T
 
 ![7 Skills to Master AI in 2026](../../assets/blog/ai-agents/7-skills-to-master-Ai.jpg)
 
+![7 AI skills grouped by where they apply — Setup, Interaction, and Discipline — with key rules for each](/diagrams/7-skills-map.svg)
+
 ---
 
 ## 1. Stay Updated With AI News — But Stay Selective

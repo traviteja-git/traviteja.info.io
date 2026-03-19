@@ -73,6 +73,8 @@ The four-part pattern: <strong>Role → Context → Goal → Return format.</str
 
 ## How to prompt Claude: the four-part pattern
 
+![The four-part prompt pattern: Role, Context, Goal, Return Format — with descriptions and examples for each](/diagrams/prompt-pattern-four-parts.svg)
+
 ### 1. Set the role
 
 Start with "You are a [specific expert]." Not vague — specific.

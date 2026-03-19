@@ -49,6 +49,8 @@ Follow the writing style from `AGENTS.md` strictly:
 - H2 for main sections, H3 for subsections
 - No AI-sounding phrases
 
+**Create SVG diagrams for concepts that benefit from visual explanation.** See `CLAUDE.md` for full guidance. Ask: would a diagram help the reader grasp this faster than text alone?
+
 ---
 
 ### Step 4 — Create as Draft

@@ -89,6 +89,8 @@ What a developer manages at this stage looks less like "using an AI tool" and mo
 
 ## What This Actually Means
 
+![How developer scope expanded from 2023 to 2026 — from asking questions to orchestrating multi-agent systems](/diagrams/prompt-engineering-evolution.svg)
+
 Draw a line from where we started to where we are now:
 
 - **2023:** Ask ChatGPT instead of Stack Overflow.

@@ -1,0 +1,75 @@
+<svg width="900" height="300" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="300" fill="#f8faff" rx="12"/>
+  <rect width="900" height="300" fill="none" stroke="#e4e4e7" stroke-width="1.5" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#111111">The four-part prompt pattern</text>
+  <text x="450" y="58" text-anchor="middle" font-size="12" fill="#6b7280">Every prompt that gets a useful first response has all four of these.</text>
+
+  <!-- Box dimensions: w=168, h=148, gap=24 -->
+  <!-- Box 1: x=28 -->
+  <rect x="28" y="78" width="168" height="148" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="10"/>
+  <rect x="28" y="78" width="168" height="38" fill="#2563eb" rx="10"/>
+  <rect x="28" y="100" width="168" height="16" fill="#2563eb"/>
+  <text x="112" y="103" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">01  ROLE</text>
+  <text x="112" y="138" text-anchor="middle" font-size="12" font-weight="600" fill="#1d4ed8">Set the expert context</text>
+  <text x="112" y="158" text-anchor="middle" font-size="11" fill="#6b7280">"You are a senior</text>
+  <text x="112" y="173" text-anchor="middle" font-size="11" fill="#6b7280">Python data engineer"</text>
+  <text x="112" y="196" text-anchor="middle" font-size="10.5" fill="#94a3b8">Shifts vocabulary,</text>
+  <text x="112" y="210" text-anchor="middle" font-size="10.5" fill="#94a3b8">reasoning &amp; assumptions</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="198" y1="152" x2="218" y2="152" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Box 2: x=220 -->
+  <rect x="220" y="78" width="168" height="148" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="10"/>
+  <rect x="220" y="78" width="168" height="38" fill="#2563eb" rx="10"/>
+  <rect x="220" y="100" width="168" height="16" fill="#2563eb"/>
+  <text x="304" y="103" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">02  CONTEXT</text>
+  <text x="304" y="138" text-anchor="middle" font-size="12" font-weight="600" fill="#1d4ed8">What you're working with</text>
+  <text x="304" y="158" text-anchor="middle" font-size="11" fill="#6b7280">Data shape, scale,</text>
+  <text x="304" y="173" text-anchor="middle" font-size="11" fill="#6b7280">environment, constraints</text>
+  <text x="304" y="196" text-anchor="middle" font-size="10.5" fill="#94a3b8">Every guess Claude makes</text>
+  <text x="304" y="210" text-anchor="middle" font-size="10.5" fill="#94a3b8">is a chance to go wrong</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="390" y1="152" x2="410" y2="152" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Box 3: x=412 -->
+  <rect x="412" y="78" width="168" height="148" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="10"/>
+  <rect x="412" y="78" width="168" height="38" fill="#2563eb" rx="10"/>
+  <rect x="412" y="100" width="168" height="16" fill="#2563eb"/>
+  <text x="496" y="103" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">03  GOAL</text>
+  <text x="496" y="138" text-anchor="middle" font-size="12" font-weight="600" fill="#1d4ed8">Exactly what needs doing</text>
+  <text x="496" y="158" text-anchor="middle" font-size="11" fill="#6b7280">Steps, tech stack,</text>
+  <text x="496" y="173" text-anchor="middle" font-size="11" fill="#6b7280">constraints, what's off-limits</text>
+  <text x="496" y="196" text-anchor="middle" font-size="10.5" fill="#94a3b8">Constraints do</text>
+  <text x="496" y="210" text-anchor="middle" font-size="10.5" fill="#94a3b8">the most work here</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="582" y1="152" x2="602" y2="152" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Box 4: x=604 -->
+  <rect x="604" y="78" width="168" height="148" fill="#ffffff" stroke="#2563eb" stroke-width="2" rx="10"/>
+  <rect x="604" y="78" width="168" height="38" fill="#2563eb" rx="10"/>
+  <rect x="604" y="100" width="168" height="16" fill="#2563eb"/>
+  <text x="688" y="103" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">04  RETURN FORMAT</text>
+  <text x="688" y="138" text-anchor="middle" font-size="12" font-weight="600" fill="#1d4ed8">What to give you back</text>
+  <text x="688" y="158" text-anchor="middle" font-size="11" fill="#6b7280">"Full code + brief</text>
+  <text x="688" y="173" text-anchor="middle" font-size="11" fill="#6b7280">optimization notes"</text>
+  <text x="688" y="196" text-anchor="middle" font-size="10.5" fill="#94a3b8">Without this, Claude</text>
+  <text x="688" y="210" text-anchor="middle" font-size="10.5" fill="#94a3b8">decides the format</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="268" text-anchor="middle" font-size="11" fill="#94a3b8">Missing any one piece? That's usually where the answer goes wrong.</text>
+</svg>
