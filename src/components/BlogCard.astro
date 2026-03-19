@@ -33,12 +33,12 @@ const formatted = new Date(date).toLocaleDateString('en-US', { year: 'numeric', 
 
     <!-- Thumbnail -->
     {image && (
-      <div style="flex-shrink:0; width:120px; height:63px; border-radius:6px; overflow:hidden; border:1px solid var(--border);" class="sm:w-[200px] sm:h-[105px]">
+      <div style="flex-shrink:0; width:160px; height:90px; border-radius:6px; overflow:hidden; border:1px solid var(--border);" class="sm:w-[280px] sm:h-[158px]">
         <Image
           src={image}
           alt={title}
-          width={200}
-          height={105}
+          width={280}
+          height={158}
           format="webp"
           quality={80}
           loading="lazy"
