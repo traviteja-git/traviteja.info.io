@@ -24,6 +24,10 @@ With all the knowledge I gained over 4–5 years, I was able to directly crack t
 - **Learning Path:** [https://academy.astronomer.io/path/airflow-101](https://academy.astronomer.io/path/airflow-101)
 - **Certificate:** [Credly Badge](https://www.credly.com/badges/cd274021-dae6-4d88-a954-142270d6b231/public_url)
 
+<div class="callout callout-tip">
+If you're just getting started, the Astronomer Academy Airflow 101 path is genuinely good. It covers the fundamentals without assuming you already know the internals. Work through it once before attempting the certification exam.
+</div>
+
 ## My Contribution to the Airflow Community
 
 I started helping different teams within my organisation and on open source platforms with troubleshooting Airflow issues and proposing workflow enhancements, fostering a collaborative and efficient environment. This helped me gain more knowledge and solve different use cases.

@@ -8,4 +8,13 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark:  'github-dark-dimmed',
+      },
+      wrap: false,
+    },
+  },
 });

@@ -146,6 +146,10 @@ Also worth committing: `.vscode/extensions.json`. Every new teammate gets a one-
 
 Copilot off on `.env` is worth doing. The model doesn't need to be completing your secrets file, and keeping it off there avoids a whole category of accidental exposure.
 
+<div class="callout callout-warning">
+Never paste real credentials, API keys, or connection strings into an AI tool — even to ask a quick question. Replace them with placeholders first. One careless paste in a shared or logged session is all it takes.
+</div>
+
 ---
 
 ## 5. Use the README for decisions, not just setup
@@ -175,6 +179,10 @@ Fifteen minutes. Genuinely worth it.
 ## Starting from scratch
 
 If none of this exists in your repo yet, don't try to do it all at once. The instruction file alone is worth starting with — it takes 30 minutes and immediately changes suggestions across the entire codebase. After that, add types to whichever functions your AI tool opens most often, and drop an architecture section in the README.
+
+<div class="callout callout-tip">
+Start with just the instruction file. Thirty minutes, one file, immediate improvement across every suggestion in the repo. Add the rest incrementally — don't try to do everything at once or nothing gets done.
+</div>
 
 That's the 80% right there.
 

@@ -174,6 +174,10 @@ user: "${AIRFLOW_UID:-50000}:0"
 
 Run these commands in your local environment:
 
+<div class="callout callout-tip">
+Run these before <code>docker compose up</code> — skipping this step is the most common reason volume mounts fail on Linux. On macOS, UID mismatch errors are less common but it's still worth doing.
+</div>
+
 ```bash
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 echo -e "AIRFLOW_GID=0" >> .env
@@ -220,6 +224,10 @@ Once all containers are up and running, open [localhost:8080](http://localhost:8
 
 - **Username:** `airflow`
 - **Password:** `airflow`
+
+<div class="callout callout-warning">
+These are the default demo credentials. Fine for local development, but change them before exposing Airflow outside localhost — the <code>AIRFLOW__WEBSERVER__SECRET_KEY</code> and admin password should both be set before any real deployment.
+</div>
 
 After logging in you can see your DAGs listed in the UI.
 

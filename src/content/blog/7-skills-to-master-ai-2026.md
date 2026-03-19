@@ -27,6 +27,10 @@ Pick two or three creators who teach with concrete examples. Subscribe to one ne
 
 One article, one action. That's the compounding that matters. The developer who runs one experiment a week from what they read will outpace the one who just stays "informed."
 
+<div class="callout callout-tip">
+Pick one thing from this article and try it today — not this week, today. The gap between "I'll apply this soon" and "I tried this and it didn't work" is where most skill-building gets lost.
+</div>
+
 ---
 
 ## 2. Pick One Tool and Master It
@@ -108,6 +112,10 @@ This is the one that separates developers who get consistent results from those 
 Before any task, split it explicitly: what does AI do, what do you do? Most tasks have a natural split. AI handles the 80% — the execution, the formatting, the first drafts, the boilerplate, the research synthesis. You own the 20% — the strategy, the judgment calls, the voice, the final edit, and most importantly, spotting when it's wrong.
 
 That last part is critical. **Only use AI where you're the expert.** If you can't spot the mistake, don't delegate it. AI is confidently wrong with the same tone it uses when it's confidently right. The only way to catch the errors is to know the domain well enough to see them.
+
+<div class="callout callout-warning">
+Don't use AI to learn a domain you don't already understand. It will produce plausible-sounding output that you have no way to verify. Use it to accelerate work in areas where you already know what "correct" looks like.
+</div>
 
 AI is a mirror. It reflects what you bring to it. If you bring shallow questions, vague context, and passive acceptance of outputs, you'll get shallow results. If you bring deep expertise, specific context, and critical review, you'll get something that actually extends what you're capable of.
 

@@ -79,7 +79,9 @@ With CeleryExecutor, workers are long-running processes sitting on the queue. Th
 
 With KubernetesExecutor, each worker is a pod that exists only for one task. Airflow gets the DAG files in via a shared volume, a git-sync sidecar, or by baking them into the image.
 
-One thing to set up early: a remote log backend. Airflow defaults to local disk, which breaks as soon as your Web Server and workers are on different machines. S3 is the most common choice — retrofitting this later is more work than just doing it upfront.
+<div class="callout callout-tip">
+Set up a remote log backend (S3, GCS, or Azure Blob) before you deploy workers on separate machines. Airflow defaults to local disk, which silently breaks log retrieval in distributed setups. This is much easier to configure upfront than to fix after the fact.
+</div>
 
 ### Triggerer 🔔
 
@@ -89,7 +91,11 @@ Before it existed, a task waiting on something external (an S3 file showing up, 
 
 Deferrable operators change this. When a task hits a waiting state, it hands itself off to the Triggerer and frees its worker slot. The Triggerer runs all deferred tasks in a single async event loop via `asyncio`. When a condition is met, it wakes the task and the Scheduler puts it back in the queue.
 
-One Triggerer can handle hundreds of sleeping tasks without trouble. If you're running `HttpSensor`, `S3KeySensor`, or cloud-native sensors at any real volume, switching to their deferrable versions is worth doing.
+One Triggerer can handle hundreds of sleeping tasks without trouble.
+
+<div class="callout callout-tip">
+If you're running <code>HttpSensor</code>, <code>S3KeySensor</code>, or cloud-native sensors at any real volume, switch to their deferrable versions. It frees up worker slots that would otherwise sit idle waiting for external conditions.
+</div>
 
 ### Metadata Database 🛢
 
@@ -97,7 +103,13 @@ This is where Airflow keeps track of all your workflows, including details about
 
 ![Metadata Database](../../assets/blog/architecture/metadata-db.gif)
 
-Airflow works with PostgreSQL, MySQL, and SQLite. SQLite is a single-user option that only makes sense with SequentialExecutor — local testing, nothing more. PostgreSQL is the right pick for anything real. It handles Airflow's write-heavy workload well and works with every major managed database service (AWS RDS, Cloud SQL, Azure Database).
+Airflow works with PostgreSQL, MySQL, and SQLite.
+
+<div class="callout callout-warning">
+SQLite only works with SequentialExecutor and is strictly for local testing. If you're deploying for anything real — even a small team — use PostgreSQL. Retrofitting the database backend later is painful.
+</div>
+
+PostgreSQL is the right pick for anything real. It handles Airflow's write-heavy workload well and works with every major managed database service (AWS RDS, Cloud SQL, Azure Database).
 
 What the Metadata DB stores:
 

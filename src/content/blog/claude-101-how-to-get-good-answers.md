@@ -67,6 +67,10 @@ Same task. Completely different output. The first prompt got something that look
 
 The difference is specificity. You told Claude who it is, what the actual situation is, what you need done, and exactly what to give you back.
 
+<div class="callout callout-tip">
+The four-part pattern: <strong>Role → Context → Goal → Return format.</strong> That's the whole thing. If a prompt is failing, one of these four pieces is missing or too vague.
+</div>
+
 ## How to prompt Claude: the four-part pattern
 
 ### 1. Set the role
@@ -158,6 +162,10 @@ Open-ended creative work is one of them. If you don't have a clear goal, giving 
 The other failure mode is when Claude doesn't know it's wrong. If you give it confident but incorrect context — wrong assumptions about your data, a misremembered API signature, an outdated library version — it produces confident output that fits your wrong premise. The pattern doesn't protect you from your own mistakes. Always sanity-check technical output before you run it.
 
 And in long sessions on complex problems, the model can drift. It starts solving what it thinks you need rather than what you actually need. When that happens, starting fresh with a clean prompt works better than trying to correct the existing thread. I've wasted more time trying to nudge a drifted conversation back on track than I've ever saved by staying in the same session.
+
+<div class="callout callout-warning">
+If Claude starts giving answers that feel off-topic or contradict earlier decisions in the session, don't keep pushing. Start a new chat with a clean summary of where you are. Staying in a drifted conversation costs more time than restarting it.
+</div>
 
 ## The actual takeaway
 
