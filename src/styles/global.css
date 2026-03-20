@@ -285,6 +285,12 @@ a:hover { color: var(--accent-hover); }
   display: block;
 }
 
+/* Markdown wraps images in <p> tags — collapse that paragraph's margin
+   so only the img's own margin controls spacing (prevents double-gap) */
+.prose p:has(> img:only-child) {
+  margin-bottom: 0;
+}
+
 /* Dark mode: invert + hue-rotate keeps blue accents approximately intact
    while flipping the light background to dark and dark text to light */
 [data-theme="dark"] .prose img[src$=".svg"] {
