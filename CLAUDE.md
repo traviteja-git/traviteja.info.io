@@ -102,12 +102,33 @@ SVG diagrams go in `public/diagrams/` and are referenced in markdown as:
 - Personal/narrative sections (career stories, opinions)
 
 **How to create SVGs:**
-- Canvas size: 900px wide, height as needed (300–480px typical)
+- Canvas size: 1000px wide, height as needed (300–480px typical)
 - Background: `#f8faff`, border: `#e4e4e7`, accent: `#2563eb`
 - Font: `system-ui, -apple-system, sans-serif` via `<style>` in `<defs>`
 - Save to `public/diagrams/[descriptive-name].svg`
 - Reference immediately after introducing the concept in the article
 - Aim for 1–2 diagrams per article — don't over-diagram
+
+**SVG element ordering — CRITICAL:**
+
+Always write elements in this order or text labels will be painted over by boxes:
+1. All background/panel `<rect>` elements
+2. All box `<rect>` elements
+3. All `<line>` / arrow elements
+4. All `<text>` labels (must come last so they render on top)
+
+**Arrow label spacing — CRITICAL:**
+
+Arrow gaps must be wide enough for their labels. At font-size 10–11px:
+- "POST /process" needs ~75px gap — make the arrow span at least 65px
+- Short labels like "blocks", "enqueue" need ~50px gap
+- Rule: gap width ≥ label character count × 6px
+- If the gap is too tight, shorten the label rather than squeezing it
+
+**Box sizing:**
+- Node boxes (Client, API, etc.) should be at least 90×40px
+- Two-line text boxes (e.g. "Heavy Job") need at least 80px width and 40px height with lines at y+12 and y+26 relative to box top
+- Leave at least 20px padding inside panel edges
 
 Existing diagrams in `public/diagrams/` for reference:
 - `prompt-engineering-evolution.svg` — expanding bars timeline
@@ -115,6 +136,7 @@ Existing diagrams in `public/diagrams/` for reference:
 - `ai-context-window.svg` — two-zone visible/invisible layout
 - `7-skills-map.svg` — three-column grouped cards
 - `claude-model-tiers.svg` — staircase tiers with badges
+- `sync-vs-async-api.svg` — two-panel side-by-side comparison with flow arrows (good reference for multi-box flow diagrams)
 
 ## Sitemap — Manual, Must Update
 
