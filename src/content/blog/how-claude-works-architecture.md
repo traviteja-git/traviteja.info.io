@@ -17,7 +17,7 @@ Once I understood what actually happens between "send" and "response," a lot of 
 
 Seven things happen, in this order.
 
-![End-to-end Claude request lifecycle — input assembly, tokenization, transformer inference, and SSE streaming](/diagrams/claude-request-lifecycle.svg)
+![End-to-end Claude request lifecycle — input assembly, tokenization, transformer inference, and SSE streaming](/diagrams/how-claude-works/claude-request-lifecycle.svg)
 
 Seven things happen every time you send a message:
 
@@ -41,19 +41,7 @@ A rough mental model: **~4 characters per token, ~1.3 tokens per English word**.
 
 Here's a concrete example. The sentence *"How does Apache Airflow schedule DAGs in production?"* breaks down like this:
 
-| Token | Notes |
-|---|---|
-| `How` | full word |
-| ` does` | full word |
-| ` Apache` | full word |
-| ` Air` | "Airflow" splits here |
-| `flow` | second half of "Airflow" |
-| ` schedule` | full word |
-| ` D` | "DAGs" splits |
-| `AGs` | second half of "DAGs" |
-| ` in` | full word |
-| ` production` | full word |
-| `?` | punctuation |
+![BPE tokenization — colored chips showing how "Airflow" splits to "Air"+"flow" and "DAGs" splits to "D"+"AGs", with integer IDs below](/diagrams/how-claude-works/tokenization-bpe.svg)
 
 Eleven tokens, eight words. And under the hood, those tokens are just integers like `[2437, 1838, 15308, 11460, ...]` — that's what enters the transformer.
 
@@ -101,12 +89,7 @@ The context window is everything the model can "see" at once during inference. C
 
 What's actually inside that window on any given request:
 
-| Layer | Content | Typical Size |
-|---|---|---|
-| System prompt | Persona, instructions, constraints | 100–2,000 tokens |
-| Conversation history | All prior user + assistant turns | Grows with each turn |
-| New user message | Your latest input, images, files | Variable |
-| Output budget | Space for Claude's response | Up to `max_tokens` |
+![Context window layers — system prompt, conversation history, new user message, and output budget stacked in a single 200k token window](/diagrams/how-claude-works/context-window-layers.svg)
 
 Worth saying plainly: **Claude has no server-side memory**. No session object, no database lookup by conversation ID. The API is completely stateless.
 
@@ -114,7 +97,9 @@ The "memory" in a chat interface is an illusion created by the client. The app s
 
 ## 5. How a Text Response is Generated
 
-Once the token sequence enters the transformer, here's what happens:
+Once the token sequence enters the transformer, here's what happens — and crucially, why it repeats once per output token:
+
+![Transformer inference loop — 5-step autoregressive process from token IDs through embedding, attention, FFN, and sampling, with a loop arrow showing repetition per token](/diagrams/how-claude-works/transformer-inference-loop.svg)
 
 Each token ID maps to a high-dimensional vector — a 50-token input becomes a 50×4096 matrix. Then self-attention runs: every token looks at every other token and computes a weight. This is how *"it ran out of memory"* resolves "it" to "the server" three tokens back, not "the query" from twenty back. Claude does this through hundreds of layers.
 
@@ -163,7 +148,9 @@ The `usage` metadata (final token counts) only arrives on the last event — not
 
 This one catches almost everyone the first time. There is no session. There is no conversation ID you can pass to retrieve prior context. Every request is a blank slate.
 
-Your conversation history is just an array you manage yourself:
+Your conversation history is just an array you manage yourself. Each turn, you send the full thing:
+
+![Multi-turn state — three panels showing Turn 1, 2, and 3 with growing message arrays sent on each API call](/diagrams/how-claude-works/multi-turn-state.svg)
 
 ```python
 conversation_history = []
@@ -190,6 +177,9 @@ This scales fine for short conversations. For long ones — say, a coding sessio
 Prompt caching is the one I see developers skip most. If you have a large, stable prefix — a long system prompt, a document you're analyzing, your entire codebase — **prompt caching** stores its KV-cache server-side and reuses it across requests.
 
 The economics:
+
+![Prompt caching economics — side-by-side cost breakdown: cache write (first request) vs cache hit (subsequent requests) showing ~92% savings](/diagrams/how-claude-works/prompt-caching-economics.svg)
+
 - **Cache write**: ~25% premium over standard input tokens (first request computes and stores it)
 - **Cache read**: ~90% cheaper than standard input tokens
 - **Cache TTL**: 5 minutes by default, 1 hour if you pin it
@@ -226,7 +216,7 @@ Minimum cacheable prefix is ~1,024 tokens on Sonnet — small prompts aren't wor
 
 Claude can't execute code or call APIs. What it *can* do is emit structured JSON describing a function call. Your code runs it and returns the result. This is the building block behind every AI agent.
 
-![Claude tool use request/response cycle — tool definition, tool_use block, execution, tool_result, and final answer](/diagrams/claude-tool-use-lifecycle.svg)
+![Claude tool use request/response cycle — tool definition, tool_use block, execution, tool_result, and final answer](/diagrams/how-claude-works/claude-tool-use-lifecycle.svg)
 
 The five-step loop:
 
