@@ -1,0 +1,120 @@
+<svg viewBox="0 0 1000 340" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,sans-serif;">
+  <defs>
+    <style>
+      .box-title { font-size: 12px; fill: #111827; font-weight: 700; }
+      .box-sub   { font-size: 10px; fill: #6b7280; }
+      .arrow-lbl { font-size: 10px; fill: #374151; }
+    </style>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arr-grn" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a"/>
+    </marker>
+    <marker id="arr-org" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ea580c"/>
+    </marker>
+    <marker id="arr-pur" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="340" rx="12" fill="#f8faff" stroke="#e4e4e7" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">Claude Tool Use — Request / Response Cycle</text>
+
+  <!-- Lane backgrounds — all rects first -->
+  <rect x="20" y="48" width="190" height="272" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <rect x="222" y="48" width="556" height="272" rx="8" fill="#fef9c3" stroke="#fde68a" stroke-width="1"/>
+  <rect x="790" y="48" width="190" height="272" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+
+  <!-- Step boxes — rects -->
+  <!-- Col 1: Your App -->
+  <rect x="32" y="90" width="166" height="50" rx="6" fill="#fff" stroke="#93c5fd" stroke-width="1.5"/>
+  <rect x="32" y="220" width="166" height="50" rx="6" fill="#fff" stroke="#93c5fd" stroke-width="1.5"/>
+
+  <!-- Col 2: Claude (steps 2-4) -->
+  <rect x="234" y="90" width="160" height="50" rx="6" fill="#fff" stroke="#fde68a" stroke-width="1.5"/>
+  <rect x="434" y="90" width="160" height="50" rx="6" fill="#fff" stroke="#fde68a" stroke-width="1.5"/>
+  <rect x="434" y="220" width="160" height="50" rx="6" fill="#fff" stroke="#fde68a" stroke-width="1.5"/>
+  <rect x="234" y="220" width="160" height="50" rx="6" fill="#fff" stroke="#fde68a" stroke-width="1.5"/>
+
+  <!-- Col 3: Your Function -->
+  <rect x="802" y="155" width="166" height="50" rx="6" fill="#fff" stroke="#86efac" stroke-width="1.5"/>
+
+  <!-- Arrows — all lines before text -->
+  <!-- 1 → 2 -->
+  <line x1="234" y1="115" x2="200" y2="115" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- 2 → 3 -->
+  <line x1="394" y1="115" x2="434" y2="115" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- 3 → your function -->
+  <line x1="594" y1="115" x2="680" y2="115" stroke="#ea580c" stroke-width="1.5"/>
+  <line x1="680" y1="115" x2="680" y2="180" stroke="#ea580c" stroke-width="1.5"/>
+  <line x1="680" y1="180" x2="802" y2="180" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr-org)"/>
+  <!-- your function → 4 -->
+  <line x1="802" y1="180" x2="750" y2="180" stroke="#16a34a" stroke-width="1.5"/>
+  <line x1="750" y1="180" x2="750" y2="245" stroke="#16a34a" stroke-width="1.5"/>
+  <line x1="750" y1="245" x2="594" y2="245" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr-grn)"/>
+  <!-- 4 → 5 -->
+  <line x1="434" y1="245" x2="394" y2="245" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- 5 → your app (final) -->
+  <line x1="234" y1="245" x2="200" y2="245" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr-pur)"/>
+
+  <!-- All text LAST -->
+
+  <!-- Lane labels -->
+  <text x="115" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">YOUR APP</text>
+  <text x="500" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">CLAUDE MODEL</text>
+  <text x="885" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">YOUR FUNCTION</text>
+
+  <!-- Step 1 box -->
+  <text x="115" y="109" text-anchor="middle" class="box-title">① Send Request</text>
+  <text x="115" y="125" text-anchor="middle" class="box-sub">messages + tools[]</text>
+  <text x="115" y="137" text-anchor="middle" class="box-sub">definition in payload</text>
+
+  <!-- Arrow labels -->
+  <text x="217" y="109" text-anchor="middle" class="arrow-lbl">POST</text>
+  <text x="412" y="109" text-anchor="middle" class="arrow-lbl">→</text>
+
+  <!-- Step 2 box -->
+  <text x="314" y="109" text-anchor="middle" class="box-title">② Reads Tools</text>
+  <text x="314" y="125" text-anchor="middle" class="box-sub">Decides: use tool</text>
+  <text x="314" y="137" text-anchor="middle" class="box-sub">or answer directly?</text>
+
+  <!-- Step 3 box -->
+  <text x="514" y="109" text-anchor="middle" class="box-title">③ tool_use Block</text>
+  <text x="514" y="125" text-anchor="middle" class="box-sub">stop_reason: "tool_use"</text>
+  <text x="514" y="137" text-anchor="middle" class="box-sub">&#123;name, input: &#123;...&#125;&#125;</text>
+
+  <!-- Arrow label exec -->
+  <text x="710" y="143" text-anchor="middle" class="arrow-lbl">execute</text>
+
+  <!-- Your function box -->
+  <text x="885" y="174" text-anchor="middle" class="box-title">Run Function</text>
+  <text x="885" y="190" text-anchor="middle" class="box-sub">DB query / API call</text>
+  <text x="885" y="202" text-anchor="middle" class="box-sub">→ real result</text>
+
+  <!-- return label -->
+  <text x="710" y="225" text-anchor="middle" class="arrow-lbl">return result</text>
+
+  <!-- Step 4 box -->
+  <text x="514" y="239" text-anchor="middle" class="box-title">④ tool_result</text>
+  <text x="514" y="255" text-anchor="middle" class="box-sub">role: "user", type:</text>
+  <text x="514" y="267" text-anchor="middle" class="box-sub">"tool_result"</text>
+
+  <!-- Step 5 box -->
+  <text x="314" y="239" text-anchor="middle" class="box-title">⑤ Final Answer</text>
+  <text x="314" y="255" text-anchor="middle" class="box-sub">Grounded in real data</text>
+  <text x="314" y="267" text-anchor="middle" class="box-sub">stop_reason: "end_turn"</text>
+
+  <!-- Step 6 final response -->
+  <text x="115" y="239" text-anchor="middle" class="box-title">⑥ Text Response</text>
+  <text x="115" y="255" text-anchor="middle" class="box-sub">Claude's answer with</text>
+  <text x="115" y="267" text-anchor="middle" class="box-sub">real data embedded</text>
+
+  <!-- Note at bottom -->
+  <text x="500" y="310" text-anchor="middle" font-size="10" fill="#6b7280">This is how Claude Code works: read_file, write_file, bash — each is a tool call in this same loop.</text>
+
+</svg>

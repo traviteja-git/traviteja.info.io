@@ -93,7 +93,17 @@ The image should be saved to: `src/assets/blog/[slug]/[seo-descriptive-filename]
 
 ---
 
-### Step 5 — Update the Sitemap
+### Step 5 — Humanize the Article
+
+Run the `/humanizer` skill on the full article body before publishing.
+
+This removes AI-writing patterns (em dash overuse, rule of three, inflated language, vague attributions, negative parallelisms) and makes the writing sound natural and human.
+
+Do this **after** the draft is complete, **before** updating the sitemap or committing.
+
+---
+
+### Step 6 — Update the Sitemap
 
 Open `public/sitemap.xml` and add a new `<url>` block inside the Blog posts section:
 
@@ -107,7 +117,7 @@ Open `public/sitemap.xml` and add a new `<url>` block inside the Blog posts sect
 
 ---
 
-### Step 6 — Verify & Push
+### Step 7 — Verify & Push
 
 1. Run `npm run build` — confirm it passes with no errors
 2. Commit with a clear message:
@@ -122,7 +132,7 @@ Open `public/sitemap.xml` and add a new `<url>` block inside the Blog posts sect
 
 ---
 
-### Step 7 — Remind the User
+### Step 8 — Remind the User
 
 After pushing, remind Raviteja to:
 - Add a hero image to `src/assets/blog/[slug]/` — use an SEO-descriptive filename, not `hero.png` (e.g. `how-to-prompt-claude.png`)

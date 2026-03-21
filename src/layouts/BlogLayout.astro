@@ -23,9 +23,10 @@ interface Props {
   relatedPosts?: RelatedPost[];
   prevPost?: { slug: string; title: string };
   nextPost?: { slug: string; title: string };
+  tocNumbered?: boolean;
 }
 
-const { title, description, date, updatedDate, tags = [], image, readingTime, relatedPosts = [], prevPost, nextPost } = Astro.props;
+const { title, description, date, updatedDate, tags = [], image, readingTime, relatedPosts = [], prevPost, nextPost, tocNumbered = true } = Astro.props;
 
 const formatted = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
@@ -105,7 +106,7 @@ const breadcrumbLD = JSON.stringify({
   <!-- Table of Contents (injected by JS for articles with 3+ H2s) -->
   <nav id="toc" style="display:none; border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; margin-bottom:2.5rem; background:var(--bg-subtle);" aria-label="Table of contents">
     <p style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-muted); margin:0 0 0.6rem;">On this page</p>
-    <ol id="toc-list" style="margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:0.3rem; list-style-type:decimal;"></ol>
+    <ol id="toc-list" style={`margin:0; padding-left:${tocNumbered ? '1.1rem' : '0'}; display:flex; flex-direction:column; gap:0.3rem; list-style-type:${tocNumbered ? 'decimal' : 'none'};`}></ol>
   </nav>
 
   <!-- Article body -->
