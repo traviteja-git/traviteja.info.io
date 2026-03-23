@@ -5,7 +5,7 @@
 
   <!-- Title -->
   <text x="500" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Context Window — What Claude Sees on Every Request</text>
-  <text x="500" y="46" text-anchor="middle" font-size="11" fill="#6b7280">All layers are sent together in a single API call · Claude has no memory between requests · max 200,000 tokens total</text>
+  <text x="500" y="46" text-anchor="middle" font-size="11" fill="#6b7280">All layers are sent together in a single API call · Claude has no memory between requests · up to 1M tokens (Sonnet/Opus 4.6)</text>
 
   <!-- ── LAYER RECTS ── -->
 
@@ -55,6 +55,6 @@
   <text x="940" y="268" text-anchor="end" font-size="10" fill="#6b7280">set this explicitly</text>
 
   <!-- Total badge -->
-  <text x="500" y="292" text-anchor="middle" font-size="11" fill="#6b7280">Total capacity: <tspan font-weight="700" fill="#111827">200,000 tokens</tspan> (~500 pages of text) · stateless — no session, no memory server-side</text>
+  <text x="500" y="292" text-anchor="middle" font-size="11" fill="#6b7280">Total capacity: <tspan font-weight="700" fill="#111827">up to 1,000,000 tokens</tspan> (Sonnet/Opus 4.6) · stateless — no session, no memory server-side</text>
 
 </svg>
