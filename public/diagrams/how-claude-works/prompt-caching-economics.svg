@@ -1,0 +1,73 @@
+<svg viewBox="0 0 1000 260" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,sans-serif;">
+
+  <!-- Background -->
+  <rect width="1000" height="260" rx="12" fill="#f8faff" stroke="#e4e4e7" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="500" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Prompt Caching — Token Cost on Repeated Requests</text>
+  <text x="500" y="46" text-anchor="middle" font-size="11" fill="#6b7280">Cache a stable 5,000-token system prompt. First request pays a write premium. Every subsequent request saves ~90%.</text>
+
+  <!-- ── REQUEST RECTS ── -->
+
+  <!-- Request 1 panel -->
+  <rect x="30" y="62" width="440" height="168" rx="8" fill="#fff" stroke="#fdba74" stroke-width="1.5"/>
+  <!-- Request 2+ panel -->
+  <rect x="530" y="62" width="440" height="168" rx="8" fill="#fff" stroke="#86efac" stroke-width="1.5"/>
+
+  <!-- Panel headers -->
+  <rect x="30" y="62" width="440" height="32" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+  <rect x="530" y="62" width="440" height="32" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+
+  <!-- Cost bars background (track) -->
+  <rect x="50" y="116" width="400" height="22" rx="4" fill="#f3f4f6"/>
+  <rect x="550" y="116" width="400" height="22" rx="4" fill="#f3f4f6"/>
+
+  <!-- Cost bar: request 1 — new message (small, blue) -->
+  <rect x="50" y="116" width="20" height="22" rx="4" fill="#93c5fd"/>
+  <!-- Cost bar: request 1 — cache write (large, orange ~25% premium) -->
+  <rect x="70" y="116" width="310" height="22" rx="4" fill="#fdba74"/>
+
+  <!-- Cost bar: request 2+ — new message (small, blue) -->
+  <rect x="550" y="116" width="20" height="22" rx="4" fill="#93c5fd"/>
+  <!-- Cost bar: request 2+ — cache read (tiny, green ~10% of original) -->
+  <rect x="570" y="116" width="32" height="22" rx="4" fill="#86efac"/>
+
+  <!-- ── TEXT LABELS ── -->
+
+  <!-- Panel headers -->
+  <text x="250" y="83" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">Request 1 — Cache Write</text>
+  <text x="750" y="83" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">Request 2+ — Cache Hit</text>
+
+  <!-- Request 1 breakdown -->
+  <text x="50" y="108" font-size="10" fill="#6b7280">token cost breakdown:</text>
+  <text x="60" y="148" font-size="11" fill="#1d4ed8">New message</text>
+  <text x="380" y="148" text-anchor="end" font-size="11" fill="#1d4ed8">12 tokens</text>
+  <text x="50" y="165" font-size="11" fill="#c2410c">System prompt (cache write)</text>
+  <text x="440" y="165" text-anchor="end" font-size="11" fill="#c2410c">5,000 tokens × 1.25</text>
+  <rect x="50" y="176" width="390" height="1" fill="#e4e4e7"/>
+  <text x="50" y="194" font-size="12" font-weight="700" fill="#111827">Total</text>
+  <text x="440" y="194" text-anchor="end" font-size="12" font-weight="700" fill="#c2410c">≈ 6,262 tokens billed</text>
+  <text x="50" y="212" font-size="10" fill="#9ca3af">+25% write premium on cached tokens (one-time cost)</text>
+  <text x="50" y="225" font-size="10" fill="#9ca3af">TTL: 5 min default, 1 hour if pinned · min size: ~1,024 tokens</text>
+
+  <!-- Request 2+ breakdown -->
+  <text x="550" y="108" font-size="10" fill="#6b7280">token cost breakdown:</text>
+  <text x="560" y="148" font-size="11" fill="#1d4ed8">New message</text>
+  <text x="880" y="148" text-anchor="end" font-size="11" fill="#1d4ed8">12 tokens</text>
+  <text x="550" y="165" font-size="11" fill="#15803d">System prompt (cache read)</text>
+  <text x="940" y="165" text-anchor="end" font-size="11" fill="#15803d">5,000 tokens × 0.10</text>
+  <rect x="550" y="176" width="390" height="1" fill="#e4e4e7"/>
+  <text x="550" y="194" font-size="12" font-weight="700" fill="#111827">Total</text>
+  <text x="940" y="194" text-anchor="end" font-size="12" font-weight="700" fill="#15803d">≈ 512 tokens billed</text>
+  <text x="550" y="212" font-size="10" fill="#059669">90% cheaper than sending the full prompt again</text>
+  <text x="550" y="225" font-size="10" fill="#9ca3af">cache_read_input_tokens shown in usage block of response</text>
+
+  <!-- Savings badge -->
+  <rect x="408" y="140" width="84" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="450" y="159" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">~92%</text>
+  <text x="450" y="171" text-anchor="middle" font-size="9" fill="#15803d">savings</text>
+
+  <!-- Bottom note -->
+  <text x="500" y="248" text-anchor="middle" font-size="10" fill="#9ca3af">Use cache_control: &#123;"type":"ephemeral"&#125; on any stable content block in your system prompt or messages array</text>
+
+</svg>

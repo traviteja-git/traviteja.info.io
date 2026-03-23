@@ -3,7 +3,7 @@ title: "Claude 101 — How to Actually Get Good Answers"
 description: "Most Claude prompts fail for the same reason: too vague. Here's how to prompt Claude the right way — with real before/after examples from a data engineer."
 date: "2026-03-19"
 tags: ["ai", "claude", "productivity", "prompt-engineering"]
-image: "../../assets/blog/claude/claude-101-how-to-get-good-answers/how-to-prompt-claude.png"
+image: "../../assets/blog/claude/how-to-prompt-claude.png"
 draft: false
 ---
 
@@ -16,7 +16,7 @@ Claude gave her something. A loop, some placeholder column names, a print statem
 She was convinced Claude wasn't that good. I was convinced she'd never learned how to prompt Claude properly. Those are very different problems.
 
 This article covers the one skill that changes how useful Claude is — not theory, just the pattern that actually works, with real before/after examples.
-![Claude 101 — How to Actually Get Good Answers: structured prompts vs vague prompts](../../assets/blog/claude/claude-101-how-to-get-good-answers/how-to-prompt-claude.png)
+![Claude 101 — How to Actually Get Good Answers: structured prompts vs vague prompts](../../assets/blog/claude/how-to-prompt-claude.png)
 ## Why most Claude prompts fail
 
 The model isn't psychic. When you give it a vague instruction, it fills the gaps with the most average interpretation of what you might mean. "Write Python code to process data" is genuinely ambiguous — it could mean a ten-line pandas script or a distributed PySpark job. Claude picks one. It's rarely the right one.

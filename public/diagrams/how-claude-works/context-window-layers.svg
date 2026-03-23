@@ -1,0 +1,60 @@
+<svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,sans-serif;">
+
+  <!-- Background -->
+  <rect width="1000" height="300" rx="12" fill="#f8faff" stroke="#e4e4e7" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="500" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Context Window — What Claude Sees on Every Request</text>
+  <text x="500" y="46" text-anchor="middle" font-size="11" fill="#6b7280">All layers are sent together in a single API call · Claude has no memory between requests · max 200,000 tokens total</text>
+
+  <!-- ── LAYER RECTS ── -->
+
+  <!-- Layer 1: System Prompt — blue -->
+  <rect x="40" y="64" width="920" height="48" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <!-- Layer 2: Conversation History — green (taller = more tokens) -->
+  <rect x="40" y="120" width="920" height="48" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <!-- Layer 3: New User Message — yellow -->
+  <rect x="40" y="176" width="920" height="48" rx="7" fill="#fefce8" stroke="#fde047" stroke-width="1.5"/>
+  <!-- Layer 4: Output Budget — purple -->
+  <rect x="40" y="232" width="920" height="48" rx="7" fill="#fdf4ff" stroke="#d8b4fe" stroke-width="1.5"/>
+
+  <!-- Size bars inside each layer (proportional width visual) -->
+  <!-- System prompt: small, ~5% of window -->
+  <rect x="52" y="72" width="60" height="32" rx="4" fill="#93c5fd" opacity="0.5"/>
+  <!-- History: large, ~60% -->
+  <rect x="52" y="128" width="540" height="32" rx="4" fill="#86efac" opacity="0.5"/>
+  <!-- New message: medium, ~15% -->
+  <rect x="52" y="184" width="130" height="32" rx="4" fill="#fde047" opacity="0.5"/>
+  <!-- Output budget: reserved, ~20% -->
+  <rect x="52" y="240" width="180" height="32" rx="4" fill="#d8b4fe" opacity="0.5"/>
+
+  <!-- ── TEXT LABELS ── -->
+
+  <!-- Layer 1 -->
+  <text x="124" y="84" font-size="12" font-weight="700" fill="#1d4ed8">System Prompt</text>
+  <text x="124" y="100" font-size="11" fill="#3b82f6">Persona, instructions, constraints — static, sent on every call</text>
+  <text x="940" y="84" text-anchor="end" font-size="11" font-weight="600" fill="#1d4ed8">100–2,000 tokens</text>
+  <text x="940" y="100" text-anchor="end" font-size="10" fill="#6b7280">stable</text>
+
+  <!-- Layer 2 -->
+  <text x="606" y="140" font-size="12" font-weight="700" fill="#15803d">Conversation History</text>
+  <text x="606" y="156" font-size="11" fill="#16a34a">All prior user + assistant turns — you send this every time, it grows</text>
+  <text x="940" y="140" text-anchor="end" font-size="11" font-weight="600" fill="#15803d">grows per turn</text>
+  <text x="940" y="156" text-anchor="end" font-size="10" fill="#6b7280">largest layer</text>
+
+  <!-- Layer 3 -->
+  <text x="194" y="196" font-size="12" font-weight="700" fill="#854d0e">New User Message</text>
+  <text x="194" y="212" font-size="11" fill="#92400e">Your latest input — text, images, files appended to history</text>
+  <text x="940" y="196" text-anchor="end" font-size="11" font-weight="600" fill="#854d0e">variable</text>
+  <text x="940" y="212" text-anchor="end" font-size="10" fill="#6b7280">+1,000–2,000 if image</text>
+
+  <!-- Layer 4 -->
+  <text x="244" y="252" font-size="12" font-weight="700" fill="#7c3aed">Output Budget</text>
+  <text x="244" y="268" font-size="11" fill="#7c3aed">Reserved space for Claude's response — controlled by max_tokens</text>
+  <text x="940" y="252" text-anchor="end" font-size="11" font-weight="600" fill="#7c3aed">up to max_tokens</text>
+  <text x="940" y="268" text-anchor="end" font-size="10" fill="#6b7280">set this explicitly</text>
+
+  <!-- Total badge -->
+  <text x="500" y="292" text-anchor="middle" font-size="11" fill="#6b7280">Total capacity: <tspan font-weight="700" fill="#111827">200,000 tokens</tspan> (~500 pages of text) · stateless — no session, no memory server-side</text>
+
+</svg>
