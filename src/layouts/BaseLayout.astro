@@ -124,6 +124,7 @@ const articleLD = type === 'article' ? JSON.stringify({
     {image && <meta property="og:image"        content={image} />}
     {image && <meta property="og:image:width"  content="1200" />}
     {image && <meta property="og:image:height" content="630" />}
+    {image && <meta property="og:image:type"   content={image.endsWith('.jpg') || image.endsWith('.jpeg') ? 'image/jpeg' : 'image/png'} />}
     {type === 'article' && publishedDate && (
       <meta property="article:published_time" content={publishedDate} />
     )}
