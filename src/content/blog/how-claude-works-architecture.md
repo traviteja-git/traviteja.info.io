@@ -81,15 +81,15 @@ The response includes a `usage` block that tells you exactly what you're paying 
 }
 ```
 
-<div class="callout callout-warning">Output tokens cost ~5× more than input tokens on most Claude models. A 500-token response costs as much as 2,500 input tokens. Always set <code>max_tokens</code> explicitly — never leave it uncapped in production.</div>
+<div class="callout callout-warning">Output tokens cost significantly more than input tokens — the exact ratio varies by model (roughly 5× for Claude Sonnet 4.6). Always set <code>max_tokens</code> explicitly — never leave it uncapped in production.</div>
 
 ## 4. Context Window — Claude's Working Memory
 
-The context window is everything the model can "see" at once during inference. Claude supports up to **200,000 tokens** — roughly 150,000 words, around 500 pages of text.
+The context window is everything the model can "see" at once during inference. Claude Sonnet 4.6 and Opus 4.6 support up to **1,000,000 tokens** — roughly 750,000 words, around 2,500+ pages of text. Older models (Claude 3.x) top out at 200,000 tokens.
 
 What's actually inside that window on any given request:
 
-![Context window layers — system prompt, conversation history, new user message, and output budget stacked in a single 200k token window](/diagrams/how-claude-works/context-window-layers.svg)
+![Context window layers — system prompt, conversation history, new user message, and output budget stacked in a single API call](/diagrams/how-claude-works/context-window-layers.svg)
 
 Worth saying plainly: **Claude has no server-side memory**. No session object, no database lookup by conversation ID. The API is completely stateless.
 
@@ -180,9 +180,10 @@ The economics:
 
 ![Prompt caching economics — side-by-side cost breakdown: cache write (first request) vs cache hit (subsequent requests) showing ~92% savings](/diagrams/how-claude-works/prompt-caching-economics.svg)
 
-- **Cache write**: ~25% premium over standard input tokens (first request computes and stores it)
+- **Cache write (5-min TTL)**: ~25% premium over standard input tokens (first request computes and stores it)
+- **Cache write (1-hour TTL)**: ~100% premium — costs 2× base input price; worth it only for very large, very stable prefixes
 - **Cache read**: ~90% cheaper than standard input tokens
-- **Cache TTL**: 5 minutes by default, 1 hour if you pin it
+- **Cache TTL**: 5 minutes by default; set `"cache_control": {"type": "ephemeral"}` on a content block for the 1-hour tier
 
 You opt in with a single field on the content block:
 
