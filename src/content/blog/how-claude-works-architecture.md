@@ -3,7 +3,7 @@ title: "How Claude Actually Works — Architecture Deep Dive"
 description: "From token IDs to streamed responses: a technical walkthrough of Claude's request lifecycle, transformer inference, prompt caching, and tool use."
 date: "2026-03-23"
 tags: ["claude", "ai", "llm", "prompt-engineering", "developer-tools"]
-image: "../../assets/blog/claude/how-claude-works-architecture.png"
+image: "../../assets/blog/claude/how-claude-works-architecture-og.jpg"
 draft: false
 tocNumbered: false
 ---
