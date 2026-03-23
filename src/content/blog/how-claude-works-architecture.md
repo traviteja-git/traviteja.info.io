@@ -209,8 +209,6 @@ The response's `usage` block tells you what hit the cache:
 }
 ```
 
-<div class="callout callout-tip">I work on data pipelines at Deloitte where Claude sessions routinely load large DBT project files and pipeline configs. With prompt caching, after the first request those docs cost 90% less to re-include. On a long session that adds up fast.</div>
-
 Minimum cacheable prefix is ~1,024 tokens on Sonnet — small prompts aren't worth caching.
 
 ## 9. Tool Use — How Claude Actually "Does Things"
