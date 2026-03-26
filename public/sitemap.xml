@@ -100,6 +100,12 @@
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://traviteja.com/blog/claude-code-subagents/</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
 
 </urlset>
