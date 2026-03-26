@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 370" width="1000" height="370">
+  <defs>
+    <style>text { font-family: system-ui, -apple-system, sans-serif; }</style>
+    <!-- Standard orient=auto markers — tip points along positive X, rotated by line direction -->
+    <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="370" rx="12" fill="#f8faff" stroke="#e4e4e7" stroke-width="1.5"/>
+
+  <!-- ① All rects -->
+
+  <!-- Repo box: center-x=500, y=18 to y=88 -->
+  <rect x="350" y="18" width="300" height="70" rx="8" fill="#ffffff" stroke="#e4e4e7" stroke-width="1.5"/>
+  <rect x="350" y="18" width="300" height="28" rx="8" fill="#1e40af"/>
+  <rect x="350" y="34" width="300" height="12" fill="#1e40af"/>
+
+  <!-- Worktree 1: x=55, w=225, center-x=167 -->
+  <rect x="55"  y="175" width="225" height="120" rx="8" fill="#ffffff" stroke="#dbeafe" stroke-width="1.5"/>
+  <rect x="55"  y="175" width="225" height="28"  rx="8" fill="#2563eb"/>
+  <rect x="55"  y="191" width="225" height="12"  fill="#2563eb"/>
+
+  <!-- Worktree 2: x=387, w=225, center-x=500 -->
+  <rect x="387" y="175" width="225" height="120" rx="8" fill="#ffffff" stroke="#dbeafe" stroke-width="1.5"/>
+  <rect x="387" y="175" width="225" height="28"  rx="8" fill="#2563eb"/>
+  <rect x="387" y="191" width="225" height="12"  fill="#2563eb"/>
+
+  <!-- Worktree 3: x=720, w=225, center-x=832 -->
+  <rect x="720" y="175" width="225" height="120" rx="8" fill="#ffffff" stroke="#dbeafe" stroke-width="1.5"/>
+  <rect x="720" y="175" width="225" height="28"  rx="8" fill="#2563eb"/>
+  <rect x="720" y="191" width="225" height="12"  fill="#2563eb"/>
+
+  <!-- Legend box (bottom right) -->
+  <rect x="780" y="308" width="195" height="50" rx="6" fill="#ffffff" stroke="#e4e4e7" stroke-width="1"/>
+
+  <!-- ② Lines and arrows — no text overlaps -->
+
+  <!-- Trunk from repo bottom to horizontal bar -->
+  <line x1="500" y1="88" x2="500" y2="128" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Horizontal branch bar -->
+  <line x1="167" y1="128" x2="832" y2="128" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Gray down arrows (checkout): offset LEFT 8px from center, tip touches box top (y=175, endpoint y=173) -->
+  <line x1="159" y1="128" x2="159" y2="173" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+  <line x1="492" y1="128" x2="492" y2="173" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+  <line x1="824" y1="128" x2="824" y2="173" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+
+  <!-- Green dashed arrows (results back): offset RIGHT 8px from center, tip touches horizontal bar (y=128, endpoint y=130) -->
+  <line x1="175" y1="175" x2="175" y2="130" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-green)"/>
+  <line x1="508" y1="175" x2="508" y2="130" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-green)"/>
+  <line x1="840" y1="175" x2="840" y2="130" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-green)"/>
+
+  <!-- ③ Text labels — always last -->
+
+  <!-- Repo -->
+  <text x="500" y="36"  text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600" letter-spacing="0.08em">REPOSITORY</text>
+  <text x="500" y="64"  text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="600">my-project / main</text>
+  <text x="500" y="80"  text-anchor="middle" fill="#94a3b8" font-size="11">shared git history</text>
+
+  <!-- Worktree labels on branch bar -->
+  <text x="167" y="120" text-anchor="middle" fill="#64748b" font-size="10" letter-spacing="0.04em">worktree-1</text>
+  <text x="500" y="120" text-anchor="middle" fill="#64748b" font-size="10" letter-spacing="0.04em">worktree-2</text>
+  <text x="832" y="120" text-anchor="middle" fill="#64748b" font-size="10" letter-spacing="0.04em">worktree-3</text>
+
+  <!-- Worktree 1 content -->
+  <text x="167" y="193" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600" letter-spacing="0.08em">AGENT</text>
+  <text x="167" y="222" text-anchor="middle" fill="#1e40af" font-size="12" font-weight="600">Migration batch 1</text>
+  <text x="167" y="240" text-anchor="middle" fill="#64748b" font-size="11">/repo-wt-1/ · src/auth/*</text>
+  <text x="167" y="258" text-anchor="middle" fill="#94a3b8" font-size="11">working independently</text>
+  <text x="167" y="278" text-anchor="middle" fill="#16a34a" font-size="12" font-weight="500">10 files done</text>
+
+  <!-- Worktree 2 content -->
+  <text x="500" y="193" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600" letter-spacing="0.08em">AGENT</text>
+  <text x="500" y="222" text-anchor="middle" fill="#1e40af" font-size="12" font-weight="600">Migration batch 2</text>
+  <text x="500" y="240" text-anchor="middle" fill="#64748b" font-size="11">/repo-wt-2/ · src/payments/*</text>
+  <text x="500" y="258" text-anchor="middle" fill="#94a3b8" font-size="11">working independently</text>
+  <text x="500" y="278" text-anchor="middle" fill="#16a34a" font-size="12" font-weight="500">10 files done</text>
+
+  <!-- Worktree 3 content -->
+  <text x="832" y="193" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600" letter-spacing="0.08em">AGENT</text>
+  <text x="832" y="222" text-anchor="middle" fill="#1e40af" font-size="12" font-weight="600">Migration batch 3</text>
+  <text x="832" y="240" text-anchor="middle" fill="#64748b" font-size="11">/repo-wt-3/ · src/api/*</text>
+  <text x="832" y="258" text-anchor="middle" fill="#94a3b8" font-size="11">working independently</text>
+  <text x="832" y="278" text-anchor="middle" fill="#16a34a" font-size="12" font-weight="500">10 files done</text>
+
+  <!-- Legend -->
+  <line x1="795" y1="323" x2="818" y2="323" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-gray)"/>
+  <text x="826" y="327" fill="#64748b" font-size="10">checkout</text>
+  <line x1="818" y1="345" x2="795" y2="345" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-green)"/>
+  <text x="826" y="349" fill="#64748b" font-size="10">results back</text>
+
+  <!-- Caption -->
+  <text x="370" y="350" text-anchor="middle" fill="#94a3b8" font-size="12">Each agent works in its own isolated checkout — no conflicts, even on the same paths</text>
+</svg>

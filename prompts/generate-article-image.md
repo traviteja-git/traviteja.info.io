@@ -33,6 +33,24 @@ Bad: a generic dark background with floating code snippets → looks like every 
 
 ---
 
+## Color variety rule — read this first
+
+**Do not reuse the same palette across articles.** The blog listing shows all hero images together — if every image uses the same dark navy + blue, the whole blog looks like one repeated post.
+
+Before choosing colors, ask: what did the last 2–3 articles use? Then pick something different.
+
+Quick palette checklist — use each one across the blog, not the same one repeatedly:
+- Dark navy + blue (`#0d1b2a` + `#2563eb`) — architecture/technical deep-dives
+- Warm off-white + bold accent (`#faf8f5` + strong color) — career/productivity/opinion
+- Split-tinted dark (two hues signaling contrast) — before/after, good/bad comparisons
+- Dark slate + amber (`#0f172a` + `#f59e0b`) — tools/productivity with warm energy
+- Clean white + minimal color (`#ffffff` + one accent) — concept explanations, "what is X"
+- Dark terminal + green output (`#0e0e10` + `#50fa7b`) — tutorials, installation guides
+
+If the last article used dark navy, use a light or warm palette this time. Variety is required.
+
+---
+
 ## Theme Selection — Pick by Article Type
 
 Do NOT default to dark every time. Choose the theme that best communicates the article's mood and content.

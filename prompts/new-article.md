@@ -77,7 +77,9 @@ Add `![Descriptive alt text with keywords](/images/blog/[slug]/[seo-descriptive-
 
 ---
 
-### Step 4.5 — Generate Gemini Image Prompt
+### Step 4.5 — Generate Gemini Image Prompt ⚠️ DO NOT SKIP
+
+This step is mandatory. Do not proceed to Step 5 without completing it.
 
 After writing the article, read `prompts/generate-article-image.md` and follow the **"How to Generate the Gemini Prompt After Writing an Article"** section.
 
@@ -86,6 +88,9 @@ Extract from the article:
 - The core concept (one sentence)
 - The best visual metaphor in the article
 - 3–4 target keywords
+- The article type (A / B / C / D / E) — this determines the color palette
+
+**Color rule — CRITICAL:** Do not default to deep navy (#0d1b2a) every time. Every article has a different mood; the palette must match it. Read the "Theme Selection" and "Color variety rule" sections in `prompts/generate-article-image.md` before writing the prompt. If multiple recent articles used dark navy, explicitly choose a different palette for this one.
 
 Fill in the Gemini-ready prompt template and output it to the user so they can paste it directly into Gemini Imagen to generate the hero image.
 
