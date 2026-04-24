@@ -3,7 +3,7 @@ title: "Claude Agent Skills: Teach Claude Once, Use Everywhere"
 description: "Agent Skills are reusable SKILL.md packages that give Claude repeatable expertise — no repeated prompting. Here's how they work, how to build them, and when to use skills vs subagents."
 date: "2026-04-23"
 tags: ["claude", "agents", "developer-tools", "llm", "productivity"]
-image: "../../assets/blog/claude-agent-skills/claude-agent-skills-guide.png"
+image: "../../assets/blog/claude-agent-skills/claude-agent-skills-guide.svg"
 draft: false
 ---
 
@@ -13,7 +13,7 @@ You've figured out the right way to ask for a code review. You know the exact ph
 
 That's the problem Agent Skills solve.
 
-![Claude Agent Skills: Teach Claude Once, Use Everywhere — how SKILL.md files give Claude repeatable expertise](../../assets/blog/claude-agent-skills/claude-agent-skills-guide.png)
+![Claude Agent Skills: Teach Claude Once, Use Everywhere — how SKILL.md files give Claude repeatable expertise](../../assets/blog/claude-agent-skills/claude-agent-skills-guide.svg)
 
 ---
 
