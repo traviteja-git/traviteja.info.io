@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" width="1000" height="340">
+  <defs>
+    <style>text { font-family: system-ui, -apple-system, sans-serif; }</style>
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- ① Canvas + panel backgrounds -->
+  <rect width="1000" height="340" rx="12" fill="#f8faff" stroke="#e4e4e7" stroke-width="1.5"/>
+
+  <rect x="20"  y="55" width="260" height="260" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <rect x="370" y="55" width="260" height="260" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <rect x="720" y="55" width="260" height="260" rx="8" fill="#fefce8" stroke="#fde68a" stroke-width="1.5"/>
+
+  <!-- ② Inner content boxes -->
+  <rect x="35"  y="125" width="230" height="175" rx="6" fill="white" stroke="#bfdbfe" stroke-width="1"/>
+  <rect x="385" y="125" width="230" height="175" rx="6" fill="white" stroke="#bbf7d0" stroke-width="1"/>
+  <rect x="735" y="125" width="230" height="175" rx="6" fill="white" stroke="#fde047" stroke-width="1"/>
+
+  <!-- ③ Arrows -->
+  <line x1="285" y1="188" x2="363" y2="188" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <line x1="635" y1="188" x2="713" y2="188" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <!-- ④ All text labels last -->
+
+  <!-- Page title -->
+  <text x="500" y="32" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Agent Skills — How Progressive Disclosure Works</text>
+
+  <!-- Panel 1: DISCOVERY -->
+  <text x="150" y="82"  text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8">① DISCOVERY</text>
+  <text x="150" y="100" text-anchor="middle" font-size="10" fill="#1e40af">Descriptions always pre-loaded</text>
+  <line x1="35" y1="110" x2="280" y2="110" stroke="#bfdbfe" stroke-width="1"/>
+
+  <text x="150" y="145" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a8a">All skill names + descriptions</text>
+  <text x="150" y="164" text-anchor="middle" font-size="10" fill="#374151">name: code-review</text>
+  <text x="150" y="180" text-anchor="middle" font-size="10" fill="#374151">description: Review code for bugs…</text>
+  <text x="150" y="198" text-anchor="middle" font-size="10" fill="#374151">name: pr-summary</text>
+  <text x="150" y="214" text-anchor="middle" font-size="10" fill="#374151">description: Summarize PR changes…</text>
+  <text x="150" y="235" text-anchor="middle" font-size="10" fill="#6b7280">Max 1,536 chars each — compact</text>
+  <text x="150" y="251" text-anchor="middle" font-size="10" fill="#6b7280">No context window cost</text>
+  <text x="150" y="267" text-anchor="middle" font-size="10" fill="#6b7280">Dozens of skills, always ready</text>
+
+  <!-- Arrow 1 label -->
+  <text x="324" y="181" text-anchor="middle" font-size="10" fill="#2563eb">matches</text>
+
+  <!-- Panel 2: LOADING -->
+  <text x="500" y="82"  text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">② LOADING</text>
+  <text x="500" y="100" text-anchor="middle" font-size="10" fill="#166534">Full SKILL.md reads on demand</text>
+  <line x1="385" y1="110" x2="630" y2="110" stroke="#bbf7d0" stroke-width="1"/>
+
+  <text x="500" y="145" text-anchor="middle" font-size="11" font-weight="600" fill="#14532d">Full instructions + format rules</text>
+  <text x="500" y="164" text-anchor="middle" font-size="10" fill="#374151">Step-by-step procedure</text>
+  <text x="500" y="180" text-anchor="middle" font-size="10" fill="#374151">Required output format</text>
+  <text x="500" y="196" text-anchor="middle" font-size="10" fill="#374151">Templates and examples</text>
+  <text x="500" y="212" text-anchor="middle" font-size="10" fill="#374151">Dynamic shell commands</text>
+  <text x="500" y="235" text-anchor="middle" font-size="10" fill="#6b7280">Loads only when task matches</text>
+  <text x="500" y="251" text-anchor="middle" font-size="10" fill="#6b7280">Full detail — zero waste</text>
+
+  <!-- Arrow 2 label -->
+  <text x="674" y="181" text-anchor="middle" font-size="10" fill="#2563eb">returns</text>
+
+  <!-- Panel 3: EXECUTION -->
+  <text x="850" y="82"  text-anchor="middle" font-size="13" font-weight="700" fill="#b45309">③ EXECUTION</text>
+  <text x="850" y="100" text-anchor="middle" font-size="10" fill="#92400e">Result flows back to session</text>
+  <line x1="735" y1="110" x2="980" y2="110" stroke="#fde68a" stroke-width="1"/>
+
+  <text x="850" y="145" text-anchor="middle" font-size="11" font-weight="600" fill="#713f12">Consistent structured output</text>
+  <text x="850" y="164" text-anchor="middle" font-size="10" fill="#374151">Same format every time</text>
+  <text x="850" y="180" text-anchor="middle" font-size="10" fill="#374151">Same procedure every time</text>
+  <text x="850" y="196" text-anchor="middle" font-size="10" fill="#374151">Auto or /skill-name invoked</text>
+  <text x="850" y="212" text-anchor="middle" font-size="10" fill="#374151">Or context: fork (isolated)</text>
+  <text x="850" y="235" text-anchor="middle" font-size="10" fill="#6b7280">Write once, run anywhere</text>
+  <text x="850" y="251" text-anchor="middle" font-size="10" fill="#6b7280">Repeatable expertise</text>
+</svg>
