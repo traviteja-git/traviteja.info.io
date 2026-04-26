@@ -1,213 +1,259 @@
 ---
-title: "Claude Agent Skills: Teach Claude Once, Use Everywhere"
-description: "Agent Skills are reusable SKILL.md packages that give Claude repeatable expertise — no repeated prompting. Here's how they work, how to build them, and when to use skills vs subagents."
+title: "Claude Agent Skills: Stop Repeating Yourself"
+description: "Every time you explain your review format to Claude, you're wasting time. Skills fix this — write the instructions once, Claude applies them automatically. Here's exactly how."
 date: "2026-04-23"
 tags: ["claude", "agents", "developer-tools", "llm", "productivity"]
 image: "../../assets/blog/claude/claude-skills.png"
 draft: false
 ---
 
-Every developer who uses Claude long enough hits the same wall.
+I'd typed the same instructions to Claude maybe twenty times over two months.
 
-You've figured out the right way to ask for a code review. You know the exact phrasing that makes Claude check for security issues, not just style. You've tuned the prompt over dozens of sessions. And then you open a new chat — and type it all again from scratch.
+Every PR review session, the same block of text: check for our error handling pattern, flag any raw SQL concatenation, look for missing null guards on external inputs. Not complicated. Just specific to how my team works. And every new session, I started from scratch because Claude remembered nothing.
 
-That's the problem Agent Skills solve.
+I knew this was stupid. I kept doing it anyway.
 
-![Claude Agent Skills: Teach Claude Once, Use Everywhere — how SKILL.md files give Claude repeatable expertise](../../assets/blog/claude/claude-skills.png)
+Then I discovered skills. I wrote those instructions once, saved them as a `SKILL.md` file, and haven't typed them since. Claude picks them up automatically at the start of every review — same checklist, same format, every time.
 
----
+That was three weeks ago. Here's everything I wish I'd known before then.
 
-## What Skills Are
-
-A Skill is a `SKILL.md` file — a short YAML header plus markdown instructions — that teaches Claude how to perform a specific task, every time, without re-prompting.
-
-The analogy that clicked for me: writing a skill is less like writing a prompt and more like writing a runbook. You write it once, you hand it to Claude, and now Claude knows the procedure. Whether you ask naturally, invoke it by name, or Claude recognises it's relevant on its own — the procedure runs.
-
-Skills live in `.claude/skills/<skill-name>/SKILL.md` for project-specific use, or `~/.claude/skills/<skill-name>/SKILL.md` for personal use across every project. Project skills take priority over personal ones when names conflict.
+![Claude Agent Skills: Stop Repeating Yourself](../../assets/blog/claude/claude-skills.png)
 
 ---
 
-## How Skills Load: Progressive Disclosure
+## What a skill actually is
 
-This is the part most people miss, and it's what makes skills practical at scale.
+A skill is a folder with a single file inside: `SKILL.md`. That file has two parts — a small YAML header with a `name` and `description`, and below that, the actual instructions Claude follows.
 
-Claude doesn't load every skill in full at the start of every conversation. It loads only the descriptions. The full `SKILL.md` content loads on demand — when Claude determines the skill is relevant, or when you invoke it directly.
+Here's the PR description skill from Anthropic's own course on skills:
+
+```
+---
+name: pr-description
+description: Writes pull request descriptions. Use when creating a PR, writing a PR, or when the user asks to summarize changes for a pull request.
+---
+
+When writing a PR description:
+
+1. Run `git diff main...HEAD` to see all changes on this branch
+2. Write a description following this format:
+
+## What
+One sentence explaining what this PR does.
+
+## Why
+Brief context on why this change is needed.
+
+## Changes
+- Bullet points of specific changes made
+- Group related changes together
+- Mention any files deleted or renamed
+```
+
+The `description` field is the important one. That's how Claude decides whether to use the skill at all — it compares what you're asking against that description and looks for a match. Write it as a clear statement of when the skill applies, not what it does. "Writes pull request descriptions. Use when creating a PR" is more useful than "PR description helper" because it's specific about the trigger.
+
+---
+
+## Where skills live
+
+Two locations depending on who needs them:
+
+- **Personal skills** — `~/.claude/skills/` on Mac/Linux, `C:/Users/<you>/.claude/skills/` on Windows. These follow you across every project.
+- **Project skills** — `.claude/skills/` inside your repo root. Committed to version control, shared with anyone who clones the repo.
+
+Personal skills are for your preferences: how you like code explained, your commit message style, your debugging approach. Project skills are for team standards: your review checklist, your documentation format, your naming conventions.
+
+---
+
+## Creating your first one
+
+Let's build the PR description skill. Three steps.
+
+**Create the directory:**
+
+```bash
+mkdir -p ~/.claude/skills/pr-description
+```
+
+The directory name should match the skill name.
+
+**Create the SKILL.md inside it:**
+
+```
+---
+name: pr-description
+description: Writes pull request descriptions. Use when creating a PR, writing a PR, or when the user asks to summarize changes for a pull request.
+---
+
+When writing a PR description:
+
+1. Run `git diff main...HEAD` to see all changes on this branch
+2. Write a description following this format:
+
+## What
+One sentence explaining what this PR does.
+
+## Why
+Brief context on why this change is needed.
+
+## Changes
+- Bullet points of specific changes made
+- Group related changes together
+- Mention any files deleted or renamed
+```
+
+**Restart Claude Code.** Skills load at startup — not hot-reloaded. No restart, no skill.
+
+After restarting, make some changes on a branch and say "write a PR description for my changes." Claude matches the request, asks you to confirm loading the skill, then writes the description in your exact format. Same structure every time.
+
+To update a skill later, edit its `SKILL.md`. To remove it, delete the directory. Restart after either.
+
+---
+
+## How Claude actually finds and uses it
+
+When Claude Code starts, it scans all skill locations and loads only the `name` and `description` from each skill — not the full content. The full instructions only load when needed.
 
 ![Agent Skills progressive disclosure — descriptions always pre-loaded, full SKILL.md reads on demand, result flows back](/diagrams/agent-skills-loading.svg)
 
-Three stages:
+When you send a request, Claude compares it against all available descriptions using **semantic matching** — not keyword matching, meaning matching. "Explain what this function does" would match a skill described as "explain code with visual diagrams and analogies" because the intent overlaps, even though the words don't.
 
-1. **Discovery** — All skill descriptions are always in Claude's context. Compact, max 1,536 characters each. No context window cost regardless of how many skills you have.
-2. **Loading** — When a skill is relevant, the full `SKILL.md` is read — instructions, output format, templates, examples.
-3. **Execution** — The skill runs, and the result returns to your conversation in exactly the format you defined.
+Once a match is found, Claude asks you to confirm before loading the full content. After you confirm, it reads the complete `SKILL.md` and follows it. This confirmation step keeps you aware of what context Claude is pulling in.
 
-You can have dozens of skills available without slowing anything down. The descriptions are always there; the details arrive only when needed.
+This on-demand loading matters at scale. Your PR review checklist doesn't need to be in context when you're debugging a null pointer — it only loads when you ask for a review. You can have dozens of skills without bloating every conversation.
 
 ---
 
-## The SKILL.md Format
+## Skills vs. CLAUDE.md vs. slash commands
 
-Every skill needs a `SKILL.md` with YAML frontmatter between `---` markers, followed by the actual instructions. The minimum viable skill looks like this:
+I got confused about this for a while, so let me make it concrete.
 
-```yaml
----
-name: code-review
-description: Review code for bugs, security issues, and style violations. Use for PR reviews and pre-merge checks.
----
+**CLAUDE.md** loads into every conversation, always. Project constraints that never change go here — "never modify the database schema directly", "always use TypeScript strict mode", your project's architecture overview. If it applies to everything, it lives in CLAUDE.md.
 
-When reviewing code, always check for:
-1. Security issues — injection, exposed secrets, improper validation
-2. Logic errors and edge cases
-3. Missing error handling
-4. Performance problems in hot paths
+**Skills** load on demand when they match what you're asking. Task-specific procedures go here — your PR review checklist, your commit format, your documentation template. They don't clutter context when you're doing something unrelated.
 
-Return a structured report:
-CRITICAL: [list]
-HIGH: [list]
-SUGGESTIONS: [list]
-VERDICT: approve | request-changes
-```
+**Slash commands** require you to type them explicitly. Skills don't. A skill activates when Claude recognises the situation.
 
-The key frontmatter fields:
+The rule I now use: if it always applies, CLAUDE.md. If it applies sometimes, skill. If I want to trigger it deliberately, slash command.
 
-| Field | What it does |
-|---|---|
-| `name` | Skill identifier. Becomes the `/skill-name` slash command. |
-| `description` | What the skill does and when to use it. Claude reads this to decide whether to auto-invoke. |
-| `disable-model-invocation: true` | Only you can invoke it — prevents Claude from auto-running anything with side effects. |
-| `allowed-tools` | Pre-approve specific tools so the skill runs without permission prompts. |
-| `context: fork` | Run the skill in an isolated subagent context, keeping main conversation clean. |
-| `model` | Override which Claude model this skill uses. |
-
-Most skills only need `name`, `description`, and the instructions. The rest is optional, and you'll know when you need it.
+<div class="callout callout-info">Skills don't replace CLAUDE.md — they complement it. CLAUDE.md carries always-on project context. Skills carry task-specific procedures that load only when relevant.</div>
 
 ---
 
-## Three Ways to Invoke a Skill
+## Priority when names conflict
 
-**Automatic** — Claude reads all skill descriptions and auto-loads any skill that matches the current task. You don't do anything; it activates on its own.
-
-**Manual slash command** — You type `/code-review src/api/payments.ts` and Claude runs that skill directly on your input.
-
-**Natural language** — You say "can you review this file for security issues?" and Claude figures out the `code-review` skill matches and loads it.
-
-The `description` field determines when Claude auto-invokes. Write it clearly and specifically — vague descriptions lead to either no auto-invocation or too many false positives.
-
-<div class="callout callout-warning">Add <code>disable-model-invocation: true</code> to any skill that commits code, sends messages, deploys, or takes any irreversible action. Those should be explicitly triggered, not auto-run because Claude thought it was helpful.</div>
-
----
-
-## Real Examples Worth Building
-
-**Code reviewer.** Bake your team's standards into the skill — the specific checks you always forget to do manually, the security patterns your stack is vulnerable to, the output format your team actually reads.
-
-**Documentation generator.** A skill that writes JSDoc comments in a consistent format, with your output schema locked in. Tell it to return a JSON array with no extra commentary, and it returns exactly that, every time.
-
-**PR summary writer.** Combine a skill with dynamic context injection — shell commands that execute before Claude sees the prompt:
-
-```yaml
----
-name: pr-summary
-description: Summarize the current pull request for a team Slack update
-disable-model-invocation: true
-allowed-tools: Bash(gh *)
----
-
-## Pull request context
-- Diff: !`gh pr diff`
-- Comments: !`gh pr view --comments`
-- Changed files: !`gh pr diff --name-only`
-
-Summarize this pull request for the team Slack channel.
-Focus on: what changed, why it matters, what reviewers should test.
-```
-
-The `` !`command` `` syntax runs shell commands before Claude sees anything. By the time the model processes this, the actual diff is already there — not the command, the output.
-
-**Commit message writer.** A skill that pulls the current diff automatically, enforces your commit format, and outputs only the message. Nothing else.
-
-<div class="callout callout-tip">Start with a skill that fixes something you already repeat manually. If you've typed the same prompt three times in different sessions, that's a skill waiting to be written.</div>
-
----
-
-## Skills vs. Subagents
-
-The distinction trips people up. Here's the practical version:
-
-| | Skills | Subagents |
-|---|---|---|
-| **What they are** | Instructions Claude uses | Mini-agents with isolated context |
-| **Context** | Shares main conversation | Completely separate window |
-| **Best for** | Consistent tasks, style guides, reference | Complex multi-step work, bulk operations |
-| **Invocation** | Auto or `/skill-name` | Delegated from main session |
-| **Output noise** | Stays in main context | Contained — only summary returns |
-
-Think of it this way: **skills make Claude better at a task** — they're training. **Subagents handle a task separately** — they're delegation.
-
-A code-review skill tells Claude how to review code. A code-review subagent runs the review in its own context so your main session doesn't fill up with 30 file reads.
-
-You can combine them. Add `context: fork` to a skill's frontmatter and it runs as a subagent — isolated context, same `SKILL.md` instructions. Best of both.
-
----
-
-## Context Fork: Skills in Isolation
-
-When a skill reads a lot of files or generates intermediate output you don't need cluttering your main conversation, add `context: fork`:
-
-```yaml
----
-name: deep-review
-description: Review the full codebase for a specific security concern
-context: fork
-agent: Explore
-allowed-tools: Read Grep Glob
----
-
-Review all files in src/ for:
-- Hardcoded credentials or secrets
-- Raw SQL string concatenation
-- Missing input validation at API boundaries
-
-Return a prioritized list with file:line references.
-Do not return intermediate findings — final list only.
-```
-
-This spawns a subagent with the skill content as its task. It does the work in isolation and returns only the result. Your main session sees the summary, not the 40-file traversal.
-
----
-
-## What Makes a Good Skill
-
-The skills that actually get used share a few traits:
-
-1. **A specific trigger** — the `description` is clear enough that Claude knows exactly when to invoke it
-2. **A defined output format** — the instructions tell Claude exactly what to return, not just what to think about
-3. **A narrow scope** — one skill, one job. A skill that tries to be a code reviewer, docs writer, and refactoring tool works poorly at all three
-4. **Explicit blockers** — tell the skill what to do when it can't complete the task:
+If a project skill and a personal skill have the same name, there's a fixed precedence:
 
 ```
-If the target file is not specified or cannot be found, respond:
-BLOCKED: [reason]
-NEEDS: [what would unblock you]
-Do not proceed past a blocker.
+Enterprise  →  Personal  →  Project  →  Plugins
+(highest)                              (lowest)
 ```
 
-This is better than getting a confident-sounding output that's quietly wrong.
+Personal beats project. Enterprise beats everything. If your company has an enterprise `code-review` skill and you write a personal one with the same name, the enterprise version runs every time.
 
-<div class="callout callout-info">Anthropic offers a free certification course on Agent Skills at <a href="https://anthropic.skilljar.com/introduction-to-agent-skills">anthropic.skilljar.com</a> — covers building, configuring, and sharing skills with no prior coding required.</div>
-
----
-
-## The Payoff
-
-The investment is asymmetric. Writing a good skill takes 20 minutes once. Running it costs nothing. The tenth time you invoke it, you've already paid back the time. And it's been running exactly the same procedure every time.
-
-That consistency is the real value — not the time saved, but the guarantee that the same skill means the same thing across every session, every project, every team member who works in the same codebase.
-
-The developers I've seen get the most out of this aren't building elaborate skill libraries. They identify one repeated, annoying task, write a skill for it, and move on. Then they do it again next week. Over six months, the compounding is real.
-
-Pick the task you've re-explained to Claude the most times. Write the skill. That's the whole playbook.
+The practical fix: use specific names. "frontend-review" conflicts with fewer things than "review".
 
 ---
 
-*Official resources: [Claude Code Skills documentation](https://docs.anthropic.com/en/docs/claude-code/skills) · [Free Agent Skills course on Skilljar](https://anthropic.skilljar.com/introduction-to-agent-skills) · [Claude Code Subagents guide](/blog/claude-code-subagents)*
+## The optional fields that actually matter
+
+Most skills only need `name`, `description`, and the instructions. Two optional fields are worth knowing:
+
+**`allowed-tools`** restricts which tools Claude can use when the skill is active. Useful for read-only workflows where you don't want Claude editing anything:
+
+```
+---
+name: codebase-audit
+description: Audits the codebase for security issues without making changes.
+allowed-tools: Read, Grep, Glob, Bash
+---
+```
+
+When this skill is active, Claude can only use those four tools — no writing, no editing. Without `allowed-tools`, the skill doesn't restrict anything.
+
+**`model`** lets you run a specific skill on a different model. A quick formatter can run on Sonnet while a deep architecture review runs on Opus.
+
+---
+
+## Handling more complex skills
+
+Once a skill needs reference material, templates, or scripts, cramming everything into one `SKILL.md` gets messy fast. The standard approach is to keep core instructions in `SKILL.md` and put supporting material in separate files:
+
+```
+~/.claude/skills/my-skill/
+  SKILL.md           ← Core instructions + frontmatter
+  references/        ← Docs Claude reads when needed
+  scripts/           ← Scripts Claude runs
+  assets/            ← Templates, data files
+```
+
+In `SKILL.md`, point Claude to these files explicitly:
+
+```
+Refer to references/style-guide.md only when the user
+asks about formatting or naming conventions.
+```
+
+Claude loads `style-guide.md` only when someone asks about it — not for every request that activates the skill. A practical rule: keep `SKILL.md` under 500 lines. If you're going over, some content belongs in a reference file.
+
+Scripts run without loading their source into context — only the output consumes tokens. Tell Claude to *run* the script, not *read* it.
+
+---
+
+## Sharing skills with your team
+
+**Simplest approach:** commit your `.claude/skills/` directory to the repo. Anyone who clones it gets the skills. Updates go out on the next pull. This works for team standards and project-specific workflows.
+
+**Broader distribution:** plugins let you package skills for sharing across repositories via a marketplace. Same file structure, just distributed as a plugin rather than committed to a specific repo.
+
+**Organisation-wide:** administrators can deploy skills through managed settings. Enterprise skills take the highest priority and override everything with the same name. This is the right tool for mandatory standards and compliance requirements — things that must be consistent across the entire organisation.
+
+---
+
+## The thing that trips people up with subagents
+
+If you use subagents, be aware: **subagents don't automatically see your skills.**
+
+When you delegate a task to a subagent, it starts with a clean context — your skills aren't loaded into it. Built-in agents (Explorer, Plan, Verify) can't access skills at all.
+
+Custom subagents *can* use skills, but only when you explicitly list them in the agent's frontmatter:
+
+```
+---
+name: security-reviewer
+description: "Reviews code for security vulnerabilities."
+tools: Bash, Glob, Grep, Read
+model: sonnet
+skills: security-audit, owasp-checklist
+---
+```
+
+When you delegate to this subagent, both skills load at startup. The skills must already exist in your `.claude/skills/` directory.
+
+---
+
+## When things go wrong
+
+Three problems come up most often.
+
+**Skill doesn't trigger.** Almost always the description. Add trigger phrases that match how you actually phrase requests. If "why is this slow?" doesn't fire your performance skill, add that phrase to the description. Test a few variations and adjust.
+
+**Skill doesn't load.** Two structural requirements: the `SKILL.md` must be inside a named directory (not at the skills root), and the filename must be exactly `SKILL.md` — all caps, lowercase extension. Run `claude --debug` to see loading errors by name.
+
+**Wrong skill gets used.** Descriptions are too similar. Make them more specific about the domain, language, or situation.
+
+<div class="callout callout-tip">The agent skills validator tool (installable via uv) catches structural problems before you debug anything else. Worth running before you spend time on a skill that won't load.</div>
+
+---
+
+## The rule
+
+Every time you explain your team's coding standards to Claude, you're repeating yourself. Every PR review, you re-describe how you want feedback structured. Every commit message, you remind Claude of your preferred format.
+
+Skills fix this permanently. The ten minutes it takes to write a skill pays back the first time you use it. After that, it runs exactly the same procedure every time — same format, same checklist, same output — for every session, every project, every teammate who has the skill.
+
+Look back at your last ten Claude sessions. Find the instruction you typed more than once. Write a skill for that one thing.
+
+---
+
+*Anthropic offers a free certification course on Agent Skills at [anthropic.skilljar.com/introduction-to-agent-skills](https://anthropic.skilljar.com/introduction-to-agent-skills). Full documentation at [docs.anthropic.com](https://docs.anthropic.com/en/docs/claude-code/skills). If you're using subagents alongside skills, the [Claude Code Subagents guide](/blog/claude-code-subagents) covers that side in depth.*
