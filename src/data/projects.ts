@@ -198,4 +198,21 @@ export const projects: Project[] = [
       "Achieved 90% code coverage and implemented static analysis feedback, improving performance and maintainability across segmentation and clustering modules.",
     ],
   },
+  {
+    title: "Customer Growth Opportunity Platform – AI/ML & Cloud-Native Architecture",
+    company: "Deloitte",
+    role: "Senior Backend Engineer / Architect",
+    period: "Jan 2026 – Present",
+    logo: "/images/logos/deloitte.png",
+    endYear: null,
+    tech: ["GCP", "GKE", "KEDA", "Kubernetes", "Python", "PySpark", "BigQuery", "Cloud Run", "Helm"],
+    description: "Architected an AI/ML platform surfacing customer growth opportunities, leading its containerization on GKE and pioneering HTTP-trigger-based KEDA autoscaling — establishing the reference pattern adopted across the broader product portfolio.",
+    highlights: [
+      "Owned the high-level design for containerizing the platform on GKE, taking the effort from baseline assessment through production rollout.",
+      "Pioneered HTTP-trigger-based KEDA autoscaling for the clustering aggregator job, replacing the prior PostgreSQL-polling pattern with an async trigger + Kubernetes Job model that scales to zero between runs.",
+      "Established Customer Growth as the first product in the portfolio to adopt the HTTP-trigger KEDA pattern, making it the reference architecture for sibling products.",
+      "Partnered with DevOps to codify the deployment shape so adjacent teams could re-use it without re-architecting from scratch.",
+      "Drove security remediation across the codebase (Mend scan findings), keeping the platform compliant alongside the modernization work.",
+    ],
+  },
 ];
