@@ -1,0 +1,89 @@
+<svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,sans-serif;">
+  <defs>
+    <marker id="arr-down" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#2563eb"/>
+    </marker>
+    <marker id="arr-loop" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="420" rx="12" fill="#f8faff" stroke="#e4e4e7" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="500" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Transformer Inference — Autoregressive Token Generation</text>
+  <text x="500" y="46" text-anchor="middle" font-size="11" fill="#6b7280">This loop runs once per output token — longer responses = more iterations = higher cost</text>
+
+  <!-- ── STEP RECTS ── -->
+
+  <!-- Step 1: Token IDs in -->
+  <rect x="60" y="64" width="700" height="50" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <rect x="68" y="72" width="30" height="30" rx="15" fill="#2563eb"/>
+
+  <!-- Step 2: Embedding Lookup -->
+  <rect x="60" y="134" width="700" height="50" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <rect x="68" y="142" width="30" height="30" rx="15" fill="#16a34a"/>
+
+  <!-- Step 3: Self-Attention -->
+  <rect x="60" y="204" width="700" height="50" rx="7" fill="#fefce8" stroke="#fde047" stroke-width="1.5"/>
+  <rect x="68" y="212" width="30" height="30" rx="15" fill="#ca8a04"/>
+
+  <!-- Step 4: Feed-Forward Network -->
+  <rect x="60" y="274" width="700" height="50" rx="7" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+  <rect x="68" y="282" width="30" height="30" rx="15" fill="#ea580c"/>
+
+  <!-- Step 5: Logits + Sampling (highlighted — the key step) -->
+  <rect x="60" y="344" width="700" height="50" rx="7" fill="#fdf4ff" stroke="#c084fc" stroke-width="2"/>
+  <rect x="68" y="352" width="30" height="30" rx="15" fill="#7c3aed"/>
+
+  <!-- ── ARROWS DOWN ── -->
+  <line x1="410" y1="114" x2="410" y2="134" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-down)"/>
+  <line x1="410" y1="184" x2="410" y2="204" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-down)"/>
+  <line x1="410" y1="254" x2="410" y2="274" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-down)"/>
+  <line x1="410" y1="324" x2="410" y2="344" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-down)"/>
+
+  <!-- ── LOOP ARROW (step 5 → step 1) ── -->
+  <path d="M760,369 C880,369 880,89 760,89" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#arr-loop)"/>
+
+  <!-- "×N tokens" label on loop -->
+  <rect x="858" y="216" width="84" height="28" rx="5" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="900" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">×N tokens</text>
+
+  <text x="900" y="272" text-anchor="middle" font-size="10" fill="#6b7280">repeat until</text>
+  <text x="900" y="285" text-anchor="middle" font-size="10" fill="#6b7280">end_turn or</text>
+  <text x="900" y="298" text-anchor="middle" font-size="10" fill="#6b7280">max_tokens</text>
+
+  <!-- ── STEP TEXT LABELS ── -->
+
+  <!-- Step 1 -->
+  <text x="108" y="84" font-size="12" font-weight="700" fill="#1e40af">1 · Token IDs In</text>
+  <text x="108" y="100" font-size="11" fill="#3b82f6">Full sequence of integer token IDs — system prompt + history + new message — enters the model</text>
+
+  <!-- Step 2 -->
+  <text x="108" y="154" font-size="12" font-weight="700" fill="#15803d">2 · Embedding Lookup</text>
+  <text x="108" y="170" font-size="11" fill="#16a34a">Each token ID maps to a high-dimensional vector. 50 tokens → 50×4096 matrix entering the transformer</text>
+
+  <!-- Step 3 -->
+  <text x="108" y="224" font-size="12" font-weight="700" fill="#854d0e">3 · Self-Attention  (×N layers)</text>
+  <text x="108" y="240" font-size="11" fill="#92400e">Every token attends to every other — resolves "it" to "the server", connects ideas across long distances</text>
+
+  <!-- Step 4 -->
+  <text x="108" y="294" font-size="12" font-weight="700" fill="#c2410c">4 · Feed-Forward Network  (×N layers)</text>
+  <text x="108" y="310" font-size="11" fill="#ea580c">Non-linear projection enriches each token's representation — this is where training "knowledge" lives</text>
+
+  <!-- Step 5 -->
+  <text x="108" y="364" font-size="12" font-weight="700" fill="#7c3aed">5 · Logits → Sampling → New Token</text>
+  <text x="108" y="380" font-size="11" fill="#7c3aed">Scores across ~100k vocab → softmax → temperature + top_p → sample one token → append → repeat</text>
+
+  <!-- Step badge numbers -->
+  <text x="83" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">1</text>
+  <text x="83" y="162" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">2</text>
+  <text x="83" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">3</text>
+  <text x="83" y="302" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">4</text>
+  <text x="83" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">5</text>
+
+  <!-- Bottom note -->
+  <text x="410" y="408" text-anchor="middle" font-size="10" fill="#9ca3af">One forward pass = one token sampled · a 200-token response = 200 passes through steps 1–5</text>
+
+</svg>

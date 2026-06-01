@@ -52,6 +52,8 @@ Follow the writing style from `AGENTS.md` strictly:
 
 Aim for 800–1500 words. Quality over length.
 
+**Create SVG diagrams for concepts that benefit from visual explanation.** See `CLAUDE.md` for full guidance. Ask: would a diagram help the reader grasp this faster than text alone?
+
 ---
 
 ### Step 4 — Create the Markdown File
@@ -66,16 +68,47 @@ title: "[Full title]"
 description: "[150–160 char description with long-tail keywords]"
 date: "[YYYY-MM-DD today's date]"
 tags: ["tag1", "tag2", "tag3"]
-image: "/images/blog/[slug]/hero.png"
+image: "../../assets/blog/[slug]/[seo-descriptive-filename].png"
 draft: false
 ---
 ```
 
-Add `![Descriptive alt text with keywords](/images/blog/[slug]/hero.png)` as the first line after frontmatter if an image exists.
+Add `![Descriptive alt text with keywords](/images/blog/[slug]/[seo-descriptive-filename].png)` as the first line after frontmatter if an image exists.
 
 ---
 
-### Step 5 — Update the Sitemap
+### Step 4.5 — Generate Gemini Image Prompt ⚠️ DO NOT SKIP
+
+This step is mandatory. Do not proceed to Step 5 without completing it.
+
+After writing the article, read `prompts/generate-article-image.md` and follow the **"How to Generate the Gemini Prompt After Writing an Article"** section.
+
+Extract from the article:
+- The exact title
+- The core concept (one sentence)
+- The best visual metaphor in the article
+- 3–4 target keywords
+- The article type (A / B / C / D / E) — this determines the color palette
+
+**Color rule — CRITICAL:** Do not default to deep navy (#0d1b2a) every time. Every article has a different mood; the palette must match it. Read the "Theme Selection" and "Color variety rule" sections in `prompts/generate-article-image.md` before writing the prompt. If multiple recent articles used dark navy, explicitly choose a different palette for this one.
+
+Fill in the Gemini-ready prompt template and output it to the user so they can paste it directly into Gemini Imagen to generate the hero image.
+
+The image should be saved to: `src/assets/blog/[slug]/[seo-descriptive-filename].png`
+
+---
+
+### Step 5 — Humanize the Article
+
+Run the `/humanizer` skill on the full article body before publishing.
+
+This removes AI-writing patterns (em dash overuse, rule of three, inflated language, vague attributions, negative parallelisms) and makes the writing sound natural and human.
+
+Do this **after** the draft is complete, **before** updating the sitemap or committing.
+
+---
+
+### Step 6 — Update the Sitemap
 
 Open `public/sitemap.xml` and add a new `<url>` block inside the Blog posts section:
 
@@ -89,7 +122,7 @@ Open `public/sitemap.xml` and add a new `<url>` block inside the Blog posts sect
 
 ---
 
-### Step 6 — Verify & Push
+### Step 7 — Verify & Push
 
 1. Run `npm run build` — confirm it passes with no errors
 2. Commit with a clear message:
@@ -104,8 +137,8 @@ Open `public/sitemap.xml` and add a new `<url>` block inside the Blog posts sect
 
 ---
 
-### Step 7 — Remind the User
+### Step 8 — Remind the User
 
 After pushing, remind Raviteja to:
-- Add a hero image to `public/images/blog/[slug]/` if not already done (SEO-optimised filename)
+- Add a hero image to `src/assets/blog/[slug]/` — use an SEO-descriptive filename, not `hero.png` (e.g. `how-to-prompt-claude.png`)
 - Resubmit `sitemap.xml` in Google Search Console

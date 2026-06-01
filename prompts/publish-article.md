@@ -22,7 +22,7 @@ Check:
 - `draft: true` is set (confirm this is still a draft)
 - `title`, `description`, `date`, `tags` are all filled in
 - `description` is 150–160 characters (good meta description length)
-- `image` field points to a file that exists in `public/images/blog/[SLUG]/`
+- `image` field points to a file that exists in `src/assets/blog/[SLUG]/` (SEO-descriptive filename, not `hero.png`)
 - The article has proper H2/H3 structure
 - No placeholder text or TODOs remain
 

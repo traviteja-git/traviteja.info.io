@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+    </style>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accent-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ① Backgrounds -->
+  <rect width="1200" height="630" fill="url(#bg-grad)"/>
+
+  <!-- Subtle grid pattern -->
+  <rect width="1200" height="630" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Accent bar at top -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent-grad)"/>
+
+  <!-- Left content area background hint -->
+  <rect x="60" y="80" width="520" height="470" rx="16" fill="#0f172a" opacity="0.4"/>
+
+  <!-- Right skill cards area -->
+  <!-- Card 1 background -->
+  <rect x="640" y="90" width="500" height="120" rx="12" fill="url(#card-grad)" stroke="#1e3a8a" stroke-width="1.5"/>
+  <!-- Card 2 background -->
+  <rect x="640" y="230" width="500" height="120" rx="12" fill="url(#card-grad)" stroke="#1e3a8a" stroke-width="1.5"/>
+  <!-- Card 3 background -->
+  <rect x="640" y="370" width="500" height="120" rx="12" fill="url(#card-grad)" stroke="#1e3a8a" stroke-width="1.5"/>
+
+  <!-- Card accent left bars -->
+  <rect x="640" y="90"  width="4" height="120" rx="2" fill="#2563eb"/>
+  <rect x="640" y="230" width="4" height="120" rx="2" fill="#7c3aed"/>
+  <rect x="640" y="370" width="4" height="120" rx="2" fill="#0891b2"/>
+
+  <!-- SKILL.md file visual (left side) -->
+  <rect x="100" y="170" width="440" height="320" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <!-- File header bar -->
+  <rect x="100" y="170" width="440" height="36" rx="10" fill="#1e293b"/>
+  <rect x="100" y="188" width="440" height="18" fill="#1e293b"/>
+  <!-- Window dots -->
+  <circle cx="124" cy="188" r="6" fill="#ef4444"/>
+  <circle cx="144" cy="188" r="6" fill="#f59e0b"/>
+  <circle cx="164" cy="188" r="6" fill="#22c55e"/>
+  <!-- File tab -->
+  <rect x="184" y="174" width="100" height="22" rx="4" fill="#0f172a"/>
+
+  <!-- ② Inner boxes (code lines in SKILL.md) -->
+  <!-- YAML frontmatter area -->
+  <rect x="116" y="220" width="408" height="100" rx="6" fill="#1e293b" opacity="0.8"/>
+  <!-- Code body area -->
+  <rect x="116" y="334" width="408" height="140" rx="6" fill="#1e293b" opacity="0.5"/>
+
+  <!-- ③ Lines/decorative elements -->
+  <!-- Separator line in SKILL.md -->
+  <line x1="116" y1="328" x2="524" y2="328" stroke="#334155" stroke-width="1"/>
+  <!-- Bottom accent line -->
+  <line x1="60" y1="570" x2="580" y2="570" stroke="url(#accent-grad)" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ④ All text labels -->
+
+  <!-- Main title -->
+  <text x="80" y="128" font-size="52" font-weight="800" fill="white">Claude Agent Skills</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="165" font-size="22" fill="#94a3b8">Teach Claude once. Use everywhere.</text>
+
+  <!-- SKILL.md filename tab -->
+  <text x="186" y="189" font-size="11" fill="#94a3b8">SKILL.md</text>
+
+  <!-- YAML frontmatter code -->
+  <text x="128" y="242" font-size="13" fill="#94a3b8">---</text>
+  <text x="128" y="262" font-size="13" fill="#7dd3fc">name<tspan fill="#e2e8f0">: </tspan><tspan fill="#86efac">code-review</tspan></text>
+  <text x="128" y="282" font-size="13" fill="#7dd3fc">description<tspan fill="#e2e8f0">: Review code for bugs</tspan></text>
+  <text x="128" y="302" font-size="13" fill="#7dd3fc">allowed-tools<tspan fill="#e2e8f0">: Read Grep</tspan></text>
+  <text x="128" y="322" font-size="13" fill="#94a3b8">---</text>
+
+  <!-- Markdown instructions -->
+  <text x="128" y="352" font-size="13" fill="#e2e8f0">When reviewing code, always check:</text>
+  <text x="128" y="374" font-size="13" fill="#94a3b8">1. Security issues and injection</text>
+  <text x="128" y="394" font-size="13" fill="#94a3b8">2. Logic errors and edge cases</text>
+  <text x="128" y="414" font-size="13" fill="#94a3b8">3. Missing error handling</text>
+  <text x="128" y="440" font-size="11" fill="#475569" font-style="italic">Return: CRITICAL / HIGH / VERDICT</text>
+  <text x="128" y="458" font-size="11" fill="#475569" font-style="italic">Format: approve | request-changes</text>
+
+  <!-- Card 1: Auto-invocation -->
+  <text x="664" y="120" font-size="11" font-weight="600" fill="#60a5fa" letter-spacing="1">① DISCOVERY</text>
+  <text x="664" y="145" font-size="18" font-weight="700" fill="white">Descriptions pre-loaded</text>
+  <text x="664" y="168" font-size="13" fill="#94a3b8">All skill names + descriptions always in context.</text>
+  <text x="664" y="187" font-size="13" fill="#94a3b8">No context cost. Dozens of skills, always ready.</text>
+
+  <!-- Card 2: On-demand loading -->
+  <text x="664" y="260" font-size="11" font-weight="600" fill="#a78bfa" letter-spacing="1">② LOADING</text>
+  <text x="664" y="285" font-size="18" font-weight="700" fill="white">Full SKILL.md on demand</text>
+  <text x="664" y="308" font-size="13" fill="#94a3b8">Full instructions load only when the task matches.</text>
+  <text x="664" y="327" font-size="13" fill="#94a3b8">Write once — invoked automatically or by /name.</text>
+
+  <!-- Card 3: Execution -->
+  <text x="664" y="400" font-size="11" font-weight="600" fill="#22d3ee" letter-spacing="1">③ EXECUTION</text>
+  <text x="664" y="425" font-size="18" font-weight="700" fill="white">Consistent output, every time</text>
+  <text x="664" y="448" font-size="13" fill="#94a3b8">Same format. Same procedure. Every session,</text>
+  <text x="664" y="467" font-size="13" fill="#94a3b8">every project, every team member.</text>
+
+  <!-- Bottom label -->
+  <text x="80" y="600" font-size="13" fill="#475569">traviteja.com · Claude Code · Agent Skills</text>
+</svg>

@@ -3,7 +3,7 @@ title: "7 Skills to Master AI in 2026"
 description: "Most developers use AI like a search engine. Here's the playbook to use it like a force multiplier — seven skills that separate people who get results from people who get frustrated."
 date: "2026-02-25"
 tags: ["ai", "productivity", "developer-tools", "chatgpt", "prompt-engineering"]
-image: "/images/blog/ai-agents/7-skills-to-master-Ai.jpg"
+image: "../../assets/blog/ai-agents/7-skills-to-master-Ai.jpg"
 draft: false
 ---
 
@@ -13,7 +13,9 @@ That's not using AI. That's using a slightly smarter search engine.
 
 The people getting real leverage from these tools aren't using better prompts. They've built better habits. Here are the seven that actually matter in 2026.
 
-![7 Skills to Master AI in 2026](/images/blog/ai-agents/7-skills-to-master-Ai.jpg)
+![7 Skills to Master AI in 2026](../../assets/blog/ai-agents/7-skills-to-master-Ai.jpg)
+
+![7 AI skills grouped by where they apply — Setup, Interaction, and Discipline — with key rules for each](/diagrams/7-skills-map.svg)
 
 ---
 
@@ -26,6 +28,10 @@ The filter that actually works: **unfollow anyone posting AI news without tutori
 Pick two or three creators who teach with concrete examples. Subscribe to one newsletter — not five, one. Read it once a week. And every article you read, try one thing from it immediately. Not tomorrow. Now.
 
 One article, one action. That's the compounding that matters. The developer who runs one experiment a week from what they read will outpace the one who just stays "informed."
+
+<div class="callout callout-tip">
+Pick one thing from this article and try it today — not this week, today. The gap between "I'll apply this soon" and "I tried this and it didn't work" is where most skill-building gets lost.
+</div>
 
 ---
 
@@ -108,6 +114,10 @@ This is the one that separates developers who get consistent results from those 
 Before any task, split it explicitly: what does AI do, what do you do? Most tasks have a natural split. AI handles the 80% — the execution, the formatting, the first drafts, the boilerplate, the research synthesis. You own the 20% — the strategy, the judgment calls, the voice, the final edit, and most importantly, spotting when it's wrong.
 
 That last part is critical. **Only use AI where you're the expert.** If you can't spot the mistake, don't delegate it. AI is confidently wrong with the same tone it uses when it's confidently right. The only way to catch the errors is to know the domain well enough to see them.
+
+<div class="callout callout-warning">
+Don't use AI to learn a domain you don't already understand. It will produce plausible-sounding output that you have no way to verify. Use it to accelerate work in areas where you already know what "correct" looks like.
+</div>
 
 AI is a mirror. It reflects what you bring to it. If you bring shallow questions, vague context, and passive acceptance of outputs, you'll get shallow results. If you bring deep expertise, specific context, and critical review, you'll get something that actually extends what you're capable of.
 

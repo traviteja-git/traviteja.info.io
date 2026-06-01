@@ -1,0 +1,78 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,sans-serif;">
+  <defs>
+    <marker id="arr-d" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="560" rx="12" fill="#f8faff" stroke="#e4e4e7" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="500" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">Claude Request Lifecycle — End to End</text>
+
+  <!-- ── All box rects FIRST ── -->
+
+  <!-- Step 1 -->
+  <rect x="60" y="58" width="880" height="58" rx="7" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <!-- Step 2 -->
+  <rect x="60" y="142" width="880" height="58" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <!-- Step 3 -->
+  <rect x="60" y="226" width="880" height="58" rx="7" fill="#fefce8" stroke="#fde047" stroke-width="1.5"/>
+  <!-- Step 4 -->
+  <rect x="60" y="310" width="880" height="58" rx="7" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+  <!-- Step 5 -->
+  <rect x="60" y="394" width="880" height="58" rx="7" fill="#fdf4ff" stroke="#d8b4fe" stroke-width="1.5"/>
+  <!-- Step 6 -->
+  <rect x="60" y="478" width="880" height="58" rx="7" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+
+  <!-- Number badges (circle rects as squares, drawn before text) -->
+  <rect x="70" y="68" width="32" height="32" rx="16" fill="#2563eb"/>
+  <rect x="70" y="152" width="32" height="32" rx="16" fill="#16a34a"/>
+  <rect x="70" y="236" width="32" height="32" rx="16" fill="#ca8a04"/>
+  <rect x="70" y="320" width="32" height="32" rx="16" fill="#ea580c"/>
+  <rect x="70" y="404" width="32" height="32" rx="16" fill="#7c3aed"/>
+  <rect x="70" y="488" width="32" height="32" rx="16" fill="#059669"/>
+
+  <!-- Connector arrows -->
+  <line x1="500" y1="116" x2="500" y2="142" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-d)"/>
+  <line x1="500" y1="200" x2="500" y2="226" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-d)"/>
+  <line x1="500" y1="284" x2="500" y2="310" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-d)"/>
+  <line x1="500" y1="368" x2="500" y2="394" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-d)"/>
+  <line x1="500" y1="452" x2="500" y2="478" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arr-d)"/>
+
+  <!-- ── All text labels LAST ── -->
+
+  <!-- Badge numbers -->
+  <text x="86" y="89" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
+  <text x="86" y="173" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
+  <text x="86" y="257" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
+  <text x="86" y="341" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">4</text>
+  <text x="86" y="425" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
+  <text x="86" y="509" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">6</text>
+
+  <!-- Step 1 -->
+  <text x="116" y="82" font-size="13" font-weight="700" fill="#1e40af">Input Assembly</text>
+  <text x="116" y="100" font-size="11" fill="#3b82f6">System prompt + conversation history + new message (+ optional images / files) → JSON payload → POST /v1/messages</text>
+
+  <!-- Step 2 -->
+  <text x="116" y="166" font-size="13" font-weight="700" fill="#15803d">API Gateway</text>
+  <text x="116" y="184" font-size="11" fill="#16a34a">HTTPS to api.anthropic.com · API key auth · Rate limit check · Prompt cache lookup for stable prefixes</text>
+
+  <!-- Step 3 -->
+  <text x="116" y="250" font-size="13" font-weight="700" fill="#854d0e">Tokenization</text>
+  <text x="116" y="268" font-size="11" fill="#92400e">BPE encodes every token in the context into integer IDs · ~4 chars/token · Images add ~1,000–2,000 tokens each</text>
+
+  <!-- Step 4 -->
+  <text x="116" y="334" font-size="13" font-weight="700" fill="#c2410c">Context Window (≤ 200k tokens)</text>
+  <text x="116" y="352" font-size="11" fill="#ea580c">All token IDs enter the transformer at once · Attention runs across the full sequence · API is stateless — you send full history every call</text>
+
+  <!-- Step 5 -->
+  <text x="116" y="418" font-size="13" font-weight="700" fill="#6d28d9">Transformer Inference</text>
+  <text x="116" y="436" font-size="11" fill="#7c3aed">N × (self-attention + FFN) layers → logits over vocabulary → softmax + temperature + top_p → sample 1 token → repeat until end_turn</text>
+
+  <!-- Step 6 -->
+  <text x="116" y="502" font-size="13" font-weight="700" fill="#065f46">Streaming Output</text>
+  <text x="116" y="520" font-size="11" fill="#059669">Each token fires as an SSE content_block_delta event · Final message_delta carries stop_reason + usage (input / cache / output tokens)</text>
+
+</svg>

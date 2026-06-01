@@ -1,0 +1,163 @@
+<svg width="1000" height="440" viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      text { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-back" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-back-green" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- ── RECTS first (so text renders on top) ── -->
+
+  <!-- Canvas background -->
+  <rect width="1000" height="440" fill="#f8faff" rx="12"/>
+  <rect width="1000" height="440" fill="none" stroke="#e4e4e7" stroke-width="1.5" rx="12"/>
+
+  <!-- Left panel -->
+  <rect x="20" y="52" width="460" height="370" fill="#fff1f2" stroke="#fca5a5" stroke-width="1.5" rx="10"/>
+
+  <!-- Right panel -->
+  <rect x="520" y="52" width="460" height="370" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" rx="10"/>
+
+  <!-- Left: Client box -->
+  <rect x="44" y="92" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+
+  <!-- Left: API box -->
+  <rect x="210" y="92" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+
+  <!-- Left: Heavy Job box -->
+  <rect x="376" y="92" width="80" height="40" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" rx="7"/>
+
+  <!-- Left: Connection held open box -->
+  <rect x="44" y="198" width="320" height="30" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" rx="5"/>
+
+  <!-- Right: Client box -->
+  <rect x="544" y="92" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+
+  <!-- Right: API box -->
+  <rect x="710" y="92" width="100" height="40" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+
+  <!-- Right: Queue box -->
+  <rect x="876" y="92" width="76" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="7"/>
+
+  <!-- Right: Background Worker box -->
+  <rect x="860" y="192" width="108" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="7"/>
+
+  <!-- Right: API free box -->
+  <rect x="544" y="200" width="296" height="30" fill="#dcfce7" stroke="#86efac" stroke-width="1" rx="5"/>
+
+  <!-- ── LINES / ARROWS ── -->
+
+  <!-- Left: Client → API -->
+  <line x1="146" y1="112" x2="208" y2="112" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Left: API → Heavy Job -->
+  <line x1="312" y1="112" x2="374" y2="112" stroke="#ef4444" stroke-width="1.8" marker-end="url(#arrow-red)"/>
+
+  <!-- Left: dashed waiting lines -->
+  <line x1="94"  y1="134" x2="94"  y2="260" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="260" y1="134" x2="260" y2="260" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- Left: response arrow (right to left) -->
+  <line x1="374" y1="268" x2="148" y2="268" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow-back)"/>
+
+  <!-- Right: Client → API -->
+  <line x1="646" y1="112" x2="708" y2="112" stroke="#94a3b8" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Right: API → Queue -->
+  <line x1="812" y1="112" x2="874" y2="112" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+  <!-- Right: 202 accepted arrow (right to left) -->
+  <line x1="708" y1="152" x2="648" y2="152" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arrow-back-green)"/>
+
+  <!-- Right: dashed line Queue → Background Worker -->
+  <line x1="914" y1="134" x2="914" y2="190" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- ── TEXT (always on top) ── -->
+
+  <!-- Title -->
+  <text x="500" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#111111">Sync vs Async API — Why it matters under real traffic</text>
+
+  <!-- Left panel heading -->
+  <text x="250" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="#dc2626">Synchronous (blocks on every request)</text>
+
+  <!-- Left: Client label -->
+  <text x="94" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Client</text>
+
+  <!-- Left: POST /process label -->
+  <text x="177" y="107" text-anchor="middle" font-size="10" fill="#6b7280">POST /process</text>
+
+  <!-- Left: API label -->
+  <text x="260" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">API</text>
+
+  <!-- Left: blocks label -->
+  <text x="343" y="107" text-anchor="middle" font-size="10" fill="#dc2626">blocks</text>
+
+  <!-- Left: Heavy Job labels -->
+  <text x="416" y="113" text-anchor="middle" font-size="11" font-weight="600" fill="#dc2626">Heavy</text>
+  <text x="416" y="127" text-anchor="middle" font-size="11" font-weight="600" fill="#dc2626">Job</text>
+
+  <!-- Left: connection held open -->
+  <text x="204" y="218" text-anchor="middle" font-size="11" fill="#dc2626">Connection held open — job running...</text>
+
+  <!-- Left: response eventually -->
+  <text x="261" y="262" text-anchor="middle" font-size="10" fill="#6b7280">response (eventually)</text>
+
+  <!-- Left: Problems -->
+  <text x="44" y="310" font-size="11" font-weight="700" fill="#dc2626">Problems:</text>
+  <text x="44" y="328" font-size="11" fill="#374151">• Requests time out under load</text>
+  <text x="44" y="346" font-size="11" fill="#374151">• API and worker can't scale independently</text>
+  <text x="44" y="364" font-size="11" fill="#374151">• One slow job blocks all connections</text>
+  <text x="44" y="382" font-size="11" fill="#374151">• Dev works fine — prod breaks</text>
+
+  <!-- Right panel heading -->
+  <text x="750" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">Asynchronous (returns immediately)</text>
+
+  <!-- Right: Client label -->
+  <text x="594" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Client</text>
+
+  <!-- Right: POST /process label -->
+  <text x="677" y="107" text-anchor="middle" font-size="10" fill="#6b7280">POST /process</text>
+
+  <!-- Right: API label -->
+  <text x="760" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">API</text>
+
+  <!-- Right: enqueue label -->
+  <text x="843" y="107" text-anchor="middle" font-size="10" fill="#16a34a">enqueue</text>
+
+  <!-- Right: Queue label -->
+  <text x="914" y="117" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">Queue</text>
+
+  <!-- Right: 202 accepted label -->
+  <text x="678" y="146" text-anchor="middle" font-size="10" fill="#16a34a">202 accepted</text>
+
+  <!-- Right: Background Worker labels -->
+  <text x="914" y="209" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">Background</text>
+  <text x="914" y="223" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">Worker</text>
+
+  <!-- Right: API free label -->
+  <text x="692" y="220" text-anchor="middle" font-size="11" fill="#16a34a">API free — worker runs independently</text>
+
+  <!-- Right: Benefits -->
+  <text x="544" y="310" font-size="11" font-weight="700" fill="#16a34a">Benefits:</text>
+  <text x="544" y="328" font-size="11" fill="#374151">• API latency stays low regardless of job size</text>
+  <text x="544" y="346" font-size="11" fill="#374151">• API and worker scale independently</text>
+  <text x="544" y="364" font-size="11" fill="#374151">• No connection timeouts under load</text>
+  <text x="544" y="382" font-size="11" fill="#374151">• Resilient to spikes</text>
+
+  <!-- Bottom note -->
+  <text x="500" y="432" text-anchor="middle" font-size="11" fill="#94a3b8">The code change was small. The architectural shift was everything.</text>
+</svg>

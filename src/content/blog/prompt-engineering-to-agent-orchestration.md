@@ -3,17 +3,17 @@ title: "From Prompt Engineering to Orchestrating AI Agents"
 description: "A developer's journey from replacing Stack Overflow with ChatGPT to orchestrating multi-agent systems with MCP servers — how AI changed the way we actually build software."
 date: "2026-02-19"
 tags: ["ai", "agents", "prompt-engineering", "llm", "developer-tools"]
-image: "/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png"
+image: "../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png"
 draft: false
 ---
-
-![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](/images/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
 A year ago, a developer needed to understand their code, their framework, and their tools.
 
 Today, that same developer needs to understand how to decompose a goal into tasks, assign those tasks to the right agents, design the tools those agents can use, handle failures across a distributed system of AI workers, and connect all of it to the external applications their team already runs on.
 
 That is a staggering expansion in scope. And it happened in roughly twelve months.
+
+![AI Development: From Prompt Engineering to Multi-Agent Systems — what changed, why it matters, and the future for Data Engineers and Cloud Architects](../../assets/blog/ai-agents/prompt-engineering-to-multi-agent-systems.png)
 
 ---
 
@@ -88,6 +88,8 @@ What a developer manages at this stage looks less like "using an AI tool" and mo
 ---
 
 ## What This Actually Means
+
+![How developer scope expanded from 2023 to 2026 — from asking questions to orchestrating multi-agent systems](/diagrams/prompt-engineering-evolution.svg)
 
 Draw a line from where we started to where we are now:
 

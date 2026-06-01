@@ -68,7 +68,7 @@ const personLD = JSON.stringify({
   ],
   award: 'Astronomer Champions Program – Apache Airflow Champion (Cohort 3)',
   sameAs: [
-    'https://linkedin.com/in/raviteja0096',
+    'https://linkedin.com/in/traviteja',
     'https://github.com/traviteja-git',
     'https://medium.com/@raviteja0096',
     'https://www.astronomer.io/blog/introducing-cohort-3-astronomer-champions-program-apache-airflow/'
@@ -124,6 +124,7 @@ const articleLD = type === 'article' ? JSON.stringify({
     {image && <meta property="og:image"        content={image} />}
     {image && <meta property="og:image:width"  content="1200" />}
     {image && <meta property="og:image:height" content="630" />}
+    {image && <meta property="og:image:type"   content={image.endsWith('.jpg') || image.endsWith('.jpeg') ? 'image/jpeg' : 'image/png'} />}
     {type === 'article' && publishedDate && (
       <meta property="article:published_time" content={publishedDate} />
     )}
@@ -149,12 +150,13 @@ const articleLD = type === 'article' ? JSON.stringify({
     <!-- Additional page-level JSON-LD (e.g. breadcrumbs from BlogLayout) -->
     <slot name="head" />
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3842671548593949" crossorigin="anonymous"></script>
-
     <!-- Preconnect for external resources -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
     <!-- Favicon & manifest -->
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
@@ -169,15 +171,6 @@ const articleLD = type === 'article' ? JSON.stringify({
       gtag('config', 'G-BFNWX56LLL');
     </script>
 
-    <!-- Google Tag Manager -->
-    <script is:inline>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-PRT2DF43');
-    </script>
-
     <!-- Apply saved theme before first paint to avoid flash -->
     <script is:inline>
       (function () {
@@ -187,12 +180,19 @@ const articleLD = type === 'article' ? JSON.stringify({
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
+
+    <!-- Google AdSense — deferred until after page load to avoid render contention -->
+    <script is:inline>
+      window.addEventListener('load', function () {
+        var s = document.createElement('script');
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3842671548593949';
+        s.async = true;
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      });
+    </script>
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PRT2DF43"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
     <Header />
     <main class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <slot />

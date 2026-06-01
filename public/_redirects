@@ -1,0 +1,7 @@
+# Netlify redirects — Format: /old-path  /new-path  status
+
+# Old project detail page (content collection removed, projects are now modals)
+/projects/gcp-data-platform/  /projects/  301
+
+# AdSense verification crawler URL — redirect to homepage to avoid 404 in GSC
+/markup/ad  /  301

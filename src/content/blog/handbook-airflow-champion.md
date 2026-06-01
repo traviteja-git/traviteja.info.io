@@ -3,7 +3,7 @@ title: "Handbook for Becoming an Astronomer Champion for Apache Airflow"
 description: "How to become an Astronomer Champion — my Apache Airflow journey from building a customer data platform (CDP) in 2019 to earning the Airflow Fundamentals certification and getting selected as an Airflow advocate."
 date: "2024-07-15"
 tags: ["airflow", "career", "certification", "community"]
-image: "/images/blog/champion/announcement.png"
+image: "../../assets/blog/champion/announcement.png"
 draft: false
 ---
 
@@ -24,6 +24,10 @@ With all the knowledge I gained over 4–5 years, I was able to directly crack t
 - **Learning Path:** [https://academy.astronomer.io/path/airflow-101](https://academy.astronomer.io/path/airflow-101)
 - **Certificate:** [Credly Badge](https://www.credly.com/badges/cd274021-dae6-4d88-a954-142270d6b231/public_url)
 
+<div class="callout callout-tip">
+If you're just getting started, the Astronomer Academy Airflow 101 path is genuinely good. It covers the fundamentals without assuming you already know the internals. Work through it once before attempting the certification exam.
+</div>
+
 ## My Contribution to the Airflow Community
 
 I started helping different teams within my organisation and on open source platforms with troubleshooting Airflow issues and proposing workflow enhancements, fostering a collaborative and efficient environment. This helped me gain more knowledge and solve different use cases.
@@ -36,21 +40,21 @@ After my application was reviewed by Astronomer's team, I was **selected as a Ch
 
 **Confirmation Mail**
 
-![Confirmation Mail](/images/blog/champion/confirmation-mail.png)
+![Confirmation Mail](../../assets/blog/champion/confirmation-mail.png)
 
 **Certificate and Badge**
 
-![Certificate and Badge](/images/blog/champion/certificate.png)
+![Certificate and Badge](../../assets/blog/champion/certificate.png)
 
 - **Certificate:** [Credly Badge](https://www.credly.com/badges/f31d1c0d-cb76-44a0-82fa-c24cfbd8e5aa/public_url)
 
 **LinkedIn Post by Astronomer**
 
-![LinkedIn Post by Astronomer](/images/blog/champion/linkedin-post.png)
+![LinkedIn Post by Astronomer](../../assets/blog/champion/linkedin-post.png)
 
 **Astronomer Champions Announcement**
 
-![Astronomer Champions Announcement](/images/blog/champion/announcement.png)
+![Astronomer Champions Announcement](../../assets/blog/champion/announcement.png)
 
 - [Introducing Cohort 3 of the Astronomer Champions Program](https://www.astronomer.io/blog/introducing-cohort-3-astronomer-champions-program-apache-airflow/)
 
@@ -67,18 +71,18 @@ Champions are community leaders who dedicate their time and expertise to enhanci
 
 ### Pre-requisites
 
-![Prerequisites](/images/blog/champion/prerequisites.png)
+![Prerequisites](../../assets/blog/champion/prerequisites.png)
 
 Once your application is reviewed and selected for a cohort you'll receive a mail and you can start your Champion journey.
 
 **What it means to be a Champion**
 
-![What it means to be a Champion](/images/blog/champion/what-it-means.png)
+![What it means to be a Champion](../../assets/blog/champion/what-it-means.png)
 
 ### Benefits
 
-![Benefits](/images/blog/champion/benefits.png)
+![Benefits](../../assets/blog/champion/benefits.png)
 
 As a Champion member you'll enjoy exclusive benefits including complimentary certifications, access to Airflow contributors, beta access to new features, academy courses and certifications — and of course, swag 🎁
 
-Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/raviteja0096/) if you have any questions or want to learn more about the program!
+Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/traviteja/) if you have any questions or want to learn more about the program!
