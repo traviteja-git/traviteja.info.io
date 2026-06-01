@@ -71,12 +71,9 @@ const experience = [
         name: 'Customer Growth Opportunity Platform',
         tech: ['Python', 'FastAPI', 'PostgreSQL', 'Kubernetes', 'GCP', 'Databricks', 'KEDA', 'ArgoCD'],
         highlights: [
-          'Stabilized the Customer Growth core module by resolving 20+ functional and platform issues, enabling successful end-to-end validation and production readiness across development, demo, and staging environments.',
-          'Designed the HLD and led containerisation of the Customer Growth app — converting a manual workflow into a fully automated, containerised deployment via GitHub Actions CI/CD.',
-          'Piloted KEDA HTTP-trigger autoscaling for Customer Growth, introducing an event-driven scaling pattern that reduced operational complexity compared to the previous DB-trigger approach.',
+          'Designed HLD and led containerisation of the Customer Growth app — converting a manual workflow into a fully automated deployment via GitHub Actions CI/CD.',
+          'Piloted KEDA HTTP-trigger autoscaling, introducing an event-driven scaling pattern that reduced operational complexity vs. the previous DB-trigger approach.',
           'Delivered semantic search for opportunity matching by implementing a Gen Model-based search layer in the Customer Growth API.',
-          'Led a 5-member hackathon team to accelerate cc-utilities adoption across products, completing the majority of migration activities and establishing a roadmap for product teams to finish remaining work.',
-          'Automated publishing of DB Connector and GenAI artifacts using Twine-based workflows, streamlining build and artifact deployment pipelines.',
           '★ Applause Award — delivering MVP for a client within the timeline',
         ],
       },
@@ -84,11 +81,9 @@ const experience = [
         name: 'Customer Segmentation',
         tech: ['Python', 'PySpark', 'GCP', 'BigQuery', 'Kubernetes', 'Pub/Sub'],
         highlights: [
-          'Led the integration of Model Ready Data (MRD) into the Customer Segmentation platform, eliminating manual Jupyter-based preprocessing and enabling fully automated end-to-end ML workflows.',
-          'Designed a pub/sub-based architecture to support multi-application reuse — enabling scalable, decoupled data processing across teams without manual intervention.',
-          'Designed and implemented a PySpark-based Data Prep Pipeline with advanced data quality checks; delivered MRD pipeline integration, dependency fixes, and UI improvements end-to-end through UAT.',
-          'Increased automated test coverage to approximately 90% across segmentation and clustering modules, improving release confidence and maintainability.',
-          'Refactored the platform to use cc-utilities shared library, implemented RBAC action changes, and built the file manager feature for multi-user access governance.',
+          'Led MRD integration into the Customer Segmentation platform, eliminating manual Jupyter-based preprocessing and enabling fully automated end-to-end ML workflows.',
+          'Designed a pub/sub-based architecture for multi-application reuse and built a PySpark Data Prep Pipeline with advanced data quality checks.',
+          'Increased automated test coverage to ~90% across segmentation and clustering modules.',
         ],
       },
       {
@@ -96,7 +91,6 @@ const experience = [
         tech: ['Python', 'BigQuery', 'GCP', 'Docker', 'CASS'],
         highlights: [
           'Built and delivered an end-to-end Brand Identity matching MVP within a single sprint — matching logic, CASS integration, BigQuery data layer, testing, containerisation, and CI/CD.',
-          'CASS integration standardises client addresses before matching, closing the main accuracy gap in the previous approach.',
         ],
       },
     ],
@@ -112,15 +106,11 @@ const experience = [
         name: 'Identity Resolution Platform',
         tech: ['Apache Spark', 'Airflow', 'Python', 'C#', 'GCP', 'Azure', 'AWS', 'Databricks', 'Kubernetes', 'MongoDB'],
         highlights: [
-          'Migrated Identity Resolution infrastructure to support AWS and Azure within 3 months, enabling automated single-click deployment across three cloud providers.',
-          'Modernised data processing from legacy .NET to Apache Spark — 70% increase in job performance; designed and implemented the core IDR pipeline processing 800 million records with 50% reduction in processing time.',
-          'Built an Airflow-orchestrated batch ingestion pipeline for the microservice suite (Cleanse, Convert, CASS, Pinning, Stitch) — 25% cost reduction, 20% scalability increase — covering data hygiene, address normalisation, identity resolution, and data governance.',
-          'Extended the pipeline with Databricks delta table orchestration — per-run statistics tracking, master record count validation, and Azure + Databricks filesystem integration via cc-utilities for true multi-cloud IDR execution.',
-          'Designed and built an IDR Databricks Dashboard within the Databricks environment — eliminating the need for a separate UI, reducing infrastructure cost, and simplifying overall architecture.',
-          'Productized all microservices as both console applications and REST APIs, deployed on Azure and GCP Kubernetes.',
-          'Maintained and operated 20+ Apache Airflow DAGs on GCP Cloud Composer — custom Docker image builds, Kubernetes pod configs, pre-commit enforcement, and pipeline stability fixes.',
-          '★ Applause Award — .NET to Spark migration delivered within the agreed timeframe',
-          '★ Outstanding Performance Award — end-to-end delivery and ongoing production support',
+          'Modernised data processing from legacy .NET to Apache Spark — 70% performance gain; core IDR pipeline processes 800 million records with 50% reduction in processing time.',
+          'Migrated infrastructure to support AWS and Azure within 3 months, enabling automated single-click deployment across three cloud providers.',
+          'Built an Airflow-orchestrated batch ingestion pipeline (Cleanse, Convert, CASS, Pinning, Stitch) — 25% cost reduction, 20% scalability increase.',
+          'Maintained 20+ Apache Airflow DAGs on GCP Cloud Composer — custom Docker image builds, Kubernetes pod configs, and pipeline stability.',
+          '★ Applause Award · ★ Outstanding Performance Award',
         ],
       },
     ],
@@ -132,9 +122,8 @@ const experience = [
     period: 'Apr 2020 — Jun 2021',
     tech: ['AngularJS', 'Node.js', '.NET', 'Java', 'Azure', 'Zoho Creator', 'SQL'],
     highlights: [
-      'Built modular single-page UIs with AngularJS and Node.js for Intellispex; acted as client-facing interface for requirements and backend API integration.',
-      'Developed a low-code ATS on Zoho Creator — job posting, applicant management, and keyword candidate search across social platforms.',
-      'Built and migrated configurable .NET/Java automation apps to Azure for SPS Commerce; developed complex SQL procedures fetching from CSV and XML sources.',
+      'Built modular single-page UIs with AngularJS and Node.js; acted as client-facing interface for requirements and backend API integration.',
+      'Developed a low-code ATS on Zoho Creator and migrated configurable .NET/Java automation apps to Azure for SPS Commerce.',
     ],
   },
   {
@@ -142,36 +131,16 @@ const experience = [
     company: 'Deloitte Consulting India Pvt. Ltd.',
     logo: '/images/logos/deloitte.png',
     period: 'Apr 2018 — Mar 2020',
-    subProjects: [
-      {
-        name: 'LGE CDP Implementation',
-        tech: ['GCP', 'PostgreSQL', 'Talend', 'Apache Airflow', 'Python', 'Docker'],
-        highlights: [
-          'Built a configurable Talend automation job processing >400GB dovetail files (GCP download → decrypt → unzip → convert → cleanse → reload) — 18–20 day manual process reduced to 2–3 days; optimised a critical data feed from >13 hours to 1 hour.',
-          '★ Applause Award — took ownership across multiple tech stacks, delivered on time',
-        ],
-      },
-      {
-        name: 'Tech Modernisation',
-        tech: ['C#', '.NET Core', 'MongoDB', 'Docker'],
-        highlights: [
-          'Built real-time microservices (Convert, CASS, Pinning, Data Loader, Drops) for identity resolution and data hygiene.',
-          'Data Loader: 100K records in 1.3 mins (was 30 mins). Drops: 1M records in 2 mins (was >60 hours).',
-          '★ Spot Award — exceptional application performance improvements',
-        ],
-      },
-    ],
+    compact: true,
+    summary: 'Built Talend automation pipelines for LGE CDP — 400GB+ file processing reduced from 18 days to 2–3 days. Developed real-time .NET microservices for identity resolution with 23× and 1800× performance improvements. ★ Applause & Spot Awards.',
   },
   {
     role: 'Software Engineer',
     company: 'Capgemini Technology Services India Ltd.',
     logo: '/images/logos/capgemini.png',
     period: 'Oct 2016 — Apr 2018',
-    tech: ['C#', '.NET MVC', 'SQL Server'],
-    highlights: [
-      'Developed and maintained the RBC (Royal Bank of Canada) Sales Platform — a web-based product sales system on C# / .NET MVC.',
-      'Built configurable environment-identification files for multi-environment deployment and testing across dev, staging, and production.',
-    ],
+    compact: true,
+    summary: 'Developed and maintained the RBC (Royal Bank of Canada) Sales Platform on C# / .NET MVC; built configurable multi-environment deployment pipelines across dev, staging, and production.',
   },
 ];
 
@@ -319,40 +288,97 @@ const education = [
     period: '2012 – 2016',
     grade: '81%',
   },
-  {
-    school: 'SR Junior College',
-    logo: '/images/logos/sr.png',
-    degree: 'MPC (Maths, Physics, Chemistry)',
-    period: '2010 – 2012',
-    grade: '94%',
-  },
-  {
-    school: 'JGR High College',
-    logo: '/images/logos/jgr.png',
-    degree: 'Secondary School Certificate',
-    period: '2005 – 2010',
-    grade: '90%',
-  },
 ];
 ---
+
+<style>
+  /* Fade-in on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger children inside a fade-in container */
+  .fade-in-group > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .fade-in-group.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0ms; }
+  .fade-in-group.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:60ms; }
+  .fade-in-group.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:120ms; }
+  .fade-in-group.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:180ms; }
+  .fade-in-group.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:240ms; }
+  .fade-in-group.visible > *:nth-child(n+6) { opacity:1; transform:none; transition-delay:300ms; }
+
+  /* Highlight toggle button */
+  .hl-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--fg-muted);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  .hl-toggle:hover { color: var(--fg); border-color: var(--fg-muted); }
+  .hl-toggle.open  { color: var(--accent); border-color: var(--accent); }
+  .hl-toggle .chevron { transition: transform 0.2s; display:inline-block; }
+  .hl-toggle.open .chevron { transform: rotate(180deg); }
+
+  /* Highlights panel */
+  .hl-panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .hl-panel.open {
+    max-height: 600px;
+    opacity: 1;
+  }
+</style>
 
 <BaseLayout
   title="About — Raviteja Tholupunoori"
   description="Software Engineer III and Sr. Data Engineer with 9+ years of experience in data and AI platform engineering — building production-grade pipelines, LLM-based platforms, and multi-cloud infrastructure."
 >
   <!-- Header -->
-  <header class="mb-12">
-    <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 1rem;">About me</h1>
-    <p style="color:var(--fg-muted); font-size:1.05rem; max-width:42rem; line-height:1.75; margin:0;">
-      I'm <strong style="color:var(--fg);">Raviteja Tholupunoori</strong>, a Software Engineer III and Sr. Data Engineer
-      with 9+ years of experience in data and AI platform engineering — building production-grade data pipelines,
-      LLM-based platforms, and multi-cloud infrastructure across GCP, Azure, and AWS. Currently at Deloitte.
+  <header class="mb-12 fade-in">
+    <div class="flex items-center gap-5 mb-4">
+      <img
+        src="/avatar.jpg"
+        alt="Raviteja Tholupunoori"
+        width="128"
+        height="128"
+        class="w-24 h-24 sm:w-[128px] sm:h-[128px] flex-shrink-0"
+        style="border-radius:50%; object-fit:cover; object-position:center top; border:2px solid var(--border);"
+      />
+      <div>
+        <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 0.25rem;">Raviteja Tholupunoori</h1>
+        <p style="color:var(--fg-muted); font-size:0.95rem; margin:0;">Software Engineer III · Sr. Data Engineer · Deloitte</p>
+      </div>
+    </div>
+    <p style="color:var(--fg-muted); font-size:1rem; line-height:1.75; margin:0; max-width:42rem;">
+      9+ years of experience in data and AI platform engineering — building production-grade data pipelines,
+      LLM-based platforms, and multi-cloud infrastructure across GCP, Azure, and AWS.
       Apache Airflow Champion (Astronomer, Cohort 3).
     </p>
   </header>
 
   <!-- Contact + Resume -->
-  <section style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle); margin-bottom:3rem;">
+  <section class="fade-in" style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle); margin-bottom:3rem;">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div class="flex flex-col gap-1 text-sm" style="color:var(--fg-muted);">
         <span>📧 <a href="mailto:raviteja0096@gmail.com" style="color:var(--accent);">raviteja0096@gmail.com</a></span>
@@ -372,60 +398,78 @@ const education = [
 
   <!-- Experience -->
   <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 class="fade-in" style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Experience
     </h2>
-    <div class="flex flex-col gap-10">
-      {experience.map(job => (
-        <div>
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+    <div class="flex flex-col gap-4">
+      {experience.map((job, jobIdx) => (
+        <div class="fade-in" style="border:1px solid var(--border); border-radius:10px; padding:1.25rem 1.5rem; background:var(--bg-subtle);">
+
+          <!-- Role header -->
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
             <div class="flex items-start gap-3">
               <img
                 src={job.logo}
                 alt={job.company}
                 width="36"
                 height="36"
-                style="border-radius:6px; object-fit:contain; border:1px solid var(--border); background:var(--bg-subtle); flex-shrink:0; margin-top:2px;"
+                style="border-radius:6px; object-fit:contain; border:1px solid var(--border); background:white; flex-shrink:0; margin-top:2px;"
               />
               <div>
                 <h3 style="color:var(--fg); font-size:1rem; font-weight:600; margin:0;">{job.role}</h3>
-                <p style="color:var(--fg-muted); font-size:0.9rem; margin:0.2rem 0 0;">{job.company}</p>
+                <p style="color:var(--fg-muted); font-size:0.875rem; margin:0.15rem 0 0;">{job.company}</p>
                 {job.context && (
-                  <p style="color:var(--fg-muted); font-size:0.78rem; margin:0.15rem 0 0; font-style:italic;">{job.context}</p>
+                  <p style="color:var(--fg-muted); font-size:0.75rem; margin:0.1rem 0 0; font-style:italic;">{job.context}</p>
                 )}
               </div>
             </div>
-            <span style="color:var(--fg-muted); font-size:0.8rem; white-space:nowrap; margin-top:0.15rem;">{job.period}</span>
+            <span style="color:var(--fg-muted); font-size:0.78rem; white-space:nowrap; flex-shrink:0;">{job.period}</span>
           </div>
 
-          {job.tech && (
-            <div class="flex flex-wrap gap-2 mb-3">
-              {job.tech.map((t: string) => <span class="tag">{t}</span>)}
-            </div>
-          )}
+          <!-- Compact older roles -->
+          {job.compact ? (
+            <p style="color:var(--fg-muted); font-size:0.875rem; line-height:1.65; margin:0; padding-top:0.75rem; border-top:1px solid var(--border);">{job.summary}</p>
 
-          {job.subProjects ? (
-            <div class="flex flex-col gap-5 mt-3">
-              {job.subProjects.map((proj: { name: string; tech: string[]; highlights: string[] }) => (
-                <div style="border-left:2px solid var(--border); padding-left:1rem;">
+          ) : job.subProjects ? (
+            <div class="flex flex-col" style="border-top:1px solid var(--border); margin-top:0.25rem;">
+              {job.subProjects.map((proj: { name: string; tech: string[]; highlights: string[] }, projIdx: number) => (
+                <div style="padding:0.875rem 0; border-bottom:1px solid var(--border);">
                   <p style="color:var(--fg); font-size:0.85rem; font-weight:600; margin:0 0 0.5rem;">{proj.name}</p>
-                  <div class="flex flex-wrap gap-2 mb-2">
+                  <div class="flex flex-wrap gap-2">
                     {proj.tech.map((t: string) => <span class="tag">{t}</span>)}
                   </div>
-                  <ul style="padding-left:1.25rem; margin:0;" class="flex flex-col gap-1">
-                    {proj.highlights.map((h: string) => (
-                      <li style="color:var(--fg-muted); font-size:0.875rem;">{h}</li>
-                    ))}
-                  </ul>
+                  <button
+                    class="hl-toggle"
+                    data-target={`hl-${jobIdx}-${projIdx}`}
+                    aria-expanded="false"
+                  >
+                    <span class="label">Show highlights</span>
+                    <span class="chevron">▾</span>
+                  </button>
+                  <div class="hl-panel" id={`hl-${jobIdx}-${projIdx}`}>
+                    <ul style="padding-left:1.25rem; margin:0.75rem 0 0;" class="flex flex-col gap-1">
+                      {proj.highlights.map((h: string) => (
+                        <li style="color:var(--fg-muted); font-size:0.875rem; line-height:1.6;">{h}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
+
           ) : (
-            <ul style="padding-left:1.25rem; margin:0;" class="flex flex-col gap-1">
-              {job.highlights?.map((h: string) => (
-                <li style="color:var(--fg-muted); font-size:0.875rem;">{h}</li>
-              ))}
-            </ul>
+            <div style="border-top:1px solid var(--border); padding-top:0.875rem; margin-top:0.25rem;">
+              {job.tech && (
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {job.tech.map((t: string) => <span class="tag">{t}</span>)}
+                </div>
+              )}
+              <ul style="padding-left:1.25rem; margin:0;" class="flex flex-col gap-1">
+                {job.highlights?.map((h: string) => (
+                  <li style="color:var(--fg-muted); font-size:0.875rem; line-height:1.6;">{h}</li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       ))}
@@ -434,12 +478,12 @@ const education = [
 
   <!-- Skills -->
   <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 class="fade-in" style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Skills
     </h2>
     <div class="flex flex-col gap-6">
       {skillCategories.map(({ category, skills }) => (
-        <div>
+        <div class="fade-in">
           <h3 style="color:var(--fg-muted); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.75rem;">
             {category}
           </h3>
@@ -476,34 +520,57 @@ const education = [
 
   <!-- Certifications -->
   <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 class="fade-in" style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Certifications
     </h2>
-    <div class="flex flex-col gap-3">
+    <div class="grid sm:grid-cols-2 gap-3 fade-in-group">
       {certifications.map((cert: { name: string; subtitle: string; logo?: string; logoUrl?: string }) => (
         <div style="border:1px solid var(--border); border-radius:10px; padding:0.875rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:center; gap:1rem;">
           <img
             src={cert.logo ?? cert.logoUrl}
             alt={cert.name}
-            width="44"
-            height="44"
+            width="40"
+            height="40"
             style="border-radius:8px; object-fit:contain; flex-shrink:0;"
           />
           <div>
-            <p style="color:var(--fg); font-size:0.9rem; font-weight:600; margin:0 0 0.15rem;">{cert.name}</p>
-            <p style="color:var(--fg-muted); font-size:0.8rem; margin:0;">{cert.subtitle}</p>
+            <p style="color:var(--fg); font-size:0.85rem; font-weight:600; margin:0 0 0.1rem;">{cert.name}</p>
+            <p style="color:var(--fg-muted); font-size:0.75rem; margin:0; line-height:1.4;">{cert.subtitle}</p>
           </div>
         </div>
       ))}
     </div>
   </section>
 
+  <!-- Speaking & Media -->
+  <section class="mb-12">
+    <h2 class="fade-in" style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+      Speaking & Media
+    </h2>
+    <div class="fade-in" style="border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:flex-start; gap:1rem;">
+      <img
+        src="/images/logos/airflow_astro.png"
+        alt="Astronomer"
+        width="44"
+        height="44"
+        style="border-radius:8px; object-fit:contain; flex-shrink:0; margin-top:2px;"
+      />
+      <div>
+        <p style="color:var(--fg); font-size:0.9rem; font-weight:600; margin:0 0 0.2rem;">Astronomer Podcast — Apache Airflow in Production</p>
+        <p style="color:var(--fg-muted); font-size:0.82rem; margin:0 0 0.4rem; line-height:1.5;">
+          Featured on the Astronomer podcast discussing real-world Apache Airflow architectures, orchestration patterns, and lessons learned from running Airflow at scale on Kubernetes across GCP and Azure.
+        </p>
+        <span style="color:var(--fg-muted); font-size:0.75rem;">Astronomer · 2024</span>
+      </div>
+    </div>
+  </section>
+
   <!-- Achievements -->
   <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 class="fade-in" style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Achievements
     </h2>
-    <div class="grid sm:grid-cols-2 gap-4">
+    <div class="grid sm:grid-cols-2 gap-4 fade-in-group">
       {achievements.map(item => (
         <div style="border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:flex-start; gap:0.875rem;">
           <img
@@ -522,39 +589,13 @@ const education = [
     </div>
   </section>
 
-  <!-- Speaking -->
-  <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
-      Speaking & Media
-    </h2>
-    <div class="flex flex-col gap-3">
-      <div style="border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:flex-start; gap:1rem;">
-        <img
-          src="/images/logos/airflow_astro.png"
-          alt="Astronomer"
-          width="44"
-          height="44"
-          style="border-radius:8px; object-fit:contain; flex-shrink:0; margin-top:2px;"
-        />
-        <div>
-          <p style="color:var(--fg); font-size:0.9rem; font-weight:600; margin:0 0 0.2rem;">Astronomer Podcast — Apache Airflow in Production</p>
-          <p style="color:var(--fg-muted); font-size:0.82rem; margin:0 0 0.4rem; line-height:1.5;">
-            Featured on the Astronomer podcast discussing real-world Apache Airflow architectures, orchestration patterns, and lessons learned from running Airflow at scale on Kubernetes across GCP and Azure.
-          </p>
-          <span style="color:var(--fg-muted); font-size:0.75rem;">Astronomer · 2024</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Recommendations carousel -->
   <section class="mb-12">
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 class="fade-in" style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Recommendations
     </h2>
 
-    <!-- Cards (one visible at a time) -->
-    <div style="position:relative;">
+    <div class="fade-in" style="position:relative;">
       {recommendations.map((rec, i) => (
         <div
           class="rec-slide"
@@ -575,7 +616,6 @@ const education = [
       ))}
     </div>
 
-    <!-- Controls -->
     <div style="display:flex; align-items:center; justify-content:space-between; margin-top:1rem;">
       <button
         id="rec-prev"
@@ -608,33 +648,59 @@ const education = [
 
   <script>
     (function () {
+      // ── Recommendations carousel ──────────────────────────────────────
       const slides = document.querySelectorAll('.rec-slide');
-      const dots = document.querySelectorAll('.rec-dot');
-      const total = slides.length;
-      let current = 0;
+      const dots   = document.querySelectorAll('.rec-dot');
+      const total  = slides.length;
+      let current  = 0;
 
       function goTo(n: number) {
         (slides[current] as HTMLElement).style.display = 'none';
-        (dots[current] as HTMLElement).style.background = 'var(--border)';
+        (dots[current]   as HTMLElement).style.background = 'var(--border)';
         current = (n + total) % total;
         (slides[current] as HTMLElement).style.display = 'block';
-        (dots[current] as HTMLElement).style.background = 'var(--fg)';
+        (dots[current]   as HTMLElement).style.background = 'var(--fg)';
       }
 
       document.getElementById('rec-prev')?.addEventListener('click', () => goTo(current - 1));
       document.getElementById('rec-next')?.addEventListener('click', () => goTo(current + 1));
       dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+      // ── Highlight toggles ─────────────────────────────────────────────
+      document.querySelectorAll<HTMLButtonElement>('.hl-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panel   = document.getElementById(btn.dataset.target!) as HTMLElement;
+          const isOpen  = panel.classList.contains('open');
+          panel.classList.toggle('open', !isOpen);
+          btn.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', String(!isOpen));
+          btn.querySelector('.label')!.textContent = isOpen ? 'Show highlights' : 'Hide highlights';
+        });
+      });
+
+      // ── Scroll fade-in (IntersectionObserver) ─────────────────────────
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        }),
+        { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+      );
+
+      document.querySelectorAll('.fade-in, .fade-in-group').forEach(el => observer.observe(el));
     })();
   </script>
 
   <!-- Education -->
   <section>
-    <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
+    <h2 class="fade-in" style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Education
     </h2>
     <div class="flex flex-col gap-3">
       {education.map(edu => (
-        <div style="border:1px solid var(--border); border-radius:10px; padding:0.875rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:center; gap:1rem;">
+        <div class="fade-in" style="border:1px solid var(--border); border-radius:10px; padding:0.875rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:center; gap:1rem;">
           <img
             src={edu.logo}
             alt={edu.school}
