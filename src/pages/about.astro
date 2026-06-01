@@ -3,12 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const skillCategories = [
   {
+    category: 'AI',
+    skills: [
+      { name: 'Claude',            bg: '#D97706', letter: 'AI' },
+      { name: 'Copilot',           bg: '#0078D4', letter: 'CP' },
+      { name: 'ChatGPT',           bg: '#10A37F', letter: 'GPT' },
+      { name: 'GenAI Prompt Eng.', bg: '#7C3AED', letter: 'PE' },
+    ],
+  },
+  {
     category: 'Languages',
     skills: [
-      { name: 'Python',     src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
-      { name: 'C#',         src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg' },
-      { name: 'SQL',        bg: '#336791', letter: 'SQL' },
-      { name: 'JavaScript', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
+      { name: 'Python', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+      { name: 'C#',     src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg' },
+      { name: 'SQL',    bg: '#336791', letter: 'SQL' },
     ],
   },
   {
@@ -17,6 +25,7 @@ const skillCategories = [
       { name: 'Apache Airflow', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apacheairflow/apacheairflow-original.svg', href: '/blog/airflow-architecture-simplified/' },
       { name: 'Apache Spark',   bg: '#E25A1C', letter: 'SP', href: '/blog/solving-data-pipeline-challenges-with-airflow/' },
       { name: 'Databricks',     bg: '#FF3621', letter: 'DB' },
+      { name: 'BigQuery',       bg: '#4285F4', letter: 'BQ' },
       { name: 'Talend',         bg: '#FF6D00', letter: 'TL' },
     ],
   },
@@ -25,7 +34,7 @@ const skillCategories = [
     skills: [
       { name: 'GCP',   src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg' },
       { name: 'Azure', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg' },
-      { name: 'AWS',   src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg' }
+      { name: 'AWS',   src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg' },
     ],
   },
   {
@@ -41,6 +50,10 @@ const skillCategories = [
     skills: [
       { name: 'Docker',     src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
       { name: 'Kubernetes', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg' },
+      { name: 'KEDA',       bg: '#326CE5', letter: 'KD' },
+      { name: 'Argo CD',    bg: '#EF7B4D', letter: 'AC' },
+      { name: 'Helm',       bg: '#0F1689', letter: 'HM' },
+      { name: 'FastAPI',    src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg' },
       { name: 'Git',        src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
     ],
   },
@@ -48,17 +61,68 @@ const skillCategories = [
 
 const experience = [
   {
-    role: 'Sr. Product Engineer I',
+    role: 'Software Engineer III',
     company: 'Deloitte Consulting India Pvt. Ltd.',
     logo: '/images/logos/deloitte.png',
-    period: 'Jul 2021 — Present',
-    tech: ['Apache Spark', 'Apache Airflow', 'Python', 'GCP', 'Databricks', 'AKS', 'GKE'],
-    highlights: [
-      'Migrated Identity Resolution to support AWS and Azure infrastructure within 3 months, delivering 4× performance enhancement.',
-      'Modernised data processing pipeline by migrating from legacy .NET code to Apache Spark, achieving 10× throughput improvement.',
-      'Engineered batch ingestion pipeline for Hux CDP with Apache Airflow, reducing costs by 25% and increasing scalability by 20%.',
-      'Built cloud-agnostic Airflow solutions deployed on Azure Kubernetes Service (AKS) and Google Kubernetes Engine (GKE).',
-      'Built and maintained BigQuery data models powering business-critical analytics for enterprise clients.',
+    period: 'Aug 2024 — Present',
+    context: 'ConvergeCONSUMER — Customer & Marketing / Innovation & Technology',
+    subProjects: [
+      {
+        name: 'Customer Growth Opportunity Platform',
+        tech: ['Python', 'FastAPI', 'PostgreSQL', 'Kubernetes', 'GCP', 'Databricks', 'KEDA', 'ArgoCD'],
+        highlights: [
+          'Stabilized the Customer Growth core module by resolving 20+ functional and platform issues, enabling successful end-to-end validation and production readiness across development, demo, and staging environments.',
+          'Designed the HLD and led containerisation of the Customer Growth app — converting a manual workflow into a fully automated, containerised deployment via GitHub Actions CI/CD.',
+          'Piloted KEDA HTTP-trigger autoscaling for Customer Growth, introducing an event-driven scaling pattern that reduced operational complexity compared to the previous DB-trigger approach.',
+          'Delivered semantic search for opportunity matching by implementing a Gen Model-based search layer in the Customer Growth API.',
+          'Led a 5-member hackathon team to accelerate cc-utilities adoption across products, completing the majority of migration activities and establishing a roadmap for product teams to finish remaining work.',
+          'Automated publishing of DB Connector and GenAI artifacts using Twine-based workflows, streamlining build and artifact deployment pipelines.',
+          '★ Applause Award — delivering MVP for a client within the timeline',
+        ],
+      },
+      {
+        name: 'Customer Segmentation',
+        tech: ['Python', 'PySpark', 'GCP', 'BigQuery', 'Kubernetes', 'Pub/Sub'],
+        highlights: [
+          'Led the integration of Model Ready Data (MRD) into the Customer Segmentation platform, eliminating manual Jupyter-based preprocessing and enabling fully automated end-to-end ML workflows.',
+          'Designed a pub/sub-based architecture to support multi-application reuse — enabling scalable, decoupled data processing across teams without manual intervention.',
+          'Designed and implemented a PySpark-based Data Prep Pipeline with advanced data quality checks; delivered MRD pipeline integration, dependency fixes, and UI improvements end-to-end through UAT.',
+          'Increased automated test coverage to approximately 90% across segmentation and clustering modules, improving release confidence and maintainability.',
+          'Refactored the platform to use cc-utilities shared library, implemented RBAC action changes, and built the file manager feature for multi-user access governance.',
+        ],
+      },
+      {
+        name: 'Brand Identity',
+        tech: ['Python', 'BigQuery', 'GCP', 'Docker', 'CASS'],
+        highlights: [
+          'Built and delivered an end-to-end Brand Identity matching MVP within a single sprint — matching logic, CASS integration, BigQuery data layer, testing, containerisation, and CI/CD.',
+          'CASS integration standardises client addresses before matching, closing the main accuracy gap in the previous approach.',
+        ],
+      },
+    ],
+  },
+  {
+    role: 'Product Engineer 2',
+    company: 'Deloitte Consulting India Pvt. Ltd.',
+    logo: '/images/logos/deloitte.png',
+    period: 'Jul 2021 — Jul 2024',
+    context: 'ConvergeCONSUMER — Customer & Marketing / Innovation & Technology',
+    subProjects: [
+      {
+        name: 'Identity Resolution Platform',
+        tech: ['Apache Spark', 'Airflow', 'Python', 'C#', 'GCP', 'Azure', 'AWS', 'Databricks', 'Kubernetes', 'MongoDB'],
+        highlights: [
+          'Migrated Identity Resolution infrastructure to support AWS and Azure within 3 months, enabling automated single-click deployment across three cloud providers.',
+          'Modernised data processing from legacy .NET to Apache Spark — 70% increase in job performance; designed and implemented the core IDR pipeline processing 800 million records with 50% reduction in processing time.',
+          'Built an Airflow-orchestrated batch ingestion pipeline for the microservice suite (Cleanse, Convert, CASS, Pinning, Stitch) — 25% cost reduction, 20% scalability increase — covering data hygiene, address normalisation, identity resolution, and data governance.',
+          'Extended the pipeline with Databricks delta table orchestration — per-run statistics tracking, master record count validation, and Azure + Databricks filesystem integration via cc-utilities for true multi-cloud IDR execution.',
+          'Designed and built an IDR Databricks Dashboard within the Databricks environment — eliminating the need for a separate UI, reducing infrastructure cost, and simplifying overall architecture.',
+          'Productized all microservices as both console applications and REST APIs, deployed on Azure and GCP Kubernetes.',
+          'Maintained and operated 20+ Apache Airflow DAGs on GCP Cloud Composer — custom Docker image builds, Kubernetes pod configs, pre-commit enforcement, and pipeline stability fixes.',
+          '★ Applause Award — .NET to Spark migration delivered within the agreed timeframe',
+          '★ Outstanding Performance Award — end-to-end delivery and ongoing production support',
+        ],
+      },
     ],
   },
   {
@@ -66,12 +130,11 @@ const experience = [
     company: 'Strategic Technology Resources International Pvt. Ltd.',
     logo: '/images/logos/stri.png',
     period: 'Apr 2020 — Jun 2021',
-    tech: ['Angular', 'Node.js', 'JavaScript', 'Azure', 'Bitbucket'],
+    tech: ['AngularJS', 'Node.js', '.NET', 'Java', 'Azure', 'Zoho Creator', 'SQL'],
     highlights: [
-      'Built user interfaces for web applications using Angular and Node.js.',
-      'Led ERP system development and Azure cloud migration for SPS Commerce.',
-      'Developed an Applicant Tracking System (ATS) with search automation for recruiters.',
-      'Collaborated with cross-functional teams using Agile methodologies.',
+      'Built modular single-page UIs with AngularJS and Node.js for Intellispex; acted as client-facing interface for requirements and backend API integration.',
+      'Developed a low-code ATS on Zoho Creator — job posting, applicant management, and keyword candidate search across social platforms.',
+      'Built and migrated configurable .NET/Java automation apps to Azure for SPS Commerce; developed complex SQL procedures fetching from CSV and XML sources.',
     ],
   },
   {
@@ -79,11 +142,24 @@ const experience = [
     company: 'Deloitte Consulting India Pvt. Ltd.',
     logo: '/images/logos/deloitte.png',
     period: 'Apr 2018 — Mar 2020',
-    tech: ['Talend', 'SQL', 'ETL', 'GCP', 'Airflow'],
-    highlights: [
-      'Designed data ingestion architecture using Talend for LG Electronics\' Customer Data Platform.',
-      'Automated 400GB+ daily file processing, reducing the cycle from 18–20 days to 2–3 days.',
-      'Improved data feed runtime from 13 hours to 1 hour through pipeline optimisation.',
+    subProjects: [
+      {
+        name: 'LGE CDP Implementation',
+        tech: ['GCP', 'PostgreSQL', 'Talend', 'Apache Airflow', 'Python', 'Docker'],
+        highlights: [
+          'Built a configurable Talend automation job processing >400GB dovetail files (GCP download → decrypt → unzip → convert → cleanse → reload) — 18–20 day manual process reduced to 2–3 days; optimised a critical data feed from >13 hours to 1 hour.',
+          '★ Applause Award — took ownership across multiple tech stacks, delivered on time',
+        ],
+      },
+      {
+        name: 'Tech Modernisation',
+        tech: ['C#', '.NET Core', 'MongoDB', 'Docker'],
+        highlights: [
+          'Built real-time microservices (Convert, CASS, Pinning, Data Loader, Drops) for identity resolution and data hygiene.',
+          'Data Loader: 100K records in 1.3 mins (was 30 mins). Drops: 1M records in 2 mins (was >60 hours).',
+          '★ Spot Award — exceptional application performance improvements',
+        ],
+      },
     ],
   },
   {
@@ -91,10 +167,10 @@ const experience = [
     company: 'Capgemini Technology Services India Ltd.',
     logo: '/images/logos/capgemini.png',
     period: 'Oct 2016 — Apr 2018',
-    tech: ['.NET', 'C#', 'MVC', 'SQL Server'],
+    tech: ['C#', '.NET MVC', 'SQL Server'],
     highlights: [
-      'Delivered .NET and MVC solutions for financial and internal platforms.',
-      'Worked on configurable deployment pipelines and backend service integrations.',
+      'Developed and maintained the RBC (Royal Bank of Canada) Sales Platform — a web-based product sales system on C# / .NET MVC.',
+      'Built configurable environment-identification files for multi-environment deployment and testing across dev, staging, and production.',
     ],
   },
 ];
@@ -119,6 +195,11 @@ const certifications = [
     name: 'Microsoft C# Developer',
     subtitle: 'Microsoft Certified Professional (Programming in C#)',
     logo: '/images/logos/c_sharp.png',
+  },
+  {
+    name: 'AWS Technical Professional',
+    subtitle: 'Amazon Web Services — AWS Technical Professional',
+    logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
   },
   {
     name: 'GenAI Engineer',
@@ -152,32 +233,11 @@ const achievements = [
 
 const recommendations = [
   {
-    name: 'Andi Mitre',
-    role: 'Engineering Lead',
-    company: 'Deloitte',
-    date: 'Nov 2023',
-    quote: 'I absolutely loved having Raviteja on my team. Raviteja is a one of a kind, extremely talented developer. He built some of the most complex components of our identity resolution system while showing a deep understanding of data engineering and software development. He played an active role ranging from algorithm design, system architecture, core code development, mentoring junior engineers, and client support. He\'s a hard worker who is eager to continuously learn and thrives on complex problems. Raviteja single handedly re-wrote a micro-service and was able to improve performance by 5×, having an immensely positive impact with existing clients.',
-  },
-  {
-    name: 'Tarini Dash',
-    role: 'Head of Data Engineering & Analytics',
-    company: 'Deloitte',
-    date: 'April 2024',
-    quote: 'Over the span of three years, Ravi served under my supervision as a Senior Data Engineer at Deloitte. He consistently displayed a high level of energy and enthusiasm, establishing himself as a proactive and delivery driven individual. Witnessing his progression from an average developer to one capable of independently leading and executing tasks from inception to completion was truly remarkable. Ravi\'s approach is characterized by his relentless pursuit of cutting-edge technologies and a formidable array of cloud certifications.',
-  },
-  {
-    name: 'Manoj Balaji',
-    role: 'Data Scientist',
-    company: 'Juniper Networks',
-    date: 'May 2023',
-    quote: 'Raviteja is a very hard working and dedicated developer. He is very detail oriented and quite a creative programmer with a very broad knowledge of software including languages, APIs, databases and documentation. In addition to his technical expertise, Raviteja shows total dedication to his work, his colleagues, and his clients. He is a team player who is very customer-focused and always willing to help and share his knowledge with others.',
-  },
-  {
-    name: 'Abin Mathew',
-    role: 'Data Engineer',
-    company: 'Deloitte',
-    date: 'Nov 2023',
-    quote: 'Ravi has been a go-to person in the Identity Resolution (IDR) project. His deep understanding of IDR functionalities and his willingness to guide others make him an invaluable team member. With strong expertise in data engineering tools and technologies, he continuously learns and applies his knowledge to solve complex challenges efficiently. His collaborative approach and problem-solving mindset ensure that the solutions he builds are both effective and scalable.',
+    name: 'Manuraj M R',
+    role: 'Principal Engineer (Ex-Deloitte Product Tech Lead)',
+    company: 'NOV',
+    date: 'Feb 2026',
+    quote: 'I worked closely with Raviteja at Deloitte, and he is an exceptional Senior Data Engineer who brings a high level of ownership to everything he touches. He doesn\'t just execute tasks; he ensures the end-to-end reliability of the data systems he manages. Raviteja has a standout ability to design and implement complex, Python-based workflows using Apache Airflow. His deep hands-on experience with Databricks was instrumental in building our most critical data pipelines, making them more efficient and scalable. What I appreciate most about working with Raviteja is his proactive nature. He is a \'get-it-done\' professional who is always willing to share his knowledge and mentor others on the team. Any organization would be lucky to have a senior engineer with his technical depth and dedication.',
   },
   {
     name: 'Garima Jindal',
@@ -187,11 +247,25 @@ const recommendations = [
     quote: 'Ravi is one of the most talented and dedicated engineers I have ever worked with. His depth of knowledge in the technical aspects of Identity Resolution is truly unmatched. Ravi constantly goes above and beyond in his role to ensure success of the project. He constantly seeks out new technologies and methodologies always striving to expand his skill set, raising the bar for everyone around him. It\'s been an honour to work with Ravi.',
   },
   {
-    name: 'Tanvi Moharir',
-    role: 'Consultant',
+    name: 'Tarini Dash',
+    role: 'Head of Data Engineering & Analytics',
     company: 'Deloitte',
-    date: 'Nov 2022',
-    quote: 'Raviteja was one of the senior engineers I worked alongside with in the core development team. He is passionate and well versed with the internal workings of CDP systems. While his expertise lies in backend development with C# and .Net framework, he was very quick on picking up other languages and frameworks as well. Any team looking for a bright and passionate engineer would be lucky to have him.',
+    date: 'April 2024',
+    quote: 'Over the span of three years, Ravi served under my supervision as a Senior Data Engineer at Deloitte. He consistently displayed a high level of energy and enthusiasm, establishing himself as a proactive and delivery driven individual. Witnessing his progression from an average developer to one capable of independently leading and executing tasks from inception to completion was truly remarkable. Ravi\'s approach is characterized by his relentless pursuit of cutting-edge technologies and a formidable array of cloud certifications.',
+  },
+  {
+    name: 'Andi Mitre',
+    role: 'Engineering Lead',
+    company: 'Deloitte',
+    date: 'Nov 2023',
+    quote: 'I absolutely loved having Raviteja on my team. Raviteja is a one of a kind, extremely talented developer. He built some of the most complex components of our identity resolution system while showing a deep understanding of data engineering and software development. He played an active role ranging from algorithm design, system architecture, core code development, mentoring junior engineers, and client support. He\'s a hard worker who is eager to continuously learn and thrives on complex problems. Raviteja single handedly re-wrote a micro-service and was able to improve performance by 5×, having an immensely positive impact with existing clients.',
+  },
+  {
+    name: 'Abin Mathew',
+    role: 'Data Engineer',
+    company: 'Deloitte',
+    date: 'Nov 2023',
+    quote: 'Ravi has been a go-to person in the Identity Resolution (IDR) project. His deep understanding of IDR functionalities and his willingness to guide others make him an invaluable team member. With strong expertise in data engineering tools and technologies, he continuously learns and applies his knowledge to solve complex challenges efficiently. His collaborative approach and problem-solving mindset ensure that the solutions he builds are both effective and scalable.',
   },
   {
     name: 'Nikitha Kumari',
@@ -201,11 +275,11 @@ const recommendations = [
     quote: 'Ravi had been my coachee for almost a year. Ravi has very good technical skills and is always striving to excel in whatever he is doing. He is always ready to learn and always seeking feedback to be a better version of himself. Ravi adds value to the projects he is working on. It was great mentoring you Ravi!',
   },
   {
-    name: 'Samyuktha K',
-    role: 'Software Developer',
-    company: 'Equifax',
-    date: 'Nov 2022',
-    quote: 'Raviteja is a very hard working and dedicated developer. He is very detail oriented and quite a creative programmer. I found him to be very helpful, always willing and able to explain how things were supposed to work. He is a team player who is very customer-focused and always willing to help and share his knowledge with others. He has a great amount of patience when explaining how something works from both a technical and a functional standpoint.',
+    name: 'Manoj Balaji',
+    role: 'Data Scientist',
+    company: 'Juniper Networks',
+    date: 'May 2023',
+    quote: 'Raviteja is a very hard working and dedicated developer. He is very detail oriented and quite a creative programmer with a very broad knowledge of software including languages, APIs, databases and documentation. In addition to his technical expertise, Raviteja shows total dedication to his work, his colleagues, and his clients. He is a team player who is very customer-focused and always willing to help and share his knowledge with others.',
   },
   {
     name: 'Snehitha Anumalla',
@@ -220,6 +294,20 @@ const recommendations = [
     company: 'Farm Bureau Mutual Re',
     date: 'Dec 2022',
     quote: 'While working with Raviteja, I found him to be a quick learner demonstrating flexibility to keep trying without the fear of failure. His enthusiasm and energy to pursue complex projects is commendable. Undoubtedly, he would be an asset to any firm/project he takes on.',
+  },
+  {
+    name: 'Samyuktha K',
+    role: 'Software Developer',
+    company: 'Equifax',
+    date: 'Nov 2022',
+    quote: 'Raviteja is a very hard working and dedicated developer. He is very detail oriented and quite a creative programmer. I found him to be very helpful, always willing and able to explain how things were supposed to work. He is a team player who is very customer-focused and always willing to help and share his knowledge with others. He has a great amount of patience when explaining how something works from both a technical and a functional standpoint.',
+  },
+  {
+    name: 'Tanvi Moharir',
+    role: 'Consultant',
+    company: 'Deloitte',
+    date: 'Nov 2022',
+    quote: 'Raviteja was one of the senior engineers I worked alongside with in the core development team. He is passionate and well versed with the internal workings of CDP systems. While his expertise lies in backend development with C# and .Net framework, he was very quick on picking up other languages and frameworks as well. Any team looking for a bright and passionate engineer would be lucky to have him.',
   },
 ];
 
@@ -250,15 +338,16 @@ const education = [
 
 <BaseLayout
   title="About — Raviteja Tholupunoori"
-  description="Data Engineer and Cloud Architect with 9+ years of experience building scalable data pipelines and cloud-native solutions."
+  description="Software Engineer III and Sr. Data Engineer with 9+ years of experience in data and AI platform engineering — building production-grade pipelines, LLM-based platforms, and multi-cloud infrastructure."
 >
   <!-- Header -->
   <header class="mb-12">
     <h1 style="color:var(--fg); font-size:2rem; font-weight:700; margin:0 0 1rem;">About me</h1>
     <p style="color:var(--fg-muted); font-size:1.05rem; max-width:42rem; line-height:1.75; margin:0;">
-      I'm <strong style="color:var(--fg);">Raviteja Tholupunoori</strong>, a Data Engineer and Cloud Architect with
-      9+ years of experience designing scalable data solutions — from ETL pipelines to real-time streaming
-      architectures — across GCP, Azure, and AWS. Currently building at Deloitte. Astronomer Champion for Apache Airflow.
+      I'm <strong style="color:var(--fg);">Raviteja Tholupunoori</strong>, a Software Engineer III and Sr. Data Engineer
+      with 9+ years of experience in data and AI platform engineering — building production-grade data pipelines,
+      LLM-based platforms, and multi-cloud infrastructure across GCP, Azure, and AWS. Currently at Deloitte.
+      Apache Airflow Champion (Astronomer, Cohort 3).
     </p>
   </header>
 
@@ -286,7 +375,7 @@ const education = [
     <h2 style="color:var(--fg); font-size:1.2rem; font-weight:600; margin:0 0 1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">
       Experience
     </h2>
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-10">
       {experience.map(job => (
         <div>
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
@@ -301,18 +390,43 @@ const education = [
               <div>
                 <h3 style="color:var(--fg); font-size:1rem; font-weight:600; margin:0;">{job.role}</h3>
                 <p style="color:var(--fg-muted); font-size:0.9rem; margin:0.2rem 0 0;">{job.company}</p>
+                {job.context && (
+                  <p style="color:var(--fg-muted); font-size:0.78rem; margin:0.15rem 0 0; font-style:italic;">{job.context}</p>
+                )}
               </div>
             </div>
             <span style="color:var(--fg-muted); font-size:0.8rem; white-space:nowrap; margin-top:0.15rem;">{job.period}</span>
           </div>
-          <div class="flex flex-wrap gap-2 mb-3">
-            {job.tech.map(t => <span class="tag">{t}</span>)}
-          </div>
-          <ul style="padding-left:1.25rem; margin:0;" class="flex flex-col gap-1">
-            {job.highlights.map(h => (
-              <li style="color:var(--fg-muted); font-size:0.9rem;">{h}</li>
-            ))}
-          </ul>
+
+          {job.tech && (
+            <div class="flex flex-wrap gap-2 mb-3">
+              {job.tech.map((t: string) => <span class="tag">{t}</span>)}
+            </div>
+          )}
+
+          {job.subProjects ? (
+            <div class="flex flex-col gap-5 mt-3">
+              {job.subProjects.map((proj: { name: string; tech: string[]; highlights: string[] }) => (
+                <div style="border-left:2px solid var(--border); padding-left:1rem;">
+                  <p style="color:var(--fg); font-size:0.85rem; font-weight:600; margin:0 0 0.5rem;">{proj.name}</p>
+                  <div class="flex flex-wrap gap-2 mb-2">
+                    {proj.tech.map((t: string) => <span class="tag">{t}</span>)}
+                  </div>
+                  <ul style="padding-left:1.25rem; margin:0;" class="flex flex-col gap-1">
+                    {proj.highlights.map((h: string) => (
+                      <li style="color:var(--fg-muted); font-size:0.875rem;">{h}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <ul style="padding-left:1.25rem; margin:0;" class="flex flex-col gap-1">
+              {job.highlights?.map((h: string) => (
+                <li style="color:var(--fg-muted); font-size:0.875rem;">{h}</li>
+              ))}
+            </ul>
+          )}
         </div>
       ))}
     </div>
@@ -330,7 +444,7 @@ const education = [
             {category}
           </h3>
           <div class="flex flex-wrap gap-3">
-            {skills.map(skill => {
+            {skills.map((skill: { name: string; src?: string; bg?: string; letter?: string; href?: string }) => {
               const inner = (
                 <>
                   {skill.src ? (
@@ -366,10 +480,10 @@ const education = [
       Certifications
     </h2>
     <div class="flex flex-col gap-3">
-      {certifications.map(cert => (
+      {certifications.map((cert: { name: string; subtitle: string; logo?: string; logoUrl?: string }) => (
         <div style="border:1px solid var(--border); border-radius:10px; padding:0.875rem 1.25rem; background:var(--bg-subtle); display:flex; align-items:center; gap:1rem;">
           <img
-            src={cert.logo}
+            src={cert.logo ?? cert.logoUrl}
             alt={cert.name}
             width="44"
             height="44"
