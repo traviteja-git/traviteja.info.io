@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" width="1000" height="340">
+  <defs>
+    <style>text { font-family: system-ui, -apple-system, sans-serif; }</style>
+  </defs>
+
+  <!-- 1. Background -->
+  <rect width="1000" height="340" rx="8" fill="#f8faff" stroke="#e4e4e7"/>
+
+  <!-- 2. Track bars (drawn before filled bars) -->
+  <rect x="210" y="55"  width="680" height="36" rx="6" fill="#e2e8f0"/>
+  <rect x="210" y="110" width="680" height="36" rx="6" fill="#e2e8f0"/>
+  <rect x="210" y="165" width="680" height="36" rx="6" fill="#e2e8f0"/>
+  <rect x="210" y="220" width="680" height="36" rx="6" fill="#e2e8f0"/>
+  <rect x="210" y="275" width="680" height="36" rx="6" fill="#e2e8f0"/>
+
+  <!-- 3. Filled bars — 680px = 100% -->
+  <!-- Domain 1: 27% = 184px -->
+  <rect x="210" y="55"  width="184" height="36" rx="6" fill="#1d4ed8"/>
+  <!-- Domain 2: 18% = 122px -->
+  <rect x="210" y="110" width="122" height="36" rx="6" fill="#2563eb"/>
+  <!-- Domain 3: 20% = 136px -->
+  <rect x="210" y="165" width="136" height="36" rx="6" fill="#2563eb"/>
+  <!-- Domain 4: 20% = 136px -->
+  <rect x="210" y="220" width="136" height="36" rx="6" fill="#2563eb"/>
+  <!-- Domain 5: 15% = 102px -->
+  <rect x="210" y="275" width="102" height="36" rx="6" fill="#3b82f6"/>
+
+  <!-- 4. Text labels — must come last -->
+
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#111827">Claude Certified Architect — Exam Domain Weights</text>
+
+  <!-- Domain labels (right-aligned at x=200, vertically centered in each bar) -->
+  <text x="200" y="77"  text-anchor="end" font-size="12" fill="#374151">Agentic Architecture</text>
+  <text x="200" y="132" text-anchor="end" font-size="12" fill="#374151">Tool Design &amp; MCP</text>
+  <text x="200" y="187" text-anchor="end" font-size="12" fill="#374151">Claude Code Config</text>
+  <text x="200" y="242" text-anchor="end" font-size="12" fill="#374151">Prompt Engineering</text>
+  <text x="200" y="297" text-anchor="end" font-size="12" fill="#374151">Context Management</text>
+
+  <!-- Percentage labels — just past right edge of each filled bar -->
+  <text x="402" y="77"  font-size="13" font-weight="700" fill="#1e40af">27%</text>
+  <text x="340" y="132" font-size="13" font-weight="700" fill="#1e40af">18%</text>
+  <text x="354" y="187" font-size="13" font-weight="700" fill="#1e40af">20%</text>
+  <text x="354" y="242" font-size="13" font-weight="700" fill="#1e40af">20%</text>
+  <text x="320" y="297" font-size="13" font-weight="700" fill="#1e40af">15%</text>
+
+  <!-- Highest-weight badge on Domain 1 -->
+  <rect x="540" y="59" width="74" height="20" rx="4" fill="#fef3c7"/>
+  <text x="577" y="73" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">Highest weight</text>
+
+  <!-- Footer -->
+  <text x="500" y="325" text-anchor="middle" font-size="11" fill="#9ca3af">60 questions · 120 minutes · Pass score 720/1000 · $99 per attempt</text>
+</svg>
