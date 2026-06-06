@@ -91,6 +91,25 @@ Frustration and complexity aren't the same thing. The exam offers sentiment-base
 
 ---
 
+## Before you prep: Anthropic Academy prerequisites
+
+Anthropic runs a free learning platform at [anthropic.skilljar.com](https://anthropic.skilljar.com/) with 17 self-paced courses. No subscription, no credit card — just an email.
+
+These are the ones that map directly to exam domains:
+
+| Course | What it covers | Exam domain |
+|---|---|---|
+| [Claude Code 101](https://anthropic.skilljar.com/claude-code-101) | CLAUDE.md, Plan Mode, subagents, skills, MCP, hooks | Domain 3 |
+| [Introduction to Subagents](https://anthropic.skilljar.com/introduction-to-subagents) | Subagent config, context isolation, orchestration | Domain 1 |
+| [Introduction to Agent Skills](https://anthropic.skilljar.com/introduction-to-agent-skills) | Skills setup, SKILL.md format, invocation | Domain 3 |
+| [Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action) | Tool use, context management, GitHub workflows | Domains 2 & 5 |
+| [Introduction to MCP](https://anthropic.skilljar.com/introduction-to-model-context-protocol) | MCP servers, client integration | Domain 2 |
+| [Claude 101](https://anthropic.skilljar.com/claude-101) | Core features, prompting, best practices | Domain 4 |
+
+<div class="callout callout-tip">Each course gives you an official Anthropic certificate on completion. Get through the Claude Code 101 and Subagents courses first — those two cover the heaviest exam domain (27%).</div>
+
+---
+
 ## How I'm structuring prep
 
 My [study repo](https://github.com/traviteja-git/claude-certified-architect-foundations) is organized by domain with working code for each concept. The scenario implementations are the most useful part — they mix multiple domains in realistic production contexts, which is closer to how the actual exam reads than notes alone.
