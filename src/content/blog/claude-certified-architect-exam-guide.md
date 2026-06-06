@@ -19,7 +19,9 @@ I've been building out a [study repo](https://github.com/traviteja-git/claude-ce
 
 ## The exam at a glance
 
-60 multiple-choice questions. 120 minutes. Pass score 720/1000. $99 per attempt. It launched March 12, 2026 and is Level 301 — Anthropic expects you have at least 6 months of hands-on Claude experience before sitting it.
+<div class="callout callout-info">The CCA-F is currently available to employees of Anthropic Partner Network member companies only — not open to the general public yet. Anthropic has signaled public access is coming but hasn't announced a date. If your company isn't a partner, joining the network is free.</div>
+
+60 multiple-choice questions. 120 minutes. Pass score 720/1000. $99 per attempt (the first 5,000 partner attempts were free at launch). It launched March 12, 2026 and is Level 301 — Anthropic expects you have at least 6 months of hands-on Claude experience before sitting it.
 
 The format is scenario-based. Four of six scenarios are randomly selected on exam day, with roughly 15 questions each. You get dropped into a realistic production context — customer support automation, multi-agent research pipelines, CI/CD integration — and asked what you'd actually do.
 
